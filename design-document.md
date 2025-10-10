@@ -31,15 +31,14 @@ Satisfaction = Flavour × Kick
 **5 Days → 15-20 Total Encounters → Final Boss**
 
 Each day consists of:
-- **3 Regular Customers** (standard encounters)
-- **1 Elite Customer** (harder, better rewards)
+- **4 Regular Customers** (standard encounters)
 - **1 Boss Customer** (day finale)
 
-Between encounters, players navigate a branching map with node types:
-- **Customer** (standard combat)
-- **Elite Customer** (2× rewards, 1.5× difficulty)
-- **Shop** (buy ingredients, techniques, relics)
-- **Rest Site** (upgrade OR remove ingredient)
+After each encounter, players select one of 3 random order tickets from a carousel:
+- **1-2 Customer Variants** (standard combat)
+- **Picky Customer** (get a relic, more difficult)
+- **Shopkeeper** (buy ingredients, techniques, relics)
+- **Take Break** (upgrade OR remove ingredient)
 - **Random Event** (risk/reward scenarios)
 
 ### Turn Structure (Customer Encounter)
@@ -50,27 +49,24 @@ Between encounters, players navigate a branching map with node types:
 - Preview first 3 ingredients on conveyor belt
 - Plan strategy
 
-**2. COOKING PHASE** (Repeats for 3-5 rounds)
+**2. COOKING PHASE** (Repeats for 3 rounds)
 - Draw 8 random ingredients from your deck onto conveyor belt
-- Hand limit: 5 ingredients (can hold from belt)
-- Choose ingredients to add to soup OR trash
+- Choose ingredients to add to soup OR otherwise they're trashed at end of round
 - Each ingredient added immediately scores its stats
 - Unused ingredients on belt are discarded (no refund)
-- Round ends when you press "Serve Round"
+- Round ends when you press "Serve"
+- Customer takes out a spoon and tastes soup and gives a comment depending on satisfaction 
 
 **3. SCORING**
 - Current Flavour × Current Kick = Round Satisfaction
 - Satisfaction bar fills toward threshold
 - Heat decreases by 1
 - If threshold met: Victory (gain rewards)
-- If threshold not met after all rounds: Customer leaves angry (lose run)
+- If threshold not met after all rounds: Customer storms out and you get a humorous angry review message from them (lose run)
 
 **4. REWARDS** (After victory)
-Choose 1 of 3 rewards:
-- New ingredient (choice of 3)
-- New technique (choice of 3)
-- $30
-- Relic (rare, replaces ingredient/money option)
+- New ingredients/technique (choice of 3)
+- Variable money from $15-50 tallied from time bonus and overkill bonus
 
 ---
 
@@ -78,7 +74,7 @@ Choose 1 of 3 rewards:
 
 ### Satisfaction Thresholds
 
-**Formula**: `Threshold = Base × Day Multiplier × Elite Multiplier × Streak Bonus`
+**Formula**: `Threshold = Base × Day Multiplier × Elite Multiplier`
 
 | Day | Regular | Elite | Boss |
 |-----|---------|-------|------|
@@ -87,15 +83,6 @@ Choose 1 of 3 rewards:
 | 3 | 600 | 1000 | 1600 |
 | 4 | 1200 | 2000 | 3200 |
 | 5 | 2400 | 4000 | 6500 |
-
-**Streak Bonus**: Each consecutive satisfied customer in a day adds +10% to next threshold (resets on day change)
-
-### Rounds Per Encounter
-- **Regular Customers**: 3 rounds
-- **Elite Customers**: 4 rounds
-- **Boss Customers**: 5 rounds
-
-Players must reach threshold within these rounds or lose.
 
 ### Base Ingredient Values
 
@@ -124,10 +111,10 @@ Players must reach threshold within these rounds or lose.
 
 **Special Ingredients**
 - Grandma's Stock: 5F, gains +5F permanently each time used this run
-- Salt: 2F, +1K permanently to ALL ingredients in soup this round
+- Salt: 2F, +1K permanently to ALL ingredients added to soup this round
 - Butter: 4F, next ingredient scores +3F
 - Cream: 6F, reduces Kick by 2 (minimum 1)
-- MSG: Doubles Flavour this round, gain "Guilt" debuff (trash 1 ingredient next draw)
+- MSG: Doubles Flavour this round, trash 1 random ingredient next draw
 
 **Upgraded Values**: All base ingredients gain +3F/+2K when upgraded
 
@@ -150,18 +137,18 @@ Techniques cost **Energy** (3 energy per encounter, recharges between customers)
 
 ### Master Techniques (3 Energy)
 - **Mise en Place**: Choose any ingredient from your deck and add it to hand
-- **Chef's Special**: This round only, Satisfaction = (Flavour × Kick) × 1.5
+- **Chef's Special**: This round only, Satisfaction ×= 1.5
 - **Speed Service**: Take an extra round this encounter
 
 ---
 
 ## Ingredient Modifiers
 
-Modifiers can be added to ingredients through events, relics, or rewards.
+Modifiers can be added to ingredients through events, relics, or picked up naturally through rewards.
 
 ### Positive Modifiers
-- **Fresh**: +3F (lasts 3 encounters, then becomes normal)
-- **Aged**: +1K per round in deck this encounter
+- **Fresh**: +5F (lasts 3 encounters, then becomes normal)
+- **Aged**: +1F per round in deck this encounter
 - **Organic**: This ingredient doesn't count toward deck size limit
 - **Artisan**: Scores double when scoring threshold is below 50%
 - **Fragrant**: Other ingredients this round gain +1F
@@ -185,7 +172,7 @@ When certain ingredients are played together in the same round:
 
 ## Relics
 
-Relics are permanent modifiers for the entire run. Maximum 6 relics per run.
+Relics are permanent modifiers for the entire run. 
 
 ### Tier 1 Relics (Common)
 - **Golden Trash Bin**: Gain $5 every time you trash an ingredient
@@ -214,9 +201,17 @@ Relics are permanent modifiers for the entire run. Maximum 6 relics per run.
 
 ### Cursed Relics (High Risk/Reward)
 - **The Devil's Spice**: Double all thresholds. Triple all stats scored
-- **Rotten Fridge**: All ingredients get "Expired" modifier. Start with $200
-- **Health Inspector**: Trash 5 ingredients. Gain 3 random rare relics
+- **Rotten Fridge**: All ingredients get "Expired" modifier. Gain $200
+- **Health Inspector**: Trash 5 ingredients. Gain 3 random relics
 - **Critic's Review**: First encounter each day has 2× threshold. All others have 0.5× threshold
+
+---
+
+## Visual/Audio Design
+
+**Music**: Each day has unique music. Day 1 starts with chill lo-fi jazz. Day 3 has more drums and sounds like IDM (think Vordhosbn - Aphex Twin). By day 5, the soundtrack is insane sounding breakcore.
+
+**Graphics**: Quirky, pixelated ingredients with thick black borders. Characters are all pixel animated. Scoring animations are flashy and colorful. The satisfaction bar changes from red to green as it fills up. Conveyer belt on bottom of screen, pot of soup above it, customer standing above the pot.
 
 ---
 
@@ -328,30 +323,28 @@ Relics are permanent modifiers for the entire run. Maximum 6 relics per run.
 - Appears: Days 2-4
 
 **Count Brothula**
-- Debuff: Onion/Garlic score 0
+- Debuff: "Vampiric" - Onion/Garlic score 0
 - Buff: Tomato/Beet/Meat score +3F
 - Encourages specific ingredients
 - Appears: Days 2-5
 
-**Chad Chazly (Elite)**
+**Chad Chazly**
 - Debuff: "Weak Palate" - Kick above 10 causes him to leave (instant loss)
 - Forces Flavour-focused strategy
 - High threshold with Kick limitation
 - Appears: Days 3-5
 
-**Senator Dogfood (Boss)**
-- "Canine Appetite" - Meat scores triple, vegetables score 0
+**Senator Dogfood**
+- Debuff: "Canine Appetite" - Meat scores triple, vegetables score 0
 - Can be bribed: Playing a Bone ingredient (rare) instantly wins
 - Extremely high threshold
-- Appears: Day 3-5 Boss
+- Appears: Day 3-5 
 
-**Dr. Home (Final Boss, Day 5)**
-- "Pharmaceutical Palette" - Each round, demands different stat ratio
-- Round 1: Must score 60% Flavour, 40% Kick
-- Round 2: Must score 40% Flavour, 60% Kick  
-- Round 3: Must score 50/50 split
-- Rounds 4-5: Random ratios announced
-- Ultimate skill check
+**Dr. Home**
+- "Addict" - Drug ingredients score triple
+
+**God** - Final Boss
+- "Divine Palate" - Random effect?
 
 ---
 
@@ -379,20 +372,14 @@ Relics are permanent modifiers for the entire run. Maximum 6 relics per run.
 - Passive: Grandma's Stock gains +10 per use (instead of +5)
 - Starting Relic: Stock Pot
 
-**Chaos Chef Ramsey** (Unlock: Win with 5+ Cursed modifiers)
+**Remy the Failure** (Unlock: Win with 5+ Cursed modifiers)
 - Starting deck: All ingredients are "Dubious Gloop"
 - Passive: "Volatile" - All random effects doubled
 - Starting Relic: Molecular Gastronomy
 
 ### Meta Progression
 
-**Kitchen Upgrades** (Permanent, purchased with Soup Tokens earned from runs):
-- **Better Belt**: Start with 9 ingredients per draw (costs 10 tokens)
-- **Speed Boost**: +5 seconds Prep Phase (costs 8 tokens)
-- **Lucky Trash**: 25% chance trashed ingredient upgrades (costs 15 tokens)
-- **VIP Service**: Start each run with $50 (costs 12 tokens)
-
-**Recipe Journal**: Tracks all ingredient combos discovered, provides hints for synergies
+**Cookbook**: Tracks all ingredients and relics discovered, undiscovered relics are grayed out
 
 ---
 
@@ -408,8 +395,7 @@ Relics are permanent modifiers for the entire run. Maximum 6 relics per run.
 ### Anti-Frustration Features
 - **Base Kick = 1**: Prevents complete dead draws
 - **Upgrade Preview**: See what upgrade does before committing
-- **Threshold Visibility**: Always shown before encounter
-- **Undo Button**: Can undo played ingredients before serving round (once per round)
+- **Threshold Visibility**: Always shown before encounter on order ticket
 
 ### Scaling Breakpoints
 Mathematical targets for balanced play:
@@ -436,30 +422,22 @@ Certain relic combinations are intentionally powerful (and fun):
 
 ### Victory
 - Satisfy all customers across 5 days
-- Defeat Dr. Home (Final Boss)
-- Unlock next chef (if applicable)
+- Defeat God (Final Boss)
 
 ### Defeat
 - Any customer leaves unsatisfied
 - Must restart from Day 1
 
 ### Scoring/Ranking
-- **Time Bonus**: Faster clears = more tokens
-- **Perfect Days**: Satisfy all customers on a day = bonus token
-- **Style Points**: Win with unique/difficult builds = bonus tokens
-- **Leaderboards**: High scores per chef, speedruns, challenge modes
+- **Time Bonus**: Faster clears = more money
+- **Overkill**: More bonus satisfaction at end of round = more money
+- **Leaderboards**: High score stats per chef
 
 ---
 
-## Future Expansion Ideas
+## Future Expansions
 
 - **Endless Mode**: Infinite scaling difficulty
-- **Daily Challenges**: Fixed seed, modifiers, leaderboards
-- **Co-op Mode**: Two chefs share one soup (split ingredients)
+- **Seeds**: Play a seeded run, save your seed to replay a run
 - **Custom Runs**: Tweak starting relics, deck, modifiers
 - **More Chefs**: 10+ total with wildly different playstyles
-- **Seasonal Events**: Limited-time customers and ingredients
-
----
-
-*End of Design Document*
