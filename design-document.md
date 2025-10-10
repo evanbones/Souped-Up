@@ -9,14 +9,14 @@ A deck-building roguelike where players are chefs serving increasingly demanding
 
 ### Satisfaction Formula
 ```
-Satisfaction = Flavour × Kick
+Satisfaction = Flavour × Kick 
 ```
 
 **Key Implications:**
-- Both stats must be present to score (zero in either = zero satisfaction)
-- Balanced builds (10F × 10K = 100) often outperform specialist builds (20F × 5K = 100)
-- Heat system provides temporary Kick boosts
-- Relics can modify this formula for different playstyles
+- Flavour and Kick persist across all rounds of a single encounter
+- Final encounter satisfaction is calculated at the end using accumulated stats
+- Kick resets to 1 and Flavour to 0 at the start of each new customer encounter
+- Multiplicative scaling for Kick and high-Flavour ingredients feel rewarding
 
 ### Base Stats
 - **Base Kick**: Always starts at 1 (minimum) per encounter
@@ -50,10 +50,10 @@ After each encounter, players select one of 3 random order tickets from a carous
 - Plan strategy
 
 **2. COOKING PHASE** (Repeats for 3 rounds)
-- Draw 8 random ingredients from your deck onto conveyor belt
-- Choose ingredients to add to soup OR otherwise they're trashed at end of round
+- Draw 8 random ingredients from your "pantry" (deck) onto conveyor belt
+- Choose ingredients to add to soup
 - Each ingredient added immediately scores its stats
-- Unused ingredients on belt are discarded (no refund)
+- Unused ingredients on belt are discarded (return to pantry at end of round)
 - Round ends when you press "Serve"
 - Customer takes out a spoon and tastes soup and gives a comment depending on satisfaction 
 
@@ -74,49 +74,47 @@ After each encounter, players select one of 3 random order tickets from a carous
 
 ### Satisfaction Thresholds
 
-**Formula**: `Threshold = Base × Day Multiplier × Elite Multiplier`
-
-| Day | Regular | Elite | Boss |
-|-----|---------|-------|------|
-| 1 | 150 | 250 | 400 |
-| 2 | 300 | 500 | 800 |
-| 3 | 600 | 1000 | 1600 |
-| 4 | 1200 | 2000 | 3200 |
-| 5 | 2400 | 4000 | 6500 |
+| Day | Regular | Elite | Boss  |
+| --- | ------- | ----- | ----- |
+| 1   | 200     | 400   | 600   |
+| 2   | 800     | 1200  | 2000  |
+| 3   | 2500    | 4000  | 7000  |
+| 4   | 7000    | 11000 | 17000 |
+| 5   | 15000   | 22000 | 35000 |
 
 ### Base Ingredient Values
 
-**Vegetables** (Score 4-6 Flavour, 0 Kick)
-- Carrot: 4F
-- Potato: 5F
-- Onion: 5F
-- Tomato: 6F
-- Celery: 4F
-- Mushroom: 6F
-- Bell Pepper: 5F
+**Vegetables** (Score Flavour only)
+- Carrot: 30F
+- Potato: 35F
+- Onion: 35F
+- Tomato: 40F
+- Celery: 30F
+- Mushroom: 40F
+- Bell Pepper: 35F
 
-**Meats** (Score 5-8 Flavour, 0 Kick)
-- Chicken: 6F
-- Beef: 7F
-- Pork: 6F
-- Fish: 5F
-- Shrimp: 8F
+**Meats** (Score Flavour only)
+- Chicken: 45F
+- Beef: 50F
+- Pork: 45F
+- Fish: 40F
+- Shrimp: 55F
 
-**Spices** (Flavour + Heat/Kick)
-- Chili Pepper: 5F, +3 Heat
-- Hot Sauce: 0F, +5 Heat
-- Black Pepper: 3F, +2 Heat
-- Cayenne: 2F, +4 Heat
-- Ghost Pepper: 1F, +8 Heat
+**Spices** (Flavour + Kick)
+- Chili Pepper: +0.3K, +0F
+- Hot Sauce: +0.5K, +0F
+- Black Pepper: +0.2K, +20F
+- Cayenne: +0.4K, +15F
+- Ghost Pepper: +1.0K, +10F
 
 **Special Ingredients**
-- Grandma's Stock: 5F, gains +5F permanently each time used this run
-- Salt: 2F, +1K permanently to ALL ingredients added to soup this round
-- Butter: 4F, next ingredient scores +3F
-- Cream: 6F, reduces Kick by 2 (minimum 1)
-- MSG: Doubles Flavour this round, trash 1 random ingredient next draw
+- Grandma's Stock: 40F, gains +5F permanently each time used this run
+- Salt: 10F, +0.1K per ingredient played this round
+- Butter: 20F to next ingredient played
+- Cream: 35F, halves K this round
+- MSG: Doubles F this round, trash 1 random ingredient next draw
 
-**Upgraded Values**: All base ingredients gain +3F/+2K when upgraded
+**Upgraded Values**: All base ingredients gain +10F and +0.2K (if applicable) when upgraded. Special ingredients have improved abilities or better F/K, depending.
 
 ---
 
@@ -125,19 +123,19 @@ After each encounter, players select one of 3 random order tickets from a carous
 Techniques cost **Energy** (3 energy per encounter, recharges between customers)
 
 ### Basic Techniques (1 Energy)
-- **Sauté**: Next ingredient played this round scores +5F
-- **Season**: Add +2 Kick permanently for this encounter
-- **Taste Test**: Preview next 5 ingredients on your deck
+- **Sauté**: Next ingredient played this round scores +50F
+- **Season**: Add +0.2 Kick
+- **Taste Test**: Preview next 5 ingredients in your deck
 
 ### Advanced Techniques (2 Energy)
-- **Flambé**: Double all Heat this round (before it's added to Kick)
-- **Simmer**: Reduce all Kick to 1, gain +10F
-- **Sous Vide**: Lock one ingredient aside. It scores +6F when played next round
+- **Flambé**: Double current Kick
+- **Simmer**: Reduce Kick to 1, +100F
+- **Sous Vide**: Lock one ingredient aside, it scores double flavour when played next round
 - **Ferment**: Choose an ingredient in hand. After 2 more rounds, it scores triple stats
 
 ### Master Techniques (3 Energy)
 - **Mise en Place**: Choose any ingredient from your deck and add it to hand
-- **Chef's Special**: This round only, Satisfaction ×= 1.5
+- **Chef's Special**: Satisfaction × 1.5
 - **Speed Service**: Take an extra round this encounter
 
 ---
@@ -151,22 +149,14 @@ Modifiers can be added to ingredients through events, relics, or picked up natur
 - **Aged**: +1F per round in deck this encounter
 - **Organic**: This ingredient doesn't count toward deck size limit
 - **Artisan**: Scores double when scoring threshold is below 50%
-- **Fragrant**: Other ingredients this round gain +1F
+- **Fragrant**: Other ingredients this round gain +10F
 
 ### Negative Modifiers
-- **Burnt**: +4K, -2F (can be useful for Kick builds!)
-- **Frozen**: -2F until played
-- **Dubious Gloop**: ??? (Random effect: could be +10F or -5F each time played)
-- **Cursed**: Cannot be trashed at Rest Sites
-- **Expired**: -1F per day passed
-
-### Combo Modifiers
-When certain ingredients are played together in the same round:
-- **Tomato + Basil + Mozzarella**: "Caprese" → +15F bonus
-- **Potato + Leek + Cream**: "Vichyssoise" → +10F, +2K
-- **Beef + Onion + Mushroom**: "Umami Bomb" → Double total Kick
-- **Ghost Pepper + Any Meat**: "Ring of Fire" → +20 Heat
-- **Any 3 Vegetables**: "Garden Fresh" → +8F
+- **Burnt**: +0.4K, -20F (can be useful for Kick builds!)
+- **Frozen**: -20F until played
+- **Dubious Gloop**: ??? (Random effect: could be +100F or -50F each time played)
+- **Cursed**: Cannot be trashed during Break Times
+- **Expired**: -10F per day passed
 
 ---
 
@@ -177,30 +167,31 @@ Relics are permanent modifiers for the entire run.
 ### Tier 1 Relics (Common)
 - **Golden Trash Bin**: Gain $5 every time you trash an ingredient
 - **Recipe Book**: Draw 10 ingredients first round of each encounter (instead of 8)
-- **Pantry Raid**: Once per encounter, add a random basic ingredient to hand
+- **Pantry Raid**: Once per encounter, add an extra random basic ingredient to hand
 - **Leftovers**: Retain one ingredient after playing it (returned to hand)
 - **Sharp Knife**: +1 Energy per encounter
-- **Copper Pot**: Start each encounter with +2 Heat
+- **Copper Pot**: Start each encounter with +0.5 Kick
+- **Sticky Hand**: When picked up, choose an ingredient. This ingredient will always be drawn first in an encounter
 
 ### Tier 2 Relics (Uncommon)
-- **Quality Control**: Upgraded ingredients score 2× stats (instead of base + 3)
-- **Financial Documents**: Gain $1 per $10 you have at end of each encounter
-- **Eternal Flame**: Heat no longer decreases each round
-- **Pressure Cooker**: Gain 2× Heat from all sources. Vegetables score -2F
-- **Mise en Place Station**: Choose an ingredient to upgrade at start of each encounter
-- **Ice Bath**: Start each encounter with Kick set to 3 (instead of 1)
-- **Stock Pot**: Grandma's Stock gains +8 instead of +5 per use
+- **Mulligan**: If soup is served with only one ingredient, permanently trash ingredient
+- **Loaded Dice**: Double all random probabilities 
+- **Quality Control**: Upgraded ingredients score 2× their stats
+- **Financial Documents**: Earn $1 per $10 you have at end of each encounter
+- **Pressure Cooker**: Gain 2× Kick from all sources. Vegetables no longer score F
+- **Prep Station**: Choose an ingredient on conveyer belt to upgrade at start of each encounter
+- **Ice Bath**: Start each encounter with Kick set to 2 (instead of 1)
+- **Stock Pot**: Only shows up if you have Grandma's Stock in deck. Grandma's Stock gains +8 instead of +5 per use
+- **Feng Shui**: If deck size is less than 10, all ingredients score +10F, +0.1K
 
 ### Tier 3 Relics (Rare - Build-Defining)
-- **Scales of Justice**: Balance F and K automatically (F×K becomes [(F+K)/2]²)
-- **Comfort Food**: Square all Flavour. Kick is always 1 (can't gain Heat)
-- **Inferno Kitchen**: Kick = Heat only. All ingredients add Heat instead of scoring normally
-- **Molecular Gastronomy**: After each round, randomly swap two ingredients' stats
+- **Eternal Flame**: +0.0 Kick. Permanently add +0.1 Kick at end of encounter 
+- **Comfort Food**: Square all Flavour at end of encounter. Kick is always 1 (can't gain additional Kick)
+- **Molecular Gastronomy**: After each round, randomly shuffle ingredients' stats
 - **Ghost Kitchen**: You don't see ingredients until played. All stats increased by 50%
-- **Minimalist's Wok**: Maximum deck size is 10. All ingredients score +10F, +5K
 
 ### Cursed Relics (High Risk/Reward)
-- **The Devil's Spice**: Double all thresholds. Triple all stats scored
+- **The Devil's Spice**: Double all thresholds. +3 Kick
 - **Rotten Fridge**: All ingredients get "Expired" modifier. Gain $200
 - **Health Inspector**: Trash 5 ingredients. Gain 3 random relics
 - **Critic's Review**: First encounter each day has 2× threshold. All others have 0.5× threshold
