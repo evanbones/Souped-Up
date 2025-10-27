@@ -1,7 +1,7 @@
 # Souped Up!
 
 ## Core Concept
-A deck-building roguelike where players are chefs serving increasingly demanding customers by crafting soups from ingredients. Success depends on balancing **Flavour** (quality) and **Mult** (intensity) to meet satisfaction thresholds.
+A deck-building roguelike where you're a chef serving increasingly demanding customers by crafting soups. Success depends on balancing **Flavour** (additive) and **Mult** (multiplicative) to meet satisfaction thresholds. Numbers scale from hundreds to millions across 5 restaurant shifts.
 
 ---
 
@@ -9,368 +9,527 @@ A deck-building roguelike where players are chefs serving increasingly demanding
 
 ### Satisfaction Formula
 ```
-Satisfaction = (Base Flavour + Flavour Bonuses) × (Base Mult + Mult Bonuses) × Relic Multipliers
+Satisfaction = (Base Flavour + Flavour Bonuses) × (Base Mult × Mult Multipliers) × Relic Multipliers
+
+Where:
+• Base Flavour = Sum of all ingredient Flavour values
+• Flavour Bonuses = Additional Flavour from combos/effects
+• Base Mult = Sum of all +Mult sources (starts at 1)
+• Mult Multipliers = Product of all ×Mult effects (e.g., ×2 × ×1.5 = ×3)
+• Relic Multipliers = Product of permanent relic effects
 ```
 
-### Soup Types
+**Example:**
+- Flavour: 300 + 100 (combo) = 400
+- Mult: 10 + 5 (technique) = 15
+- Mult Multipliers: ×2 (technique) × ×1.5 (relic) = ×3
+- Final: 400 × (15 × 3) = 400 × 45 = **18,000 Satisfaction**
 
-Each soup type has base stats that can be leveled up in shops:
+---
 
-| Soup Type | Base Flavour | Base Mult | Level Up Cost | Flavour/Level | Mult/Level |
-|-----------|--------------|-----------|---------------|---------------|------------|
-| **Broth** | 20 | 2 | $40 | +10 | +1 |
-| **Stew** | 40 | 3 | $50 | +15 | +1 |
-| **Bisque** | 30 | 4 | $60 | +10 | +2 |
-| **Chowder** | 50 | 3 | $60 | +20 | +1 |
-| **Consommé** | 15 | 6 | $70 | +5 | +3 |
-| **Curry** | 35 | 5 | $70 | +12 | +2 |
-| **Ramen** | 25 | 5 | $60 | +8 | +2 |
+## Soup Types (5 Core Types)
 
-**Soup Type Determination**: The soup type is determined by the **combination of ingredients played each round**. For example:
-- **Broth**: 3+ vegetables, no meat
-- **Stew**: 2+ meat, 2+ vegetables
-- **Bisque**: 1+ seafood, 1+ cream/butter
-- **Chowder**: 2+ seafood, 2+ vegetables, 1+ cream/potato
-- **Consommé**: Only upgraded ingredients
-- **Curry**: 2+ spices, 1+ meat/vegetables
-- **Ramen**: 1+ noodles, 1+ meat, 1+ egg 
+Soup type determined by ingredients played **that course** (not cumulative). Each provides passive bonuses.
 
-If ingredients don't match any soup type, you make **Slop** (10 Flavour, 1 Mult).
+| Soup Type | Requirements | Base Stats | Passive Ability |
+|-----------|-------------|------------|-----------------|
+| **Broth** | 3+ vegetables, no meat | 30F, ×1.5 | Each vegetable gives all ingredients +8F |
+| **Stew** | 2+ meat, 2+ vegetables | 60F, ×2 | Each meat adds +0.5× to Mult multiplier |
+| **Bisque** | 1+ seafood, 1+ dairy | 50F, ×2.5 | Dairy ingredients score ×3 stats |
+| **Curry** | 2+ spices, 1+ protein | 50F, ×3 | +0.5× Mult per unique spice type |
+| **Chowder** | 2+ seafood, 2+ vegetables | 70F, ×2 | Seafood gives all ingredients +15F |
+
+**Slop** (no match): 20F, ×1 Mult, no passive
+
+**Leveling Soup Types** (in shops):
+- Cost: $50 × current level (max 5 levels)
+- Effect: +20F and +0.5× Mult per level
 
 ---
 
 ## Game Loop
 
 ### Run Structure
-**5 Days → 15-20 Total Encounters → Final Boss**
+**5 Restaurant Shifts → 3 Courses Per Shift → Final Boss**
 
-Each day consists of:
-- **4 Regular Customers** (standard encounters)
-- **1 Boss Customer** (day finale)
+Each shift is one continuous service with **3 courses**:
+- **Appetizer** (Course 1): Lightest threshold
+- **Main Course** (Course 2): Medium threshold  
+- **Dessert** (Course 3): Heaviest threshold
 
-After each encounter, players select one of 3 random order tickets from a carousel:
-- **1-2 Customer Variants** (standard combat)
-- **Picky Customer** (get a relic, more difficult)
-- **Shopkeeper** (buy ingredients, techniques, relics)
-- **Take Break** (upgrade OR remove ingredient)
-- **Random Event** (risk/reward scenarios)
-
-### Turn Structure (Customer Encounter)
-
-**1. PREP PHASE** (10 seconds)
-- View satisfaction threshold for this customer
-- See customer's debuffs/preferences
-- Preview first 3 ingredients on conveyor belt
-- Plan strategy
-
-**2. COOKING PHASE** (Repeats for 3 rounds)
-- Draw 8 random ingredients from your "pantry" (deck) onto conveyor belt
-- Choose ingredients to add to soup
-- Each ingredient added immediately scores its stats
-- Unused ingredients on belt are discarded (return to pantry at end of round)
-- Round ends when you press "Serve"
-- Customer takes out a spoon and tastes soup and gives a comment depending on satisfaction 
-
-**3. SCORING**
-- Current Flavour × Current Mult = Round Satisfaction
-- Satisfaction bar fills toward threshold
-- If threshold met: Victory (gain rewards)
-- If threshold not met after all rounds: Customer storms out and you get a humorous angry review message from them (lose run)
-
-**4. REWARDS** (After victory)
-- New ingredients/technique (choice of 3)
-- Variable money from $15-50 tallied from time bonus and overkill bonus
+**Between Shifts**: Choose 1 of 3 options from carouseling order tickets:
+- **New Customer** - Continue to next shift
+- **Shop** - Buy ingredients, techniques, relics
+- **Break Room** - Upgrade ingredient OR remove ingredient
 
 ---
 
-## Scoring & Balance
+### Course Structure (Combat Encounter)
 
-### Satisfaction Thresholds
+**PREP PHASE** (Untimed - Plan Your Strategy)
+1. View shift's **total satisfaction threshold**
+2. See customer's special rules/modifiers
+3. Optional prep actions (cost energy):
+   - **Mulligan** (1 energy): Shuffle deck, redraw
+   - **Pre-Season** (1 energy): Start with +5 to base Mult
 
-| Day | Regular | Elite | Boss  |
-| --- | ------- | ----- | ----- |
-| 1   | 200     | 400   | 600   |
-| 2   | 800     | 1200  | 2000  |
-| 3   | 2500    | 4000  | 7000  |
-| 4   | 7000    | 11000 | 17000 |
-| 5   | 15000   | 22000 | 35000 |
+**COOKING PHASE** (3 Courses)
 
-### Base Ingredient Values
+Each course:
+1. **Draw 8 ingredients** from your pantry onto conveyor belt
+2. **Play ingredients** into soup pot one at a time
+   - Each ingredient immediately adds its stats
+   - Soup type determined by current ingredients
+   - Combos trigger automatically when conditions met
+3. **Mid-Course Check** (at 50% threshold):
+   - Customer gives feedback
+   - Optional bonus objective appears (e.g., "Add seafood for +$20")
+4. **Press "Serve"** when ready
+5. Unused ingredients discarded, all ingredients return to pantry after shift
 
-**Vegetables** (Flavour ingredients)
-- Carrot: 30F
-- Potato: 35F
-- Onion: 35F
-- Tomato: 40F
-- Celery: 30F
-- Mushroom: 40F
-- Bell Pepper: 35F
+**SCORING**
+- Calculate: (Total Flavour) × (Base Mult × Mult Multipliers) × Relics
+- Satisfaction accumulates across all 3 courses
+- If total threshold met: Victory + rewards!
+- If not met after course 3: Customer leaves (run ends)
 
-**Meats** (Flavour ingredients)
-- Chicken: 45F
-- Beef: 50F
-- Pork: 45F
-- Fish: 40F
-- Shrimp: 55F
-- Crab: 50F
+**REWARDS**
+- **Money**: $40-80 (based on speed + overkill)
+- **Card Choice**: Pick 1 of 3 ingredients/techniques
+- **Relic**: Every 3rd shift, choose 1 of 3 relics
 
-**Spices** (Mult ingredients)
-- Chili Pepper: 1M
-- Hot Sauce: 2M
-- Black Pepper: 20F, 1M
-- Cayenne: 15F, 2M
-- Ghost Pepper: 10F, 4M
+---
 
-**Special Ingredients**
-- Grandma's Stock: 40F, gains +5F permanently each time used this run
-- Salt: +1M per ingredient played this round
-- Butter: Permanently add 20F to next ingredient played
-- Cream: 35F, -10M
-- MSG: Permanently gain +2M when played, trash 1 random ingredient next draw
+## Satisfaction Thresholds
 
-**Upgraded Values**: 
-- Flavour ingredients: +15F when upgraded
-- Mult ingredients: +1M when upgraded
-- Special ingredients: Enhanced abilities
+| Shift | Regular | Boss |
+|-------|---------|------|
+| 1 | 1,000 | 2,500 |
+| 2 | 5,000 | 12,000 |
+| 3 | 25,000 | 60,000 |
+| 4 | 120,000 | 300,000 |
+| 5 | 600,000 | 1,500,000 |
+
+---
+
+## Ingredients
+
+### Vegetables (Flavour Focus)
+| Ingredient | Stats | Rarity |
+|------------|-------|--------|
+| Carrot | 40F | Common |
+| Potato | 45F | Common |
+| Onion | 45F | Common |
+| Tomato | 50F | Common |
+| Celery | 40F | Common |
+| Mushroom | 55F | Uncommon |
+| Bell Pepper | 45F | Uncommon |
+| Corn | 50F | Uncommon |
+| Garlic | 35F, +2 | Uncommon (hybrid) |
+| Truffle | 100F | Rare |
+
+### Proteins (Flavour Focus)
+| Ingredient | Stats | Rarity |
+|------------|-------|--------|
+| Chicken | 70F | Common |
+| Beef | 80F | Common |
+| Pork | 75F | Common |
+| Fish | 65F | Common |
+| Shrimp | 85F | Uncommon |
+| Crab | 90F | Uncommon |
+| Lamb | 100F | Rare |
+| Duck | 110F | Rare |
+
+### Spices (Mult Focus)
+| Ingredient | Stats | Rarity |
+|------------|-------|--------|
+| Black Pepper | 20F, +3 | Common |
+| Chili Flakes | 15F, +4 | Common |
+| Paprika | 25F, +3 | Common |
+| Cumin | 20F, +5 | Uncommon |
+| Cayenne | 10F, +8 | Uncommon |
+| Ghost Pepper | 5F, +15 | Rare |
+
+### Special Ingredients
+| Ingredient | Effect | Rarity |
+|------------|--------|--------|
+| **Grandma's Stock** | 60F. Permanently gains +10F each time played this run | Uncommon |
+| **Salt** | Gain +2 to base Mult for each other ingredient played this course | Common |
+| **Butter** | 50F. Next ingredient played gains +40F | Common |
+| **Cream** | 60F, ×0.75 Mult multiplier (reduces Mult slightly) | Uncommon |
+| **MSG** | Permanently gain +5 to base Mult this shift. Discard 1 random ingredient next course | Uncommon |
+| **Truffle Oil** | 120F, ×1.8 Mult multiplier | Rare |
+
+**Upgraded Ingredients** (via shops/rewards):
+- Vegetables/Proteins: +30F
+- Spices: +5 Mult
+- Special: Enhanced effects (Stock +15F, Salt +3 Mult, etc.)
+
+---
+
+## Combo
+
+Combos trigger when specific ingredients are played **in the same course**:
+
+### Basic Combos (Common Ingredients)
+1. **Mirepoix** (Carrot + Celery + Onion): +100F, +3 Mult
+2. **Aromatics** (Garlic + Onion + any spice): ×1.5 Mult multiplier
+3. **Surf & Turf** (Any seafood + Any beef): +120F, +6 Mult
+
+### Advanced Combos (Uncommon+)
+4. **Holy Trinity** (Onion + Bell Pepper + Celery): Next 2 ingredients score ×2 stats
+5. **Stock Base** (Grandma's Stock + 3+ vegetables): ×1.8 Mult multiplier
+6. **Spice Rack** (4+ different spices): ×2 Mult multiplier
+
+### Master Combos (Rare/Build-Defining)
+7. **Butcher's Choice** (4+ different proteins): +250F, +12 Mult
+8. **Rainbow Medley** (7+ ingredients of different types): ×3 Mult multiplier, +300F
+
+**First Discovery**: When you trigger a combo for the first time, it's added to your Cookbook with fanfare.
 
 ---
 
 ## Techniques (Active Abilities)
 
-Techniques cost **Energy** (3 energy per encounter, recharges between customers)
+**Energy System:**
+- Start with **3 energy** per shift
+- Gain **+1 energy per course** (max 6 total)
+- Unused energy does NOT carry between shifts
 
 ### Basic Techniques (1 Energy)
-- **Sauté**: Next ingredient played this round scores +50F
-- **Season**: Add +2 Mult
-- **Taste Test**: Preview next 5 ingredients in your deck
+- **Sauté**: Next ingredient gains +80F
+  - *Flavor text*: "A quick sear brings out the natural sweetness."
+- **Season**: Add +8 to base Mult
+  - *Flavor text*: "Just a pinch more intensity."
+- **Taste Test**: Preview next 8 ingredients in deck
+  - *Flavor text*: "Know what's coming before the rush."
+- **Mise en Place**: Draw 3 extra ingredients this course
+  - *Flavor text*: "Everything in its place, ready to cook."
 
 ### Advanced Techniques (2 Energy)
-- **Flambé**: +5 Mult this round
-- **Simmer**: Set base Mult to 1, +100F
-- **Sous Vide**: Lock one ingredient aside, it adds double stats when played next round
-- **Ferment**: Choose an ingredient in hand. After 2 more rounds, it adds triple stats
+- **Flambé**: Gain Spice Intensity ×2 this course
+  - *Flavor text*: "Set it ablaze for dramatic effect."
+- **Sous Vide**: Set aside 1 ingredient. Next course, it scores ×3 stats
+  - *Flavor text*: "Low and slow perfection, worth the wait."
+- **Blanch**: Remove all negative modifiers from ingredients in hand
+  - *Flavor text*: "A quick dip in boiling water cleanses all."
+- **Pressure Cook**: +15 to base Mult, but discard hand at end of course
+  - *Flavor text*: "Extreme heat, extreme risk."
 
-### Master Techniques (3 Energy)
-- **Mise en Place**: Choose any ingredient from your deck and add it to hand
-- **Chef's Special**: Apply 1.5× multiplier to final satisfaction
-- **Speed Service**: Take an extra round this encounter
-
----
-
-## Ingredient Modifiers
-
-Modifiers can be added to ingredients through events, relics, or picked up naturally through rewards.
-
-### Positive Modifiers
-- **Fresh**: +15F (lasts 3 encounters, then becomes normal)
-- **Aged**: Permanently gain +1F per round in deck
-- **Organic**: +3M
-- **Artisan**: Scores double when scoring threshold is below 50%
-- **Fragrant**: Other ingredients gain +10F this round
-
-### Negative Modifiers
-- **Burnt**: +4M, -20F
-- **Frozen**: -20F until played 3 times
-- **Dubious**: ??? (Random effect: could be from +80F to -50F each time played)
-- **Cursed**: Cannot be trashed during Break Times
-- **Expired**: -10F per day passed
+### Master Techniques (2 Energy)
+- **Chef's Special**: Gain Spice Intensity ×2 to final satisfaction this course
+  - *Flavor text*: "Your signature move. Make it count."
+- **Perfect Pairing**: If same soup type all 3 courses, gain Spice Intensity ×2.5 on dessert (one-use per shift)
+  - *Flavor text*: "Commitment to a vision pays off."
+- **Speed Service**: Take a 4th course this shift (one-use per shift)
+  - *Flavor text*: "The rush is on. One more chance."
 
 ---
 
-## Relics
+## Relics 
 
-Relics are permanent modifiers for the entire run. 
+Relics appear after Shifts 1, 2, 3, and 4 (choose 1 of 3).
 
-### Tier 1 Relics (Common)
-- **Golden Trash Bin**: Gain $5 every time you trash an ingredient
-- **Recipe Book**: Draw 10 ingredients first round of each encounter (instead of 8)
-- **Pantry Raid**: Once per encounter, add an extra random basic ingredient to hand
-- **Leftovers**: Retain one ingredient after playing it (returned to hand)
-- **Sharp Knife**: +1 Energy per encounter
-- **Copper Pot**: Permanently gains +1M at start of encounter 
-- **Sticky Hand**: When picked up, choose an ingredient. This ingredient will always be drawn first in an encounter
+### Tier 1 Relics (Shifts 1-2) - $150
+- **Recipe Book**: Draw 10 ingredients first course (instead of 8)
+- **Sharp Knives**: +1 Energy per shift
+- **Copper Pot**: Start each shift with +8 to base Mult
+- **Leftovers**: Retain 1 random ingredient after each course
+- **Tasting Spoon**: Taste Test costs 0 energy
+- **Golden Ladle**: Gain $10 when you remove an ingredient
 
-### Tier 2 Relics (Uncommon)
-- **Mulligan**: If soup is served with only one ingredient, permanently trash ingredient
-- **Loaded Dice**: Double all random probabilities 
-- **Quality Control**: Upgraded ingredients add 2× their stats
-- **Financial Documents**: Earn $1 per $10 you have at end of each encounter
-- **Pressure Cooker**: 1.5× multiplier to all Mult bonuses. Vegetables add no Flavour
-- **Prep Station**: Choose an ingredient on conveyer belt to permanently upgrade at start of each encounter
-- **Ice Bath**: When picked up, upgrade the level of every soup type
-- **Stock Pot**: Only shows up if you have Grandma's Stock in deck. Grandma's Stock gains +8 instead of +5 per use
+### Tier 2 Relics (Shifts 2-3) - $250
+- **Quality Control**: Upgraded ingredients score ×1.5 their stats
+- **Stock Pot**: Grandma's Stock gains +15F per use (instead of +10F)
+- **Spice Rack**: All spices give +4 additional Mult
+- **Prep Station**: Upgrade 1 random ingredient at start of each shift
+- **Combo Master**: All combos grant +8 additional Mult
+- **Second Wind**: If below 60% threshold after course 2, gain +3 energy
 
-### Tier 3 Relics (Rare - Build-Defining)
-- **Scales of Justice**: Final calculation becomes [(F+M)/2]²
-- **Eternal Flame**: +0.0x Mult. Permanently gain +0.5x Mult at start of day, but destroy random relic 
-- **Comfort Food**: Final calculation becomes F². Base Mult always 1 (can't gain Mult)
-- **Molecular Gastronomy**: After each round, randomly shuffle ingredients' flavour stats from +25 to -10
-- **Ghost Kitchen**: You don't see ingredients until played. All stats increased by 50%
-- **Master Chef**: 2× multiplier on final round if you make the same soup type all rounds
-
-### Cursed Relics (High Risk/Reward)
-- **The Devil's Spice**: Double all thresholds. +50 Mult
-- **Rotten Fridge**: All ingredients get "Expired" modifier. Gain $200
-- **Health Inspector**: Trash 5 ingredients. Gain 3 random relics
-- **Critic's Review**: First encounter each day has 2× threshold. All others have 0.5× threshold
-
----
-
-## Visual/Audio Design
-
-**Music**: Each day has unique music. Day 1 starts with chill lo-fi jazz. Day 3 has more drums and sounds like IDM (think Vordhosbn - Aphex Twin). By day 5, the soundtrack is insane-sounding breakcore.
-
-**Graphics**: Quirky, pixelated ingredients with thick black borders. Characters are all pixel animated. Scoring animations are flashy and colorful. The satisfaction bar changes from red to green as it fills up. Conveyer belt on bottom of screen, pot of soup above it, customer standing above the pot.
+### Tier 3 Relics (Shifts 4-5 only) - $400
+- **Eternal Flame**: Start each shift with ×(1 + [current shift × 0.5]) Mult multiplier. (Shift 5 = ×3.5)
+- **Master Chef's Toque**: Same soup type all 3 courses → ×4 Mult multiplier on dessert
+- **Ghost Kitchen**: Don't see ingredients until played. All stats ×1.8
+- **Time Dilation**: Each shift has 4 courses instead of 3
+- **Chaos Cauldron**: At start of each course, gain ×1 to ×4 random Mult multiplier
+- **Perfectionist's Pride**: If you meet threshold with <10% excess, gain ×2 rewards
 
 ---
 
 ## Economy System
 
 ### Money Sources
-- **Base Reward**: $20 per regular customer, $40 per elite, $60 per boss
-- **Skip Reward**: Choose money instead of ingredient/technique
-- **Relics**: Golden Trash Bin, Financial Documents
-- **Events**: Gambling, selling ingredients
-- **Perfect Run Bonus**: Beat threshold by 50%+ → +$10
+- **Base Reward**: $30-60 per shift (higher for bosses)
+- **Speed Bonus**: Fast courses → +$8-15
+- **Overkill Bonus**: Exceed threshold by 50%+ → +$20
+- **Combo Bonus**: Trigger 3+ combos in shift → +$15
 
-### Money Sinks
+**Average Run Economy**: $700-1,000 across 5 shifts
 
-**Shop Prices**:
-- Common ingredient: $30
-- Uncommon ingredient: $50
-- Rare ingredient: $80
-- Technique: $60
-- Remove ingredient: $50 (increases by $25 each use)
-- Upgrade ingredient: $40
-- Common relic: $100
-- Uncommon relic: $180
-- Rare relic: $300
-
-**Average Run Economy**: $600-800 total across 5 days (with good play)
+### Shop Prices
+- **Common ingredient**: $50
+- **Uncommon ingredient**: $80
+- **Rare ingredient**: $120
+- **Technique**: $100
+- **Remove ingredient**: $75 (flat cost)
+- **Upgrade ingredient**: $60
+- **Upgrade soup type**: $50 × level
+- **Tier 1 relic**: $150
+- **Tier 2 relic**: $250
+- **Tier 3 relic**: $400
 
 ---
 
-## Customer Design
+## Customers
 
-### Customer Difficulty Tiers
+### Regular Customers (Shifts 1-4)
 
-**Tier 1 (Days 1-2)**: Single minor debuff
-**Tier 2 (Days 3-4)**: Major debuff OR two minor debuffs
-**Tier 3 (Day 5)**: Multiple debuffs + special mechanics
+**The Brat** (Shifts 1-2)
+- *Modifier*: Vegetables score 0F
+- *Forces*: Protein/spice builds
+- *Threshold*: 1,500
+- *Dialogue*: 
+  - Start: "Ew, I don't want any gross vegetables!"
+  - Mid (40%): "This better not have carrots in it..."
+  - Success: "Fine, whatever. It's okay I guess."
+  - Failure: "I KNEW you'd try to sneak vegetables in it! I'm telling Mom!"
 
-### Sample Customer Abilities
+**Father John** (Shifts 2-3)
+- *Modifier*: Ingredients with base Flavour over 80F score 0
+- *Forces*: Managing moderation, using common ingredients
+- *Threshold*: 8,000
+- *Dialogue*:
+  - Start: "Gluttony is a sin, my child. Keep it humble."
+  - Mid (50%): "Simple pleasures, nothing extravagant."
+  - Success: "Blessed are the meek. This is acceptable."
+  - Failure: "You have succumbed to excess. Repent!"
 
-**Mr. Seuss, Heir to the Seuss Fortune**
-- Dialogue rhymes
-- Debuff: Vegetables with odd Flavour don't score
-- Reward: +$20 bonus
+**Count Brothula** (Shifts 2-4)
+- *Modifier*: Garlic/Onion score 0F
+- *Buff*: Tomato/proteins score ×1.5
+- *Threshold*: 20,000
+- *Dialogue*:
+  - Start: "No garlic, or I vill be most displeased..."
+  - Mid (50%): "Yesss, the bloody tomatoes, perfect..."
+  - Success: "Magnificent! You shall live another night."
+  - Failure: "Foolish mortal. I shall drink your blood instead."
 
-**Brat**
-- Debuff: "Picky" - Vegetables score 0F
-- Forces meat-heavy or spice builds
-- Appears: Days 1-3
+**Chad Chazly** (Shifts 3-4)
+- *Modifier*: Base Mult cannot exceed 40 (instant loss)
+- *Forces*: Pure Flavour scaling
+- *Threshold*: 100,000
+- *Dialogue*:
+  - Start: "Yo bro, keep it mild. I got, like, a weak stomach, haha."
+  - Mid (50%): "Yeah dude, this is chill so far."
+  - If Mult >40: "BRO! TOO SPICY! I'M OUT!"
+  - Success: "Sick bro, that was fire!"
+  - Failure: "Nah man, not enough flavor. L."
 
-**Father John**
-- Debuff: "Holy" - Ingredients with 6F or 6K score 0
-- Thematic challenge (avoid devil's numbers)
-- Appears: Days 2-4
+**The Minimalist** (Shifts 4-5)
+- *Modifier*: Max 5 ingredients per course
+- *Threshold*: 200,000
+- *Dialogue*:
+  - Start: "Less is more. Show me restraint."
+  - Mid (50%): "Hmm. Interesting choices."
+  - If >5 ingredients: "Too cluttered. I'm disappointed."
+  - Success: "Perfection through simplicity. Well done."
+  - Failure: "You tried to do too much. Shame."
 
-**Count Brothula**
-- Debuff: "Vampiric" - Onion/Garlic score 0
-- Buff: Tomato/Beet/Meat score +3F
-- Encourages specific ingredients
-- Appears: Days 2-5
+**Senator Dogfood** (Shifts 4-5)
+- *Modifier*: Only proteins score (vegetables = 0)
+- *Special*: Playing "Bone" ingredient (rare) instantly wins
+- *Threshold*: 400,000
+- *Dialogue*:
+  - Start: "MEAT. BRING ME MEAT."
+  - Mid (50%): "MORE MEAT. KEEP GOING."
+  - If Bone played: "BONE! YES! GOOD CHEF! HERE'S A MILLION DOLLARS!"
+  - Success: "ACCEPTABLE MEAT QUANTITY. YOU MAY LIVE."
+  - Failure: "NOT ENOUGH MEAT. YOU'RE FIRED."
 
-**Chad Chazly**
-- Debuff: "Weak Palate" - Mult above 50 causes him to leave (instant loss)
-- Forces Flavour-focused strategy
-- High threshold with Mult limitation
-- Appears: Days 3-5
+### Boss Customers (End of Each Shift)
 
-**Senator Dogfood**
-- Debuff: "Canine Appetite" - Meat scores triple, vegetables score 0
-- Can be bribed: Playing a Bone ingredient (rare) instantly wins
-- Extremely high threshold
-- Appears: Day 3-5 
+**Mama Rosa** (Shift 1 Boss)
+- *Buff*: Comfort food ingredients (potato, chicken, butter, cream) score ×2
+- *Threshold*: 2,500
+- *Dialogue*:
+  - Start: "Ah, bambino! Make-a me something that reminds me of home!"
+  - Mid (40%): "Mmmm, smells like-a Nonna's kitchen..."
+  - Mid (70%): "Bellissimo! Just like the old country!"
+  - Success: "*wipes tear* Magnifico! You have-a gift!"
+  - Failure: "No, no, no! This is-a not how Nonna make it!"
 
-**Dr. Home**
-- "Addict" - Drug ingredients score triple
+**The Food Critic** (Shift 3 Boss)
+- *Modifier*: Must make 3 different soup types (one per course)
+- *Threshold*: 60,000
+- *Dialogue*:
+  - Start: "Show me range. Impress me with variety."
+  - Appetizer: "Hmm. Competent. Let's see the next course."
+  - Main: "Interesting choice. And for dessert?"
+  - If same soup type: "Repetitive. How pedestrian."
+  - Success: "... Maybe anyone CAN cook. 4 stars."
+  - Failure: "Lackluster execution. 1 star."
 
-**God** - Final Boss
-- "Divine Palate" - Random effect?
+**The Speed Demon** (Shift 4 Boss)
+- *Modifier*: Each second over 20s per course adds +5,000 to threshold
+- *Buff*: Finishing courses under 15s gives ×1.5 Mult multiplier
+- *Threshold*: 300,000 (base)
+- *Dialogue*:
+  - Start: "FAST. I WANT IT FAST. GO GO GO!"
+  - Mid-course (10s): "FASTER! TIME IS MONEY!"
+  - Mid-course (25s+): "TOO SLOW! THRESHOLD RISING!"
+  - Success: "ADEQUATE SPEED. YOU'LL DO."
+  - Failure: "TOO SLOW. I'M GOING TO MCDONALD'S."
+
+**Demon Lord Beelzeburger** (Shift 5 Boss)
+- *Modifier*: Random ingredient type scores 0 each course (revealed at start of course)
+- *Buff*: Spices score ×2
+- *Threshold*: 1,500,000
+- *Dialogue*:
+  - Start: "MORTAL. FEED ME YOUR FINEST... OR PERISH."
+  - Course 1: "THIS COURSE: NO VEGETABLES SHALL NOURISH ME."
+  - Mid (40%): "PATHETIC. I EXPECTED MORE."
+  - Mid (70%): "YESSSSS. MORE SUFFERING. MORE FLAVOR."
+  - Success: "YOU HAVE EARNED MY RESPECT, CHEF. TAKE THIS CURSED ARTIFACT."
+  - Failure: "INADEQUATE. YOUR SOUL IS MINE." *dramatic Game Over*
+
+---
+
+## Final Boss: God
+
+**Phase 1: "Divine Test"** (0-50% threshold)
+- *Modifier*: Only upgraded ingredients score
+- *Threshold*: 750,000
+- *Dialogue*:
+  - Start: "Mortal chef. Show me your mastery of the craft."
+  - Mid (25%): "Competent. But can you handle true judgment?"
+  - Mid (50%): "Impressive. Now face my wrath."
+
+**Phase 2: "Apocalypse"** (50-100% threshold)
+- *Modifier*: All ingredient stats randomized: -20F to +80F, -5 to +10 Mult each time played
+- *Threshold*: +750,000 (1,500,000 total)
+- *Dialogue*:
+  - Start of Phase 2: "CHAOS REIGNS. ADAPT OR PERISH."
+  - Mid (75%): "YOU DARE CHALLENGE THE DIVINE?"
+  - Mid (90%): "IMPOSSIBLE... YOUR POWER..."
+  - Success: "...You have proven yourself worthy. Take your place among legends."
+  - Failure: "AS EXPECTED. RETURN TO THE MORTAL REALM."
+
+---
+
+## Starting Chefs
+
+### Prep Cook Jimmy (Default)
+- **Deck**: 5 Potato, 3 Carrot, 3 Onion, 2 Chicken, 2 Black Pepper (15 cards)
+- **Relic**: None
+- **Passive**: None (balanced baseline)
+
+### Chef Rodrigo (Unlock: Beat Shift 3)
+- **Deck**: 6 mixed proteins, 3 Garlic, 2 Black Pepper, 2 Salt (13 cards)
+- **Relic**: Copper Pot
+- **Passive**: Proteins give +15F, vegetables cost $20 less
+
+### Sushi Master Yuki (Unlock: Beat God)
+- **Deck**: 4 Fish, 3 Shrimp, 2 Garlic, 2 Cumin (11 cards - smaller deck)
+- **Relic**: Sharp Knives
+- **Passive**: Upgraded ingredients score ×2 (instead of ×1.5)
 
 ---
 
 ## Progression Systems
 
-### Chef Unlocks
+### Cookbook
+- Tracks discovered ingredients, combos, relics
+- Unlocked entries show stats, flavour text (ha), and synergies
 
-**Prep Cook Jimmy** (Starting Chef)
-- Balanced starting deck
-- Passive: None (baseline)
-- Starting Relic: None
+### Achievements
+- **Five-Star Service**: Beat God
+- **Speed Demon**: Win a shift in under 3 minutes
+- **Spice Lord**: Reach 100 base Mult in one course
+- **Combo King**: Trigger 5 combos in one shift
+- **Minimalist Chef**: Win with ≤12 cards in deck
 
-**Chef Rodrigo** (Unlock: Beat Day 3)
-- Starting deck: Heavy meat focus
-- Passive: "Carnivore" - Meats score +2F, vegetables cost $10 less
-- Starting Relic: Copper Pot
-
-**Sushi Master Yuki** (Unlock: Beat Day 5)
-- Starting deck: Fish and rice focus, smaller deck (12 ingredients)
-- Passive: "Precision" - Upgraded ingredients score 3× instead of 2×
-- Starting Relic: Sharp Knife
-
-**Grandma Beatrice** (Unlock: Win with Grandma's Stock at +500F)
-- Starting deck: 5× Grandma's Stock, focus on flavour
-- Passive: Play one extra round per encounter
-- Starting Relic: Stock Pot
-
-**Remy the Failure** (Unlock: Win with 5+ Cursed modifiers)
-- Starting deck: All ingredients are "Dubious Gloop"
-- Passive: "Volatile" - All random effects doubled
-- Starting Relic: Molecular Gastronomy
-
-### Meta Progression
-
-**Cookbook**: Tracks all ingredients and relics discovered, undiscovered relics are grayed out
+### Endless Mode (Unlock: Beat God)
+- Infinite scaling shifts
+- Thresholds increase 50% each shift
+- Leaderboards for highest shift reached
 
 ---
 
-## Balance
+## Balance Philosophy
 
-### Difficulty Curve
-- **Day 1**: Tutorial, forgiving thresholds, introduces mechanics
-- **Day 2**: Skill check, requires basic deck improvements
-- **Day 3**: First "wall," demands strategy shift
-- **Day 4**: Mastery of one archetype required
-- **Day 5**: Multiple threats, requires perfect execution
+### Scaling Curve (Balatro-Inspired)
 
-### Anti-Frustration Features
-- **Upgrade Preview**: See what upgrade does before committing
-- **Threshold Visibility**: Always shown before encounter on order ticket
+**Shift 1-2** (Tutorial/Foundation)
+- Linear growth: 100s → 1,000s
+- Learn combos, soup types, basic synergies
+- Forgiving thresholds
+
+**Shift 3** (First Wall)
+- Exponential begins: 10,000s → 50,000s
+- Requires 2-3 synergies + upgraded ingredients
+- Build commitment matters
+
+**Shift 4-5** (Explosive Scaling)
+- Full exponential: 100,000s → 1,000,000s
+- All systems firing: combos + relics + techniques
+- Perfect execution required
+
+---
+
+## Anti-Frustration Features
+
+- **View Pantry**: Always visible, shows remaining ingredients
+- **Pause & Cookbook**: Reference combos mid-shift without time penalty
+- **Tutorial**: First shift has tooltips and guidance
+- **Save & Quit**: Resume mid-run anytime
+
+---
+
+## Visual & Audio Design
+
+### Visual Style
+- **Pixel art**: Thick black outlines, vibrant colors
+- **Color coding**: Green (vegetables), Red (proteins), Orange (spices), Purple (special)
+- **Satisfaction bar**: Smooth gradient red → yellow → green
+- **Scoring animations**: Numbers burst and scale dramatically
+- **Soup pot**: Bubbles, steams, changes color based on soup type
+
+### Audio Design
+- **Shift 1-2**: Lo-fi jazz, chill (70-90 BPM)
+- **Shift 3**: Trip-hop, more energy (100-120 BPM)
+- **Shift 4**: IDM/breakbeat (130-150 BPM)
+- **Shift 5**: Intense breakcore (160-180+ BPM)
+- **God Fight**: Orchestral + electronic fusion
+- **SFX**: Sizzles, dings, whooshes for big multipliers
+
+---
+
+## Core Design Pillars
+
+1. **Explosive Scaling**: Numbers go from 1,000 → 1,500,000
+2. **Strategic Depth**: Multiple viable builds (Flavour-focus, Mult-focus, combo-focus)
+3. **Satisfying Discovery**: Finding combos feels rewarding
+4. **Tight Gameplay Loop**: 20-30 minute runs
+5. **Easy to Learn, Hard to Master**: Simple rules, deep strategy
 
 ---
 
 ## Win Conditions
 
 ### Victory
-- Satisfy all customers across 5 days
-- Defeat God (Final Boss)
+- Defeat God (three-phase fight, 1,500,000 total threshold)
+- Unlock: Sushi Master Yuki, Endless Mode, Achievements
 
 ### Defeat
-- Any customer leaves unsatisfied
-- Must restart from Day 1
+- Fail to meet any shift's threshold
+- Restart from Shift 1 (full roguelike)
 
-### Scoring/Ranking
-- **Time Bonus**: Faster clears = more money
-- **Overkill**: More bonus satisfaction at end of round = more money
-- **Leaderboards**: High score stats per chef
+### Scoring
+- **Speed Score**: Time bonuses
+- **High Score**: Highest single course satisfaction
+- **Efficiency**: Fewest ingredients used
+- **Leaderboards**: Per chef, per shift
 
 ---
 
-## Future Expansions
-
-- **Endless Mode**: Infinite scaling difficulty
-- **Seeds**: Play a seeded run, save your seed to replay a run
-- **Custom Runs**: Tweak starting relics, deck, modifiers
-- **More Chefs**: 10+ total with wildly different playstyles
+*Ascend the kitchen. Please the gods. Serve the soup.*
