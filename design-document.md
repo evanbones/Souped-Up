@@ -1,500 +1,653 @@
 # Souped Up!
 
 ## Core Concept
-A deck-building roguelike where you're a chef serving increasingly demanding customers by crafting soups. Success depends on balancing **Flavour** (additive) and **Mult** (multiplicative) to meet satisfaction thresholds. Numbers scale from hundreds to millions across 5 restaurant shifts.
+A deck-building roguelike where you're a chef ascending through restaurants, serving increasingly powerful (and weird) customers. Success depends on balancing **Flavour** (additive) and **Heat** (multiplicative), powered by a limited set of **Appliances** that create explosive, emergent synergies.
+
+**Design Philosophy**: Immediately graspable mechanics, lightning-fast rounds, satisfying number explosions, and "eureka moments" when your Appliance engine clicks.
 
 ---
 
-## Core Mechanics
+## Core Formula
 
-### Satisfaction Formula
 ```
-Satisfaction = (Base Flavour + Flavour Bonuses) × (Base Mult × Mult Multipliers) × Relic Multipliers
+Satisfaction = Flavour × Heat × Soup Bonus
 
 Where:
-• Base Flavour = Sum of all ingredient Flavour values
-• Flavour Bonuses = Additional Flavour from combos/effects
-• Base Mult = Sum of all +Mult sources (starts at 1)
-• Mult Multipliers = Product of all ×Mult effects (e.g., ×2 × ×1.5 = ×3)
-• Relic Multipliers = Product of permanent relic effects
+• Flavour = Sum of all ingredient Flavour + Appliance bonuses
+• Heat = (1 + Sum of all +Heat) × (Product of all ×Heat multipliers)
+• Soup Bonus = Multiplier from soup type (×1.5 to ×3.0)
 ```
 
-**Example:**
-- Flavour: 300 + 100 (combo) = 400
-- Mult: 10 + 5 (technique) = 15
-- Mult Multipliers: ×2 (technique) × ×1.5 (relic) = ×3
-- Final: 400 × (15 × 3) = 400 × 45 = **18,000 Satisfaction**
+**Example**:
+- Ingredients: 200 Flavour total, +15 Heat from spices
+- Appliances: ×1.5 Heat, ×2.0 Heat
+- Soup: Curry (×3.0)
+- **Satisfaction: 200 × ((1 + 15) × 1.5 × 2.0) × 3.0 = 200 × 48 × 3 = 28,800**
 
 ---
 
-## Soup Types (5 Core Types)
+## Soup Types
 
-Soup type determined by ingredients played **that course** (not cumulative). Each provides passive bonuses.
+The pot changes color in real-time as you play cards.
 
-| Soup Type | Requirements | Base Stats | Passive Ability |
-|-----------|-------------|------------|-----------------|
-| **Broth** | 3+ vegetables, no meat | 30F, ×1.5 | Each vegetable gives all ingredients +8F |
-| **Stew** | 2+ meat, 2+ vegetables | 60F, ×2 | Each meat adds +0.5× to Mult multiplier |
-| **Bisque** | 1+ seafood, 1+ dairy | 50F, ×2.5 | Dairy ingredients score ×3 stats |
-| **Curry** | 2+ spices, 1+ protein | 50F, ×3 | +0.5× Mult per unique spice type |
-| **Chowder** | 2+ seafood, 2+ vegetables | 70F, ×2 | Seafood gives all ingredients +15F |
+| Soup Type | Requirements | Bonus |
+|-----------|-------------|-------|
+| **Broth** | 3+ Veggies, no Meat | ×1.5 |
+| **Stew** | 2+ Meat, 2+ Veggies | ×2.0 |
+| **Bisque** | 1+ Seafood, 1+ Dairy | ×2.5 |
+| **Curry** | 3+ Spices, 1+ Protein | ×3.0 |
+| **Chowder** | 2+ Seafood, 2+ Veggies | ×2.5 |
+| **Slop** | None of the above | ×1.0 |
 
-**Slop** (no match): 20F, ×1 Mult, no passive
-
-**Leveling Soup Types** (in shops):
-- Cost: $50 × current level (max 5 levels)
-- Effect: +20F and +0.5× Mult per level
+**Leveling Up Soups**: Buy "Soup Coupons" in shops to upgrade soup bonuses (e.g., Curry ×3.0 → ×3.5, costs $80).
 
 ---
 
-## Game Loop
+## Game Structure: The Ascension
 
-### Run Structure
-**5 Restaurant Shifts → 3 Courses Per Shift → Final Boss**
+### The Five Restaurants
+You climb through 5 restaurants, each serving weirder customers. Each restaurant = **3 tickets** + **1 boss**.
 
-Each shift is one continuous service with **3 courses**:
-- **Appetizer** (Course 1): Lightest threshold
-- **Main Course** (Course 2): Medium threshold  
-- **Dessert** (Course 3): Heaviest threshold
-
-**Between Shifts**: Choose 1 of 3 options from carouseling order tickets:
-- **New Customer** - Continue to next shift
-- **Shop** - Buy ingredients, techniques, relics
-- **Break Room** - Upgrade ingredient OR remove ingredient
+1. **Mama's Kitchen** (Street Level) - Tickets 1-3, Boss at 4
+2. **The Yacht Club** (Waterfront Elite) - Tickets 5-7, Boss at 8
+3. **The Penthouse** (Billionaire's Private Chef) - Tickets 9-11, Boss at 12
+4. **Heaven** (Ascend to Face God) - Tickets 13-15, Boss at 16
+5. **The Void** (???) - Endless Mode, Ticket 17+. Boss every 4 tickets
 
 ---
 
-### Course Structure (Combat Encounter)
+## Ticket Carousel System
 
-**PREP PHASE** (Untimed - Plan Your Strategy)
-1. View shift's **total satisfaction threshold**
-2. See customer's special rules/modifiers
-3. Optional prep actions (cost energy):
-   - **Mulligan** (1 energy): Shuffle deck, redraw
-   - **Pre-Season** (1 energy): Start with +5 to base Mult
+After each round, **choose 1 of 3 tickets**:
 
-**COOKING PHASE** (3 Courses)
+**Customer Ticket (Gold)** - Face a customer, earn $60-120
+**Shop Ticket (Blue)** - Buy ingredients, Appliances, Coupons
+**Mystery Ticket (Purple)** - Random event (risky but rewarding)
 
-Each course:
-1. **Draw 8 ingredients** from your pantry onto conveyor belt
-2. **Play ingredients** into soup pot one at a time
-   - Each ingredient immediately adds its stats
-   - Soup type determined by current ingredients
-   - Combos trigger automatically when conditions met
-3. **Mid-Course Check** (at 50% threshold):
-   - Customer gives feedback
-   - Optional bonus objective appears (e.g., "Add seafood for +$20")
-4. **Press "Serve"** when ready
-5. Unused ingredients discarded, all ingredients return to pantry after shift
+### Carousel Distribution
 
-**SCORING**
-- Calculate: (Total Flavour) × (Base Mult × Mult Multipliers) × Relics
-- Satisfaction accumulates across all 3 courses
-- If total threshold met: Victory + rewards!
-- If not met after course 3: Customer leaves (run ends)
+**Restaurants 1-2** (Tickets 1-8):
+- 60% Customer, 30% Shop, 10% Mystery
 
-**REWARDS**
-- **Money**: $40-80 (based on speed + overkill)
-- **Card Choice**: Pick 1 of 3 ingredients/techniques
-- **Relic**: Every 3rd shift, choose 1 of 3 relics
+**Restaurants 3-4** (Tickets 9-16):
+- 55% Customer, 25% Shop, 20% Mystery
+
+**Restaurant 5** (Endless):
+- 50% Customer, 20% Shop, 30% Mystery
+
+**Boss Tickets**: Mandatory at Tickets 4, 8, 12, 16, 20, etc. The carousel shows only **BOSS** - no choice.
 
 ---
 
-## Satisfaction Thresholds
+## Gameplay: Plays & Rerolls
 
-| Shift | Regular | Boss |
-|-------|---------|------|
-| 1 | 1,000 | 2,500 |
-| 2 | 5,000 | 12,000 |
-| 3 | 25,000 | 60,000 |
-| 4 | 120,000 | 300,000 |
-| 5 | 600,000 | 1,500,000 |
+Instead of energy, you have **Plays** and **Rerolls**.
 
----
+**Each Round**:
+1. Draw **8 cards** (your hand)
+2. You have **3 Plays** and **2 Rerolls**
+3. **Play**: Select 1-8 cards and "cook" them (uses 1 Play)
+4. **Reroll**: Discard 1-8 cards and redraw (uses 1 Reroll)
+5. When you Play, your **Appliances trigger** (left to right), then satisfaction is calculated
+6. You need to hit the threshold with your Plays before running out
 
-## Ingredients
-
-### Vegetables (Flavour Focus)
-| Ingredient | Stats | Rarity |
-|------------|-------|--------|
-| Carrot | 40F | Common |
-| Potato | 45F | Common |
-| Onion | 45F | Common |
-| Tomato | 50F | Common |
-| Celery | 40F | Common |
-| Mushroom | 55F | Uncommon |
-| Bell Pepper | 45F | Uncommon |
-| Corn | 50F | Uncommon |
-| Garlic | 35F, +2 | Uncommon (hybrid) |
-| Truffle | 100F | Rare |
-
-### Proteins (Flavour Focus)
-| Ingredient | Stats | Rarity |
-|------------|-------|--------|
-| Chicken | 70F | Common |
-| Beef | 80F | Common |
-| Pork | 75F | Common |
-| Fish | 65F | Common |
-| Shrimp | 85F | Uncommon |
-| Crab | 90F | Uncommon |
-| Lamb | 100F | Rare |
-| Duck | 110F | Rare |
-
-### Spices (Mult Focus)
-| Ingredient | Stats | Rarity |
-|------------|-------|--------|
-| Black Pepper | 20F, +3 | Common |
-| Chili Flakes | 15F, +4 | Common |
-| Paprika | 25F, +3 | Common |
-| Cumin | 20F, +5 | Uncommon |
-| Cayenne | 10F, +8 | Uncommon |
-| Ghost Pepper | 5F, +15 | Rare |
-
-### Special Ingredients
-| Ingredient | Effect | Rarity |
-|------------|--------|--------|
-| **Grandma's Stock** | 60F. Permanently gains +10F each time played this run | Uncommon |
-| **Salt** | Gain +2 to base Mult for each other ingredient played this course | Common |
-| **Butter** | 50F. Next ingredient played gains +40F | Common |
-| **Cream** | 60F, ×0.75 Mult multiplier (reduces Mult slightly) | Uncommon |
-| **MSG** | Permanently gain +5 to base Mult this shift. Discard 1 random ingredient next course | Uncommon |
-| **Truffle Oil** | 120F, ×1.8 Mult multiplier | Rare |
-
-**Upgraded Ingredients** (via shops/rewards):
-- Vegetables/Proteins: +30F
-- Spices: +5 Mult
-- Special: Enhanced effects (Stock +15F, Salt +3 Mult, etc.)
+**Leftover currency**:
+- Unused Plays: +$10 each
+- Unused Rerolls: +$5 each
 
 ---
 
-## Combo
+## Appliances (Build Engine)
 
-Combos trigger when specific ingredients are played **in the same course**:
+**You have 5 Appliance Slots.** 
 
-### Basic Combos (Common Ingredients)
-1. **Mirepoix** (Carrot + Celery + Onion): +100F, +3 Mult
-2. **Aromatics** (Garlic + Onion + any spice): ×1.5 Mult multiplier
-3. **Surf & Turf** (Any seafood + Any beef): +120F, +6 Mult
+Appliances trigger **in order (left to right)** when you Play cards. The order matters!
 
-### Advanced Combos (Uncommon+)
-4. **Holy Trinity** (Onion + Bell Pepper + Celery): Next 2 ingredients score ×2 stats
-5. **Stock Base** (Grandma's Stock + 3+ vegetables): ×1.8 Mult multiplier
-6. **Spice Rack** (4+ different spices): ×2 Mult multiplier
+### Tier 1 Appliances ($120)
 
-### Master Combos (Rare/Build-Defining)
-7. **Butcher's Choice** (4+ different proteins): +250F, +12 Mult
-8. **Rainbow Medley** (7+ ingredients of different types): ×3 Mult multiplier, +300F
+**Cutting Board**: Each Veggie played gives +10 Flavour
+**Cast Iron Pan**: Each Meat played gives +60 Flavour
+**Spice Grinder**: Each Spice played gives +5 Heat
+**Mortar & Pestle**: +25 Flavour for each card played
+**Sharp Knives**: +1 Play per round (4 plays instead of 3). Critical for consistency.
+**Tasting Spoon**: +1 Reroll per round
+**Compost Bin**: When you Reroll, gain +5 Heat for your next Play
+**Golden Ladle**: Gain $15 at end of each round
+**Prep Station**: First card played each round gives +40 Flavour
 
-**First Discovery**: When you trigger a combo for the first time, it's added to your Cookbook with fanfare.
+### Tier 2 Appliances ($200)
 
----
+**Aromatics Kit**: If you play Garlic + Onion, gain ×1.5 Heat
+**Fresh Herb Garden**: First 3 cards played each round get +35 Flavour
+**Aging Barrel**: Each time you play an Aged ingredient, it permanently gains +20 Flavour
+**Butcher's Block**: Meats also give +4 Heat
+**Garden Bed**: Veggies also give +20 Flavour
+**Fishmonger's Ice**: Seafood cards trigger twice (score double)
+**Dairy Cooler**: Dairy ingredients give ×1.4 Heat
+**Leftovers Container**: Keep 1 random card from your hand after each round
+**Family Recipe Book**: If you make the same soup type as last round, gain ×1.4 Heat
+**Wild Card Holder**: Wild ingredients count as 2 cards for soup requirements
+**Mirepoix**: If you play Carrot + Onion + any Veggie, gain +25 Heat
+**Combo Counter**: For each combo you trigger, gain ×1.25 Heat (stacks!)
+**Soup Purist**: If 80%+ of cards match your soup theme, gain ×1.6 Heat. 
 
-## Techniques (Active Abilities)
+### Tier 3 Appliances ($300)
+**Spice Volcano**: Each Spice gives ×0.25 Heat (multiplicative!). Dream build: spam spices for exponential growth.
+**Master Gardener**: For every 3 Veggies in your deck, gain +15 Flavour per Veggie played. Dream build: 30+ veggie deck.
+**Philosopher's Stone**: All your cards become Wild type, gain +30 Flavour each, but lose their original type bonuses. Tradeoff: flexibility vs. synergy.
+**Time Bender**: +1 permanent Play. Does not stack with Sharp Knives. Expensive consistency.
+**Eternal Flame**: ×(1 + ticket number × 0.12) Heat (scales infinitely!). Dream build: stall to late-game.
+**Snowball Pot**: Gain +0.2× Heat each time you Play this round (resets each round). Dream build: maximize plays.
+**Ghost Kitchen**: Cards are face-down until played. All stats ×2.0. High risk, high reward.
+**Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. Makes Heat exponential! Dream build: stack +Heat for 10,000× multipliers.
+**Chaos Cauldron**: At start of round, gain ×1.8 to ×2.8 random Heat. Inconsistent but powerful.
+**Reckless Stove**: Spoiled ingredients never fail, satisfaction meter hidden until you serve, but gain ×2.5 Heat. Blind gambler build.
+**The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round. Dream build: maximize per-play value.
+**Infinite Pot**: No hand limit (draw entire deck), but you can only make 1 Play per round. Dream build: one-shot everything.
+**Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. High stakes short-term power.
 
-**Energy System:**
-- Start with **3 energy** per shift
-- Gain **+1 energy per course** (max 6 total)
-- Unused energy does NOT carry between shifts
-
-### Basic Techniques (1 Energy)
-- **Sauté**: Next ingredient gains +80F
-  - *Flavor text*: "A quick sear brings out the natural sweetness."
-- **Season**: Add +8 to base Mult
-  - *Flavor text*: "Just a pinch more intensity."
-- **Taste Test**: Preview next 8 ingredients in deck
-  - *Flavor text*: "Know what's coming before the rush."
-- **Mise en Place**: Draw 3 extra ingredients this course
-  - *Flavor text*: "Everything in its place, ready to cook."
-
-### Advanced Techniques (2 Energy)
-- **Flambé**: Gain Spice Intensity ×2 this course
-  - *Flavor text*: "Set it ablaze for dramatic effect."
-- **Sous Vide**: Set aside 1 ingredient. Next course, it scores ×3 stats
-  - *Flavor text*: "Low and slow perfection, worth the wait."
-- **Blanch**: Remove all negative modifiers from ingredients in hand
-  - *Flavor text*: "A quick dip in boiling water cleanses all."
-- **Pressure Cook**: +15 to base Mult, but discard hand at end of course
-  - *Flavor text*: "Extreme heat, extreme risk."
-
-### Master Techniques (2 Energy)
-- **Chef's Special**: Gain Spice Intensity ×2 to final satisfaction this course
-  - *Flavor text*: "Your signature move. Make it count."
-- **Perfect Pairing**: If same soup type all 3 courses, gain Spice Intensity ×2.5 on dessert (one-use per shift)
-  - *Flavor text*: "Commitment to a vision pays off."
-- **Speed Service**: Take a 4th course this shift (one-use per shift)
-  - *Flavor text*: "The rush is on. One more chance."
-
----
-
-## Relics 
-
-Relics appear after Shifts 1, 2, 3, and 4 (choose 1 of 3).
-
-### Tier 1 Relics (Shifts 1-2) - $150
-- **Recipe Book**: Draw 10 ingredients first course (instead of 8)
-- **Sharp Knives**: +1 Energy per shift
-- **Copper Pot**: Start each shift with +8 to base Mult
-- **Leftovers**: Retain 1 random ingredient after each course
-- **Tasting Spoon**: Taste Test costs 0 energy
-- **Golden Ladle**: Gain $10 when you remove an ingredient
-
-### Tier 2 Relics (Shifts 2-3) - $250
-- **Quality Control**: Upgraded ingredients score ×1.5 their stats
-- **Stock Pot**: Grandma's Stock gains +15F per use (instead of +10F)
-- **Spice Rack**: All spices give +4 additional Mult
-- **Prep Station**: Upgrade 1 random ingredient at start of each shift
-- **Combo Master**: All combos grant +8 additional Mult
-- **Second Wind**: If below 60% threshold after course 2, gain +3 energy
-
-### Tier 3 Relics (Shifts 4-5 only) - $400
-- **Eternal Flame**: Start each shift with ×(1 + [current shift × 0.5]) Mult multiplier. (Shift 5 = ×3.5)
-- **Master Chef's Toque**: Same soup type all 3 courses → ×4 Mult multiplier on dessert
-- **Ghost Kitchen**: Don't see ingredients until played. All stats ×1.8
-- **Time Dilation**: Each shift has 4 courses instead of 3
-- **Chaos Cauldron**: At start of each course, gain ×1 to ×4 random Mult multiplier
-- **Perfectionist's Pride**: If you meet threshold with <10% excess, gain ×2 rewards
+### Tier 4 Appliances (Rare Event Spawns)
+**The Cosmic Ladle**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.3 (starts at ×1.0).
+**The Infinite Spice Rack**: Spices give ×0.4 Heat AND +15 Flavour. Requires Spice Volcano.
+**The Garden of Eden**: All Veggies gain Aged tag. Requires Master Gardener. 
+**The Devil's Bargain**: ×5.0 Heat, but customers' thresholds increase by 50%. 
+**The Oracle's Eye**: See all customers before choosing tickets. All Mystery Tickets become beneficial. +1 Reroll. Knowledge is power.
 
 ---
 
-## Economy System
+## Ingredients (Your Deck)
 
-### Money Sources
-- **Base Reward**: $30-60 per shift (higher for bosses)
-- **Speed Bonus**: Fast courses → +$8-15
-- **Overkill Bonus**: Exceed threshold by 50%+ → +$20
-- **Combo Bonus**: Trigger 3+ combos in shift → +$15
+### Core Stats
+- **Flavour (F)**: Adds to satisfaction
+- **Heat (H)**: Adds to multiplier (written as +2H, +5H, etc.)
+- **Type**: Veggie, Meat, Seafood, Spice, Dairy, Wild
 
-**Average Run Economy**: $700-1,000 across 5 shifts
+### Starting Deck (15 cards)
+- 4× Potato (50F, Veggie)
+- 3× Carrot (45F, Veggie)
+- 3× Onion (45F, Veggie)
+- 3× Chicken (70F, Meat)
+- 2× Black Pepper (20F, +3H, Spice)
 
-### Shop Prices
-- **Common ingredient**: $50
-- **Uncommon ingredient**: $80
-- **Rare ingredient**: $120
-- **Technique**: $100
-- **Remove ingredient**: $75 (flat cost)
-- **Upgrade ingredient**: $60
-- **Upgrade soup type**: $50 × level
-- **Tier 1 relic**: $150
-- **Tier 2 relic**: $250
-- **Tier 3 relic**: $400
+### Common Ingredients ($40)
+| Name | Stats | Type |
+|------|-------|------|
+| Tomato | 55F | Veggie |
+| Garlic | 40F, +3H | Veggie |
+| Beef | 85F | Meat |
+| Pork | 80F | Meat |
+| Fish | 70F | Seafood |
+| Butter | 60F | Dairy |
+| Salt | 30F, +4H | Wild |
+
+### Uncommon Ingredients ($70)
+| Name | Stats | Type |
+|------|-------|------|
+| Shrimp | 100F | Seafood |
+| Cream | 80F | Dairy |
+| Chili Flakes | 25F, +8H | Spice |
+| Mushroom | 75F | Veggie |
+| Stock | 90F (Aged: +20F per play) | Wild |
+| Cumin | 20F, +9H | Spice |
+| Cayenne | 20F, +10H | Spice |
+| Aged Cheddar | 95F (Aged) | Dairy |
+
+### Rare Ingredients ($120)
+| Name | Stats | Type |
+|------|-------|------|
+| Truffle | 140F | Veggie |
+| Lamb | 120F | Meat |
+| Lobster | 130F | Seafood |
+| Ghost Pepper | 15F, +18H | Spice |
+| Truffle Oil | 100F, +12H | Wild |
+| Aged Beef | 150F (Aged) | Meat |
+| Saffron | 25F, +20H | Spice |
+| Wagyu | 170F | Meat |
+
+### Cursed Ingredients (Mystery Ticket Rewards)
+| Name | Stats | Type |
+|------|-------|------|
+| Spoiled Milk | -50F, +25H | Dairy |
+| Rotten Egg | -80F, +30H | Protein |
+| Burnt Garlic | 0F, +15H | Veggie |
+
+**Aged Tag**: Permanently gains +20F each time played this run.
+**Wild Tag**: Counts as any type for soup requirements.
+
+**Upgrade Ingredient** (Shop, $50): +40F or +6H
 
 ---
 
-## Customers
+## Combos (Auto-Triggered)
 
-### Regular Customers (Shifts 1-4)
+Combos happen when you play specific cards together in one Play. Cards glow when combo pieces are in hand.
 
-**The Brat** (Shifts 1-2)
-- *Modifier*: Vegetables score 0F
-- *Forces*: Protein/spice builds
-- *Threshold*: 1,500
+**Discovery System**: You start with 3 combos known. Others are discovered through play and added to your "Cookbook."
+
+### Starting Combos (Known from Start)
+1. **Aromatics** (Garlic + Onion): +50F, +6H
+2. **Salt & Pepper** (Salt + Any Spice): +60F, +6H
+3. **Butter Baste** (Butter + Any Meat): +70F, +10H
+
+### Discoverable Combos (Learn by Playing Them)
+4. **Mirepoix** (Carrot + Onion + Any Veggie): +100F, +12H
+5. **Surf & Turf** (Seafood + Beef): +140F, +15H
+6. **Spice Rack** (3+ Different Spices): ×1.6 Heat
+7. **Rainbow Medley** (5+ Different Types): +250F, ×2.0 Heat
+8. **Holy Trinity** (Onion + Celery + Bell Pepper): +90F, ×1.4 Heat
+9. **Aged Perfection** (2+ Aged Ingredients): ×1.5 Heat
+10. **The Inferno** (Ghost Pepper + 2+ other Spices): +50F, ×2.5 Heat
+
+---
+
+## Coupons (Consumables)
+
+Buy these in shops for one-time powerful effects.
+
+### Common Coupons ($50)
+- **Flavour Bomb**: +250 Flavour to your next Play
+- **Heat Wave**: +15 Heat to your next Play
+- **Extra Serving**: +1 Play this round
+- **Fresh Start**: +2 Rerolls this round
+- **Deck Peek**: Look at top 8 cards of deck
+- **Ingredient Removal**: Remove 1 card from deck permanently
+
+### Rare Coupons ($100)
+- **Soup Level Up**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
+- **Appliance Boost**: Choose an Appliance. It triggers twice this round
+- **Card Duplicator**: Duplicate 1 card in your hand
+- **Fusion Recipe**: Merge 2 ingredients in deck into 1 card with combined stats
+- **Appliance Polish**: Choose an Appliance. Permanently improve its effect by 20%
+- **The Mulligan**: Restart this customer with full Plays/Rerolls (once per run)
+
+---
+
+## Restaurant Progression & Customers
+
+### Restaurant 1: Mama's Kitchen (Tickets 1-3)
+*Vibe: Cozy diner, checkered tablecloths, regulars who tip in quarters*
+
+**The Brat** (Common)
+- *Modifier*: Veggies give half Flavour
+- *Threshold*: 900
+- *Dialogue*: "Ew, I don't want any gross vegetables!"
+
+**Lunch Rush Larry** (Common)
+- *Modifier*: Must finish in under 90 seconds or threshold +500
+- *Threshold*: 1,000
+- *Dialogue*: "HURRY UP! I got a meeting in 10 minutes!"
+
+**Grandpa Joe** (Common)
+- *Modifier*: Must use 3+ Dairy ingredients
+- *Buff*: Dairy scores ×2
+- *Threshold*: 1,100
+- *Dialogue*: "Back in my day, we used REAL butter..."
+
+**The Influencer** (Uncommon)
+- *Modifier*: First card played scores ×3
+- *Threshold*: 1,300
+- *Dialogue*: "Wait, let me get the lighting... *flash* Okay go!"
+
+**Timmy the Picky Kid** (Common)
+- *Modifier*: Can only play 6 cards max
+- *Threshold*: 800
+- *Dialogue*: "I only like chicken nuggets but okay..."
+
+---
+
+**BOSS: Mama Rosa** (Ticket 4)
+- *Buff*: Dairy and Comfort ingredients score ×2.5
+- *Threshold*: 5,000
+- *Reward*: $150 + Choose 1 of 3 Appliances
 - *Dialogue*: 
-  - Start: "Ew, I don't want any gross vegetables!"
-  - Mid (40%): "This better not have carrots in it..."
-  - Success: "Fine, whatever. It's okay I guess."
-  - Failure: "I KNEW you'd try to sneak vegetables in it! I'm telling Mom!"
+  - Start: "Let's-a see if you know what REAL comfort food is!"
+  - Win: "*tears up* You remind me of my son... Bellissimo!"
 
-**Father John** (Shifts 2-3)
-- *Modifier*: Ingredients with base Flavour over 80F score 0
-- *Forces*: Managing moderation, using common ingredients
-- *Threshold*: 8,000
+---
+
+### Restaurant 2: The Yacht Club (Tickets 5-7)
+*Vibe: Crystal chandeliers, champagne flutes, people in boat shoes*
+
+**The Venture Capitalist** (Common)
+- *Modifier*: Each card costs $5 to play (deducted from final reward)
+- *Threshold*: 6,000
+- *Dialogue*: "Time is money, chef. Let's see your ROI."
+
+**Count Brothula** (Common)
+- *Modifier*: Garlic scores 0F
+- *Buff*: Meats score ×2
+- *Threshold*: 7,000
+- *Dialogue*: "No garlic, or I vill be most... displeased."
+
+**Ms. Pescatarian** (Uncommon)
+- *Modifier*: Non-seafood Meats score 0F
+- *Buff*: Seafood scores ×2.5
+- *Threshold*: 8,500
+- *Dialogue*: "I only eat what swims and what grows from soil."
+
+**The Instagram Model** (Uncommon)
+- *Modifier*: Must make Bisque or fail instantly
+- *Buff*: Bisque becomes ×4.0 (up from ×2.5)
+- *Threshold*: 7,500
+- *Dialogue*: "It needs to be, like, aesthetic? Pink is my brand."
+
+**The Broke College Student** (Common)
+- *Modifier*: Rare ingredients score 0F
+- *Buff*: Common ingredients score ×2
+- *Threshold*: 6,500
+- *Dialogue*: "Dude, I'm on a ramen budget. Nothing fancy."
+
+**The Wine Snob** (Rare)
+- *Modifier*: Must make Stew or Bisque only
+- *Buff*: Those soups get +1.0 bonus (×3.0 or ×3.5)
+- *Threshold*: 9,000
+- *Dialogue*: "I only appreciate... *swirls glass* ...refinement."
+
+**The Day Trader** (Uncommon)
+- *Special*: Threshold fluctuates ±2,000 every 20 seconds
+- *Threshold*: 7,000 (base)
+- *Dialogue*: "BUY BUY BUY! NO WAIT, SELL!"
+
+---
+
+**BOSS: The Yacht Captain** (Ticket 8)
+- *Modifier*: Must use 5+ Seafood ingredients total or fail
+- *Buff*: Seafood gives +12 Heat
+- *Threshold*: 22,000
+- *Reward*: $200 + Choose 1 of 3 Appliances
 - *Dialogue*:
-  - Start: "Gluttony is a sin, my child. Keep it humble."
-  - Mid (50%): "Simple pleasures, nothing extravagant."
-  - Success: "Blessed are the meek. This is acceptable."
-  - Failure: "You have succumbed to excess. Repent!"
+  - Start: "Ahoy! Show me the bounty of the seven seas!"
+  - Win: "Aye, you've earned your sea legs, chef!"
 
-**Count Brothula** (Shifts 2-4)
-- *Modifier*: Garlic/Onion score 0F
-- *Buff*: Tomato/proteins score ×1.5
-- *Threshold*: 20,000
+---
+
+### Restaurant 3: The Penthouse (Tickets 9-11)
+*Vibe: Floor-to-ceiling windows, private helicopter pad, people who own senators*
+
+**The Divorced Billionaire** (Common)
+- *Modifier*: Each Appliance you own adds +6,000 to threshold
+- *Threshold*: 30,000 (base)
+- *Dialogue*: "My ex-wife took everything. Even my taste buds."
+
+**The Clanker** (Uncommon)
+- *Modifier*: Combos don't trigger normally
+- *Special*: Each combo gives ×1.5 Heat instead
+- *Threshold*: 35,000
+- *Dialogue*: "I'm sorry, as an AI language model, I can't understand combos."
+
+**The Crypto Bro** (Rare)
+- *Special*: Pay $50 before serving. Win: +$300. Lose: -$100
+- *Threshold*: 33,000
+- *Dialogue*: "BRO. This is going to the MOON. You in?"
+
+**The Perfectionist** (Rare)
+- *Modifier*: If satisfaction is within ±8% of threshold, instant fail
+- *Must hit 92-108% exactly*
+- *Threshold*: 38,000
+- *Dialogue*: "Perfectly balanced. As all things should be."
+
+**Chad Chazly** (Common)
+- *Modifier*: Heat capped at +30 max
+- *Forces*: Pure Flavour/×Heat scaling
+- *Threshold*: 32,000
+- *Dialogue*: "Bro, keep it mild. My tummy's sensitive, bro."
+
+**The Meditation Guru** (Uncommon)
+- *Modifier*: Can only use 2 Plays total
+- *Buff*: Each Play scores ×2.0
+- *Threshold*: 34,000
+- *Dialogue*: "Breathe. The soup knows when you're rushing."
+
+**Hugh Mann** (Rare)
+- *Modifier*: Random ingredient type scores ×5 (revealed at start)
+- *Threshold*: 36,000
+- *Dialogue*: "*BZZT* WE ANALYZE YOUR EARTH NUTRIENTS."
+
+**The Doomsday Prepper** (Uncommon)
+- *Modifier*: Only Common ingredients score
+- *Buff*: Common ingredients score ×3
+- *Threshold*: 31,000
+- *Dialogue*: "When society collapses, we'll need SIMPLE FOOD."
+
+**The Appliance Breaker** (Rare)
+- *Modifier*: Your leftmost Appliance is disabled this round
+- *Threshold*: 34,000
+- *Dialogue*: "I hate fancy kitchen gadgets. Cook it OLD SCHOOL."
+
+---
+
+**BOSS: The Billionaire** (Ticket 12)
+- *Modifier*: Can't use any Coupons
+- *Special*: At 50%, he offers: "I'll pay you $150 to quit now"
+- *Threshold*: 90,000
+- *Reward*: $300 + Choose 1 of 3 Appliances
 - *Dialogue*:
-  - Start: "No garlic, or I vill be most displeased..."
-  - Mid (50%): "Yesss, the bloody tomatoes, perfect..."
-  - Success: "Magnificent! You shall live another night."
-  - Failure: "Foolish mortal. I shall drink your blood instead."
+  - Start: "I've eaten at every Michelin star restaurant on Earth. Show me something new."
+  - Offer: "I'll give you $150 to walk away right now. Final offer."
+  - Win: "...I haven't been impressed in 20 years. Well done, chef."
 
-**Chad Chazly** (Shifts 3-4)
-- *Modifier*: Base Mult cannot exceed 40 (instant loss)
-- *Forces*: Pure Flavour scaling
-- *Threshold*: 100,000
-- *Dialogue*:
-  - Start: "Yo bro, keep it mild. I got, like, a weak stomach, haha."
-  - Mid (50%): "Yeah dude, this is chill so far."
-  - If Mult >40: "BRO! TOO SPICY! I'M OUT!"
-  - Success: "Sick bro, that was fire!"
-  - Failure: "Nah man, not enough flavor. L."
+---
 
-**The Minimalist** (Shifts 4-5)
-- *Modifier*: Max 5 ingredients per course
-- *Threshold*: 200,000
-- *Dialogue*:
-  - Start: "Less is more. Show me restraint."
-  - Mid (50%): "Hmm. Interesting choices."
-  - If >5 ingredients: "Too cluttered. I'm disappointed."
-  - Success: "Perfection through simplicity. Well done."
-  - Failure: "You tried to do too much. Shame."
+### Restaurant 4: Heaven (Tickets 13-15)
+*Vibe: Clouds as tables, harps in the background, beings of pure light taste your food*
 
-**Senator Dogfood** (Shifts 4-5)
-- *Modifier*: Only proteins score (vegetables = 0)
-- *Special*: Playing "Bone" ingredient (rare) instantly wins
-- *Threshold*: 400,000
-- *Dialogue*:
-  - Start: "MEAT. BRING ME MEAT."
-  - Mid (50%): "MORE MEAT. KEEP GOING."
-  - If Bone played: "BONE! YES! GOOD CHEF! HERE'S A MILLION DOLLARS!"
-  - Success: "ACCEPTABLE MEAT QUANTITY. YOU MAY LIVE."
-  - Failure: "NOT ENOUGH MEAT. YOU'RE FIRED."
-
-### Boss Customers (End of Each Shift)
-
-**Mama Rosa** (Shift 1 Boss)
-- *Buff*: Comfort food ingredients (potato, chicken, butter, cream) score ×2
-- *Threshold*: 2,500
-- *Dialogue*:
-  - Start: "Ah, bambino! Make-a me something that reminds me of home!"
-  - Mid (40%): "Mmmm, smells like-a Nonna's kitchen..."
-  - Mid (70%): "Bellissimo! Just like the old country!"
-  - Success: "*wipes tear* Magnifico! You have-a gift!"
-  - Failure: "No, no, no! This is-a not how Nonna make it!"
-
-**The Food Critic** (Shift 3 Boss)
-- *Modifier*: Must make 3 different soup types (one per course)
+**The Angel of Purity** (Common)
+- *Modifier*: Wild ingredients score 0F
+- *Buff*: Single-type ingredients score ×2
 - *Threshold*: 60,000
-- *Dialogue*:
-  - Start: "Show me range. Impress me with variety."
-  - Appetizer: "Hmm. Competent. Let's see the next course."
-  - Main: "Interesting choice. And for dessert?"
-  - If same soup type: "Repetitive. How pedestrian."
-  - Success: "... Maybe anyone CAN cook. 4 stars."
-  - Failure: "Lackluster execution. 1 star."
+- *Dialogue*: "Only the pure of ingredient may enter these gates."
 
-**The Speed Demon** (Shift 4 Boss)
-- *Modifier*: Each second over 20s per course adds +5,000 to threshold
-- *Buff*: Finishing courses under 15s gives ×1.5 Mult multiplier
-- *Threshold*: 300,000 (base)
-- *Dialogue*:
-  - Start: "FAST. I WANT IT FAST. GO GO GO!"
-  - Mid-course (10s): "FASTER! TIME IS MONEY!"
-  - Mid-course (25s+): "TOO SLOW! THRESHOLD RISING!"
-  - Success: "ADEQUATE SPEED. YOU'LL DO."
-  - Failure: "TOO SLOW. I'M GOING TO MCDONALD'S."
+**Saint Pepper** (Uncommon)
+- *Modifier*: If Heat <40, instant fail
+- *Buff*: All Spices give ×0.3 Heat
+- *Threshold*: 75,000
+- *Dialogue*: "The divine flame must BURN within your creation!"
 
-**Demon Lord Beelzeburger** (Shift 5 Boss)
-- *Modifier*: Random ingredient type scores 0 each course (revealed at start of course)
-- *Buff*: Spices score ×2
-- *Threshold*: 1,500,000
-- *Dialogue*:
-  - Start: "MORTAL. FEED ME YOUR FINEST... OR PERISH."
-  - Course 1: "THIS COURSE: NO VEGETABLES SHALL NOURISH ME."
-  - Mid (40%): "PATHETIC. I EXPECTED MORE."
-  - Mid (70%): "YESSSSS. MORE SUFFERING. MORE FLAVOR."
-  - Success: "YOU HAVE EARNED MY RESPECT, CHEF. TAKE THIS CURSED ARTIFACT."
-  - Failure: "INADEQUATE. YOUR SOUL IS MINE." *dramatic Game Over*
+**The Cherub** (Common)
+- *Modifier*: Can only play 5 cards max
+- *Buff*: Each card gives +100 Flavour
+- *Threshold*: 65,000
+- *Dialogue*: "*giggles* Less is more in paradise!"
 
----
+**The Seraphim Judge** (Rare)
+- *Modifier*: Threshold hidden until you serve
+- *Special*: If you overshoot by 20%+, instant fail
+- *Threshold*: 80,000
+- *Dialogue*: "I shall judge your soul... I mean soup."
 
-## Final Boss: God
+**The Penitent Soul** (Uncommon)
+- *Modifier*: First Play each round scores 0
+- *Buff*: All subsequent Plays score ×3.0
+- *Threshold*: 70,000
+- *Dialogue*: "I must suffer before I can be redeemed..."
 
-**Phase 1: "Divine Test"** (0-50% threshold)
-- *Modifier*: Only upgraded ingredients score
-- *Threshold*: 750,000
-- *Dialogue*:
-  - Start: "Mortal chef. Show me your mastery of the craft."
-  - Mid (25%): "Competent. But can you handle true judgment?"
-  - Mid (50%): "Impressive. Now face my wrath."
+**Brother Umami** (Rare)
+- *Modifier*: Making Slop = instant fail
+- *Buff*: Non-Slop soups get ×2.0 bonus
+- *Threshold*: 78,000
+- *Dialogue*: "Only the most righteous recipes shall pass."
 
-**Phase 2: "Apocalypse"** (50-100% threshold)
-- *Modifier*: All ingredient stats randomized: -20F to +80F, -5 to +10 Mult each time played
-- *Threshold*: +750,000 (1,500,000 total)
-- *Dialogue*:
-  - Start of Phase 2: "CHAOS REIGNS. ADAPT OR PERISH."
-  - Mid (75%): "YOU DARE CHALLENGE THE DIVINE?"
-  - Mid (90%): "IMPOSSIBLE... YOUR POWER..."
-  - Success: "...You have proven yourself worthy. Take your place among legends."
-  - Failure: "AS EXPECTED. RETURN TO THE MORTAL REALM."
+**The Cloud Shepherd** (Uncommon)
+- *Modifier*: Each Reroll used adds +10,000 to threshold
+- *Threshold*: 62,000 (base)
+- *Dialogue*: "Patience, child. Rushing is a sin up here."
+
+**The Heavenly Accountant** (Rare)
+- *Special*: Round down your score after every play to a multiple of 10,000
+- *Threshold*: 73,000
+- *Dialogue*: "The books must balance. Always."
+
+**The Reverent Minimalist** (Uncommon)
+- *Modifier*: Appliances in slots 3-5 are disabled
+- *Buff*: Appliances in slots 1-2 trigger twice
+- *Threshold*: 68,000
+- *Dialogue*: "Only the essential may remain."
 
 ---
 
-## Starting Chefs
-
-### Prep Cook Jimmy (Default)
-- **Deck**: 5 Potato, 3 Carrot, 3 Onion, 2 Chicken, 2 Black Pepper (15 cards)
-- **Relic**: None
-- **Passive**: None (balanced baseline)
-
-### Chef Rodrigo (Unlock: Beat Shift 3)
-- **Deck**: 6 mixed proteins, 3 Garlic, 2 Black Pepper, 2 Salt (13 cards)
-- **Relic**: Copper Pot
-- **Passive**: Proteins give +15F, vegetables cost $20 less
-
-### Sushi Master Yuki (Unlock: Beat God)
-- **Deck**: 4 Fish, 3 Shrimp, 2 Garlic, 2 Cumin (11 cards - smaller deck)
-- **Relic**: Sharp Knives
-- **Passive**: Upgraded ingredients score ×2 (instead of ×1.5)
+**FINAL BOSS: God** (Ticket 16)
+- *Phase 1* (First 2 Plays): All Meats score 0F
+- *Phase 2* (Next 2 Plays): All Veggies score 0F  
+- *You must adapt between phases!*
+- *Threshold*: 180,000
+- *Reward*: $400 + Title: "Ascended Chef"
+- *Dialogue*:
+  - Start: "I have tasted creation itself. Impress me, mortal."
+  - Phase 2: "You think you understand my tastes? Let us see..."
+  - Win: "...You have earned your place among the divine. Well done."
 
 ---
 
-## Progression Systems
+### Restaurant 5: The Void (Ticket 17+, Endless Mode)
+*Vibe: Reality breaks down. Incomprehensible geometry. Beings with too many eyes.*
 
-### Cookbook
-- Tracks discovered ingredients, combos, relics
-- Unlocked entries show stats, flavour text (ha), and synergies
+**Unlock**: Beat God
 
-### Achievements
-- **Five-Star Service**: Beat God
-- **Speed Demon**: Win a shift in under 3 minutes
-- **Spice Lord**: Reach 100 base Mult in one course
-- **Combo King**: Trigger 5 combos in one shift
-- **Minimalist Chef**: Win with ≤12 cards in deck
+**Endless Scaling**:
+- Threshold: ×1.3 per ticket
+- Rewards: ×1.25 per ticket
+- Boss every 4 tickets (Tickets 20, 24, 28, etc.)
+- New customers: Eldritch horrors with reality-warping modifiers
 
-### Endless Mode (Unlock: Beat God)
-- Infinite scaling shifts
-- Thresholds increase 50% each shift
-- Leaderboards for highest shift reached
+**The Thing That Watches** (Common)
+- *Modifier*: Random card each Play becomes "Unknown" (0F, 0H)
+- *Threshold*: Scales ×1.3 per ticket
+- *Dialogue*: "W̴̢̛͈̹̓E̷̡̪̓͐ ̶̰̈́S̴̰̏̂E̶̯̓E̴͙̒ ̷̣͘Y̶̰̔O̴̧̍U̵̞̔"
+
+**Entropy Incarnate** (Uncommon)
+- *Modifier*: All your stats randomly fluctuate ±30% each Play
+- *Threshold*: Scales ×1.3 per ticket
+- *Dialogue*: "Order... disorder... does it matter?"
+
+**The Consumer** (Rare)
+- *Special*: Permanently removes 1 random card from your deck after serving
+- *Buff*: Threshold ×0.7
+- *Threshold*: Scales ×1.3 per ticket
+- *Dialogue*: "I hunger for more than soup..."
+
+**The Reverser** (Uncommon)
+- *Modifier*: Appliances trigger in reverse order (right to left)
+- *Threshold*: Scales ×1.3 per ticket
+- *Dialogue*: "Let us see how well you adapt, chef."
+
+**The Gambler's Ruin** (Rare)
+- *Special*: Your satisfaction is multiplied by a random number between 0.5× and 3.0× after serving
+- *Threshold*: Scales ×1.3 per ticket
+- *Dialogue*: "Luck is just another ingredient, chef."
+
+**Void Boss Pattern**:
+- Random combination of previous boss mechanics
+- New reality-breaking phases
+- Scaling gets exponential
+
+**Leaderboard**: How far can you ascend into madness?
 
 ---
 
-## Balance Philosophy
+## Economy
 
-### Scaling Curve (Balatro-Inspired)
+**Money Sources**:
+- Customer win: $80-150 (scales per restaurant)
+- Unused Plays: +$15 each
+- Unused Rerolls: +$8 each
+- Interest: +$5 per $50 saved (max +$30)
 
-**Shift 1-2** (Tutorial/Foundation)
-- Linear growth: 100s → 1,000s
-- Learn combos, soup types, basic synergies
-- Forgiving thresholds
-
-**Shift 3** (First Wall)
-- Exponential begins: 10,000s → 50,000s
-- Requires 2-3 synergies + upgraded ingredients
-- Build commitment matters
-
-**Shift 4-5** (Explosive Scaling)
-- Full exponential: 100,000s → 1,000,000s
-- All systems firing: combos + relics + techniques
-- Perfect execution required
+**Shop Prices**:
+- Common ingredient: $40
+- Uncommon ingredient: $70
+- Rare ingredient: $120
+- Tier 1 Appliance: $120
+- Tier 2 Appliance: $200
+- Tier 3 Appliance: $300
+- Remove card: $50 (increases by $40 per removal this run)
+- Upgrade card: $50
+- Common Coupons: $50
+- Rare Coupons: $100
+- Reroll shop: $25 (increases by $15 per reroll)
 
 ---
 
-## Anti-Frustration Features
+## Mystery Ticket Events
 
-- **View Pantry**: Always visible, shows remaining ingredients
-- **Pause & Cookbook**: Reference combos mid-shift without time penalty
-- **Tutorial**: First shift has tooltips and guidance
-- **Save & Quit**: Resume mid-run anytime
+**The Fortune Teller** (20%)
+- Pay $60 to see next 3 carousel options
+- OR pay $120 to guarantee Shop next carousel, but it costs 20% more
+
+**The Gambler** (18%)
+- Bet $50-150 on coin flip
+- Win: Double bet | Lose: Lose it all
+
+**Ingredient Jackpot** (15%)
+- Get 1 free random ingredient, but it's Cursed (negative Flavour, high Heat)
+- OR pay $40 for a non-cursed random ingredient
+
+**The Duplicator** (15%)
+- Choose 1 ingredient in deck, gain 2 copies
+- But: Lose $50
+
+**Energy Infusion** (10%)
+- +1 permanent Play for rest of run
+- But: First card each round gets -30 Flavour
+
+**Cursed Treasure** (8%)
+- Gain random Tier 3 Appliance
+- But: All ingredients permanently -20 Flavour
+
+**The Compactor** (8%)
+- Remove 3 random cards from deck for free
+- Risk: Might remove good cards
+
+**The Devil's Deal** (6%)
+- Gain $200 immediately
+- But: Next 2 customers have +30% threshold
+
+---
+
+## Meta-Progression
+
+### Starting Chefs
+
+**Chef Rodrigo** (Unlock: Beat The Yacht Captain)
+- Starts with: 4× Beef, 3× Garlic, 2× Black Pepper, 2× Chili Flakes, 1× Cumin (12 cards)
+- *Passive*: Meats give +4 Heat
+- *Starting Appliance*: Butcher's Block
+
+**Sushi Master Yuki** (Unlock: Beat The Billionaire)
+- Starts with: 3× Shrimp, 3× Fish, 2× Cream, 2× Garlic, 2× Salt (12 cards)
+- *Passive*: Seafood gives +30 Flavour
+- *Starting Appliance*: Fishmonger's Ice
+
+**Chef Inferno** (Unlock: Beat God)
+- Starts with: 3× Ghost Pepper, 2× Chili Flakes, 2× Cayenne, 3× Beef, 2× Garlic (12 cards)
+- *Passive*: Spices give ×0.15 Heat (multiplicative!)
+- *Starting Appliance*: Spice Grinder
+
+**The Gardener** (Unlock: Reach Ticket 25 in The Void)
+- Starts with: 4× Truffle, 3× Mushroom, 3× Garlic, 2× Tomato (12 cards)
+- *Passive*: All Veggies gain Aged tag
+- *Starting Appliance*: Aging Barrel
 
 ---
 
 ## Visual & Audio Design
 
 ### Visual Style
+
 - **Pixel art**: Thick black outlines, vibrant colors
 - **Color coding**: Green (vegetables), Red (proteins), Orange (spices), Purple (special)
 - **Satisfaction bar**: Smooth gradient red → yellow → green
 - **Scoring animations**: Numbers burst and scale dramatically
-- **Soup pot**: Bubbles, steams, changes color based on soup type
+
+**Soup Types**: Each soup has unique bubbling sounds, particle effects, pot color
+- Broth: Green, gentle bubbles, veggie sounds
+- Stew: Brown, thick bubbles, sizzling meat
+- Bisque: Pink/orange, creamy texture, seafood splash
+- Curry: Golden yellow, vigorous bubbling, spice crackle
+- Chowder: Cream white, chunky texture, ocean ambiance
+- Slop: Grey-brown, sad bubbles, flatulent sounds
 
 ### Audio Design
+
 - **Shift 1-2**: Lo-fi jazz, chill (70-90 BPM)
 - **Shift 3**: Trip-hop, more energy (100-120 BPM)
 - **Shift 4**: IDM/breakbeat (130-150 BPM)
@@ -502,33 +655,20 @@ Relics appear after Shifts 1, 2, 3, and 4 (choose 1 of 3).
 - **God Fight**: Orchestral + electronic fusion
 - **SFX**: Sizzles, dings, whooshes for big multipliers
 
----
+--- 
 
-## Core Design Pillars
+## Quality of Life
 
-1. **Explosive Scaling**: Numbers go from 1,000 → 1,500,000
-2. **Strategic Depth**: Multiple viable builds (Flavour-focus, Mult-focus, combo-focus)
-3. **Satisfying Discovery**: Finding combos feels rewarding
-4. **Tight Gameplay Loop**: 20-30 minute runs
-5. **Easy to Learn, Hard to Master**: Simple rules, deep strategy
-
----
-
-## Win Conditions
-
-### Victory
-- Defeat God (three-phase fight, 1,500,000 total threshold)
-- Unlock: Sushi Master Yuki, Endless Mode, Achievements
-
-### Defeat
-- Fail to meet any shift's threshold
-- Restart from Shift 1 (full roguelike)
-
-### Scoring
-- **Speed Score**: Time bonuses
-- **High Score**: Highest single course satisfaction
-- **Efficiency**: Fewest ingredients used
-- **Leaderboards**: Per chef, per shift
+- **Real-time soup preview**: Pot shows current soup type as you select cards
+- **Combo glow**: Cards glow when combo pieces are in hand
+- **Combo Cookbook**: UI element showing discovered combos and missing combos (silhouettes)
+- **Satisfaction calculator**: Shows estimated score before you Play
+- **Appliance reordering**: Drag to rearrange Appliance trigger order
+- **Undo last Play**: Once per round, undo your last Play (before round ends)
+- **Deck stats**: Shows ingredient distribution, soup type history, Aged ingredient values
+- **Deck viewer**: See all cards in deck with current stats (including Aged bonuses)
+- **Appliance hover**: Hover over Appliances to see exactly what they'll do this Play
+- **Customer intel**: After seeing a customer once, their modifier appears in ticket preview
 
 ---
 
