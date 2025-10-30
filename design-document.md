@@ -60,20 +60,27 @@ You climb through 5 restaurants, each serving weirder customers. Each restaurant
 
 After each round, **choose 1 of 3 tickets**:
 
-**Customer Ticket (Gold)** - Face a customer, earn $60-120
-**Shop Ticket (Blue)** - Buy ingredients, Appliances, Coupons
-**Mystery Ticket (Purple)** - Random event (risky but rewarding)
+* **Customer Ticket (Gold)** - Face a customer, earn $60-120
+* **Shop Ticket (Blue)** - Buy ingredients, Appliances, Coupons
+* **Black Market Shop (Black)**:
+  - Replaces normal Shop ticket
+  - Shows **3 Tier 3 Appliances** at ×1.5 price ($450 each)
+  - All other items cost ×1.25 normal price
+* **Mystery Ticket (Purple)** - Random event (risky but rewarding)
 
 ### Carousel Distribution
 
 **Restaurants 1-2** (Tickets 1-8):
 - 60% Customer, 30% Shop, 10% Mystery
+  - 10% to replace Shop with Black Market Shop
 
 **Restaurants 3-4** (Tickets 9-16):
-- 55% Customer, 25% Shop, 20% Mystery
+- 55% Customer, 25% Shop, 20% Mystery, 5% Black Market Shop
+  - 10% to replace Shop with Black Market Shop
 
 **Restaurant 5** (Endless):
-- 50% Customer, 20% Shop, 30% Mystery
+- 50% Customer, 20% Shop, 30% Mystery, 5% Black Market Shop
+  - 10% to replace Shop with Black Market Shop
 
 **Boss Tickets**: Mandatory at Tickets 4, 8, 12, 16, 20, etc. The carousel shows only **BOSS** - no choice.
 
@@ -81,15 +88,23 @@ After each round, **choose 1 of 3 tickets**:
 
 ## Gameplay: Plays & Rerolls
 
-Instead of energy, you have **Plays** and **Rerolls**.
+You have **Plays** and **Rerolls** every round.
 
-**Each Round**:
-1. Draw **8 cards** (your hand)
-2. You have **3 Plays** and **2 Rerolls**
-3. **Play**: Select 1-8 cards and "cook" them (uses 1 Play)
-4. **Reroll**: Discard 1-8 cards and redraw (uses 1 Reroll)
-5. When you Play, your **Appliances trigger** (left to right), then satisfaction is calculated
-6. You need to hit the threshold with your Plays before running out
+ROUND START
+├─ Draw 8 cards
+├─ 3 Plays, 2 Rerolls available
+│
+├─ OPTION A: Play 1-8 cards
+│  ├─ Appliances trigger (left to right)
+│  ├─ Calculate satisfaction
+│  ├─ Discard played cards
+│  └─ Draw back to 8 cards (-1 Play)
+│
+├─ OPTION B: Reroll 1-8 cards
+│  ├─ Discard selected cards
+│  └─ Draw back to 8 cards (-1 Reroll)
+│
+└─ Repeat until threshold reached or resources exhausted
 
 **Leftover currency**:
 - Unused Plays: +$10 each
@@ -101,57 +116,60 @@ Instead of energy, you have **Plays** and **Rerolls**.
 
 **You have 5 Appliance Slots.** 
 
-Appliances trigger **in order (left to right)** when you Play cards. The order matters!
+Appliances trigger **in order (left to right)** when you Play cards.
 
 ### Tier 1 Appliances ($120)
-
+**Poverty Pot**: Whenever you have less than $100, all ingredients give +30 Flavour
 **Cutting Board**: Each Veggie played gives +10 Flavour
 **Cast Iron Pan**: Each Meat played gives +60 Flavour
 **Spice Grinder**: Each Spice played gives +5 Heat
 **Mortar & Pestle**: +25 Flavour for each card played
-**Sharp Knives**: +1 Play per round (4 plays instead of 3). Critical for consistency.
+**Sharp Knives**: +1 Play per round 
 **Tasting Spoon**: +1 Reroll per round
-**Compost Bin**: When you Reroll, gain +5 Heat for your next Play
-**Golden Ladle**: Gain $15 at end of each round
-**Prep Station**: First card played each round gives +40 Flavour
+**Compost Bin**: Every time you Reroll, permanently gain +3 Heat
+**Golden Ladle**: Gain $5 per leftover Play/Reroll at round end
+**Mise en Place**: If your first Play contains 4+ cards, they all gain +30 Flavour
 
 ### Tier 2 Appliances ($200)
-
+**Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts in your hand AND is duplicated
+**Lightning Rod**: Each time you gain Heat from ingredients, gain +1 additional Heat
 **Aromatics Kit**: If you play Garlic + Onion, gain ×1.5 Heat
-**Fresh Herb Garden**: First 3 cards played each round get +35 Flavour
+**Octopus' Garden**: Each round, the first 3 different types of ingredients you play gain +50 Flavour
 **Aging Barrel**: Each time you play an Aged ingredient, it permanently gains +20 Flavour
 **Butcher's Block**: Meats also give +4 Heat
 **Garden Bed**: Veggies also give +20 Flavour
 **Fishmonger's Ice**: Seafood cards trigger twice (score double)
-**Dairy Cooler**: Dairy ingredients give ×1.4 Heat
-**Leftovers Container**: Keep 1 random card from your hand after each round
+**Butter Boat**: Dairy cards give ×1.6 Heat. When you play Dairy, your next card gains +40 Flavour
 **Family Recipe Book**: If you make the same soup type as last round, gain ×1.4 Heat
-**Wild Card Holder**: Wild ingredients count as 2 cards for soup requirements
+**Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +50 Flavour for each Wild played
 **Mirepoix**: If you play Carrot + Onion + any Veggie, gain +25 Heat
-**Combo Counter**: For each combo you trigger, gain ×1.25 Heat (stacks!)
-**Soup Purist**: If 80%+ of cards match your soup theme, gain ×1.6 Heat. 
+**Combo Counter**: For each combo you trigger, permanently gain +0.25x Heat 
+**Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.3× Heat
+**Instant Ramen**: If you finish a customer in 1 Play, gain +$50 bonus
 
 ### Tier 3 Appliances ($300)
-**Spice Volcano**: Each Spice gives ×0.25 Heat (multiplicative!). Dream build: spam spices for exponential growth.
-**Master Gardener**: For every 3 Veggies in your deck, gain +15 Flavour per Veggie played. Dream build: 30+ veggie deck.
-**Philosopher's Stone**: All your cards become Wild type, gain +30 Flavour each, but lose their original type bonuses. Tradeoff: flexibility vs. synergy.
-**Time Bender**: +1 permanent Play. Does not stack with Sharp Knives. Expensive consistency.
-**Eternal Flame**: ×(1 + ticket number × 0.12) Heat (scales infinitely!). Dream build: stall to late-game.
-**Snowball Pot**: Gain +0.2× Heat each time you Play this round (resets each round). Dream build: maximize plays.
-**Ghost Kitchen**: Cards are face-down until played. All stats ×2.0. High risk, high reward.
+**The Blender**: At round start, all 8 cards in your hand pool their stats (total Flavour/Heat), then split evenly. Every card in hand becomes identical this round.
+**Spice Volcano**: Each Spice gives ×0.25 Heat (multiplicative!)
+**Master Gardener**: For every 3 Veggies in your deck, gain +15 Flavour per Veggie played.
+**Philosopher's Stone**: All your cards become Wild AND keep their original types. Gain +15 Flavour per card played.
+**Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
+**Eternal Flame**: 1.0x Heat. Permanently gains 0.2x Heat every time a card is removed from your deck.
+**Snowball Pot**: Gain +0.2× Heat each time you Play this round (resets each round).
+**Ghost Kitchen**: Card names are hidden (show only type and rarity). All cards gain +80 Flavour and +8 Heat.
 **Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. Makes Heat exponential! Dream build: stack +Heat for 10,000× multipliers.
-**Chaos Cauldron**: At start of round, gain ×1.8 to ×2.8 random Heat. Inconsistent but powerful.
-**Reckless Stove**: Spoiled ingredients never fail, satisfaction meter hidden until you serve, but gain ×2.5 Heat. Blind gambler build.
-**The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round. Dream build: maximize per-play value.
-**Infinite Pot**: No hand limit (draw entire deck), but you can only make 1 Play per round. Dream build: one-shot everything.
-**Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. High stakes short-term power.
+**Wheel of RNGesus**: At round start, spin the wheel: 60% = ×2.5 Heat, 30% = ×3.5 Heat, 10% = ×1.0 Heat
+**Reckless Stove**: 2.5x Heat, but satisfaction threshold is ±20% randomized.
+**The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round.
+**Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
+**Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. 
+**Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
 
 ### Tier 4 Appliances (Rare Event Spawns)
-**The Cosmic Ladle**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.3 (starts at ×1.0).
-**The Infinite Spice Rack**: Spices give ×0.4 Heat AND +15 Flavour. Requires Spice Volcano.
-**The Garden of Eden**: All Veggies gain Aged tag. Requires Master Gardener. 
-**The Devil's Bargain**: ×5.0 Heat, but customers' thresholds increase by 50%. 
-**The Oracle's Eye**: See all customers before choosing tickets. All Mystery Tickets become beneficial. +1 Reroll. Knowledge is power.
+**Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.3 (starts at ×1.0).
+**Spice Must Flow**: Spices give ×0.4 Heat AND +15 Flavour. Requires Spice Volcano.
+**The Forbidden Fruit Bowl**: All Veggies gain Aged tag. Requires Master Gardener. 
+**Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
+**Gollzur's Orb**: See all customers before choosing tickets. All Mystery Tickets become beneficial. +1 Reroll. 
 
 ---
 
@@ -568,6 +586,7 @@ Buy these in shops for one-time powerful effects.
 ---
 
 ## Mystery Ticket Events
+*Any mystery ticket events can be skipped*
 
 **The Fortune Teller** (20%)
 - Pay $60 to see next 3 carousel options
@@ -600,6 +619,28 @@ Buy these in shops for one-time powerful effects.
 **The Devil's Deal** (6%)
 - Gain $200 immediately
 - But: Next 2 customers have +30% threshold
+
+---
+
+# Shop Mechanics
+
+## Shop Structure
+
+Shops present a **curated selection** of items rather than a full catalog, creating meaningful choices and forcing adaptation.
+
+**Each Shop Contains**:
+- **3 Ingredients**: 1 Common (50%), 1 Uncommon (35%), 1 Rare or Common (15%)
+- **2-3 Appliances**: Tier-weighted by restaurant progression
+  - Restaurants 1-2: 70% Tier 1, 25% Tier 2, 5% Tier 3
+  - Restaurant 3: 40% Tier 1, 40% Tier 2, 20% Tier 3
+  - Restaurant 4: 20% Tier 1, 50% Tier 2, 30% Tier 3
+  - Restaurant 5: 10% Tier 1, 40% Tier 2, 50% Tier 3
+- **2 Coupons**: 1 Common, 1 Rare or Common (30% rare)
+- **Services** (always available): Remove card, Upgrade card, Reroll shop
+
+**Featured Item**:
+- One random item has a **gold star** and costs **50% off**
+- Can be any ingredient, Appliance, or Coupon
 
 ---
 
