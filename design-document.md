@@ -238,16 +238,14 @@ Appliances trigger **in order (left to right)** when you Play cards.
 
 ## Combos (Auto-Triggered)
 
-Combos happen when you play specific cards together in one Play. Cards glow when combo pieces are in hand.
+Combos happen when you play specific cards together in one Play. Cards glow when known combo pieces are in hand.
 
-**Discovery System**: You start with 3 combos known. Others are discovered through play and added to your "Cookbook."
+**Discovery System**: Combos are discovered through play and added to your "Cookbook."
 
-### Starting Combos (Known from Start)
+### Combos
 1. **Aromatics** (Garlic + Onion): +50F, +6H
 2. **Salt & Pepper** (Salt + Any Spice): +60F, +6H
 3. **Butter Baste** (Butter + Any Meat): +70F, +10H
-
-### Discoverable Combos (Learn by Playing Them)
 4. **Mirepoix** (Carrot + Onion + Any Veggie): +100F, +12H
 5. **Surf & Turf** (Seafood + Beef): +140F, +15H
 6. **Spice Rack** (3+ Different Spices): ×1.6 Heat
@@ -269,14 +267,12 @@ Buy these in shops for one-time powerful effects.
 - **Fresh Start**: +2 Rerolls this round
 - **Deck Peek**: Look at top 8 cards of deck
 - **Ingredient Removal**: Remove 1 card from deck permanently
+- **Payroll**: Earn $100
 
 ### Rare Coupons ($100)
 - **Soup Level Up**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
 - **Appliance Boost**: Choose an Appliance. It triggers twice this round
 - **Card Duplicator**: Duplicate 1 card in your hand
-- **Fusion Recipe**: Merge 2 ingredients in deck into 1 card with combined stats
-- **Appliance Polish**: Choose an Appliance. Permanently improve its effect by 20%
-- **The Mulligan**: Restart this customer with full Plays/Rerolls (once per run)
 
 ---
 
