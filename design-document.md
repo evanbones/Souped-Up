@@ -34,9 +34,9 @@ The pot changes color in real-time as you play cards.
 |-----------|-------------|-------|
 | **Broth** | 3+ Veggies, no Meat | ×1.5 |
 | **Stew** | 2+ Meat, 2+ Veggies | ×2.0 |
+| **Chowder** | 2+ Seafood, 2+ Veggies | ×2.3 |
 | **Bisque** | 1+ Seafood, 1+ Dairy | ×2.5 |
 | **Curry** | 3+ Spices, 1+ Protein | ×3.0 |
-| **Chowder** | 2+ Seafood, 2+ Veggies | ×2.5 |
 | **Slop** | None of the above | ×1.0 |
 
 **Leveling Up Soups**: Buy "Soup Coupons" in shops to upgrade soup bonuses (e.g., Curry ×3.0 → ×3.5).
@@ -108,7 +108,7 @@ ROUND START
 ---
 
 ## Momentum Bar
-*A momentum/rhythm bar that rewards fast, confident play.*
+*A momentum/rhythm bar during customer encounters that rewards fast, confident play.*
 
 ### Momentum Gains
 - **Play cards**: +15% per Play
@@ -117,7 +117,7 @@ ROUND START
 - **Making a non-Slop soup**: +12%
 
 ### Momentum Decay
-- **-2% per second** while idle (not selecting/playing cards)
+- **-2% per second** while idle (not selecting/playing cards), pauses in menus
 
 ---
 
@@ -152,80 +152,79 @@ Your **average momentum** across the round determines a bonus:
 
 Appliances trigger **in order (left to right)** when you Play cards.
 
-### Tier 1 Appliances ($120)
+### Tier 1 Appliances 
 - **Sharp Knives**: +1 Play per round.
 - **Tasting Spoon**: +1 Reroll per round.
 - **Cutting Board**: Each Veggie played gives +15 Flavour.
 - **Cast Iron Pan**: Each Meat played gives +70 Flavour.
 - **Spice Grinder**: Each Spice played gives +6 Heat.
 - **Mortar & Pestle**: +40 Flavour for each card played.
-- **Compost Bin**: Every time you Reroll, permanently gain +3 Heat.
-- **Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour
+- **Compost Bin**: Every time you Reroll, permanently gain +2 Heat.
+- **Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour.
 - **Golden Ladle**: Gain an extra $20 at round end.
-- **Shopping Cart**: Common ingredients give +50 Flavour
+- **Shopping Cart**: Common ingredients give +50 Flavour.
 - **Prayer Beads**: Blessed ingredients are twice as likely to trigger their effects.
 
-### Tier 2 Appliances ($200)
+### Tier 2 Appliances 
 - **Damn Fine Espresso**: First played ingredient scores an additional two times.
 - **Poverty Pot**: Whenever you play with less than $100, create a random Coupon.
 - **Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts your hand AND is duplicated.
-- **Recycling Center**: Whenever you refresh a shop, permanently gains +15 Flavour.
-- **The Perfectionist's Palette**: Each time you Reroll, your next Play gains ×0.4 Heat.
+- **Recycling Center**: Whenever you refresh a shop, permanently gain +15 Flavour.
+- **The Perfectionist's Palette**: Each time you Reroll, your next Play gains +12 Heat.
 - **Lightning Rod**: Each time you gain Heat from cards, gain +2 additional Heat.
-- **Aromatics Kit**: If you play Garlic + Onion, gain ×1.6 Heat.
-- **Octopus' Garden**: First 3 different ingredient types played each round give ×1.15 Flavour each.
-- **Aging Barrel**: Each Aged ingredient played gives ×1.1 Flavour.
+- **Aromatics Kit**: If you play Garlic + Onion, gain ×1.3 Heat.
+- **Octopus' Garden**: First 3 different ingredient types played each round give +80 Flavour each.
+- **Aging Barrel**: Each Aged ingredient played gives +100 Flavour.
 - **Butcher's Block**: Meats also give +5 Heat.
-- **Garden Bed**: Each Veggie played gives ×1.08 Flavour.
+- **Garden Bed**: Each Veggie played gives +40 Flavour.
 - **Fishmonger's Ice**: Seafood cards trigger twice when played.
-- **Butter Boat**: Dairy cards give ×1.7 Heat. When you play Dairy, your next card gains +60 Flavour.
-- **Family Recipe Book**: If you make the same soup type as last round, gain ×1.5 Heat.
+- **Butter Boat**: Dairy cards give +10 Heat. When you play Dairy, your next card gains +60 Flavour.
+- **Family Recipe Book**: If you make the same soup type as last round, gain +15 Heat.
 - **Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +70 Flavour for each Wild played.
-- **Combo Counter**: For each combo you trigger, permanently gain +0.3x Heat.
-- **Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.35× Heat.
+- **Combo Counter**: For each combo you trigger, permanently gain +5 Heat.
+- **Theme Park**: For every 2 cards that match your soup type in a Play, gain +8 Heat.
 - **Instant Ramen**: If you finish a customer in 1 Play, gain +$80 bonus.
-- **Pickle Jar**: Each customer you beat, permanently gain +30 Flavour to all ingredients
-- **Nest Egg**: Gain +0.5x Heat per $100 owned.
-- **Stamp Collection**: Gain +0.25x Heat per ingredient added to deck.
-- **Spice Caravan**: When making Curry, Spices trigger twice.
-- **Gambler's Wok**: Each Play, 50% chance: ×2.5 Heat OR lose half your Flavour.
-- **Artisan's Pride**: Artisan ingredients give ×1.2 Flavour per Appliance you own.
+- **Pickle Jar**: Each customer you beat, permanently gain +30 Flavour to all ingredients.
+- **Nest Egg**: Gain +8 Heat per $100 owned.
+- **Stamp Collection**: Gain +4 Heat per 5 ingredients in deck.
+- **Spice Caravan**: When making Curry, Spices give double Heat.
+- **Gambler's Wok**: Each Play, 50% chance: +30 Heat OR lose 20 Heat.
+- **Artisan's Pride**: Artisan ingredients give +60 Flavour per Appliance you own.
 - **Farmers Market**: Fresh ingredients trigger twice.
-- **Tag Team**: When you play 2+ ingredients with the same tag, they gain +100 Flavour.
-- **The Charcoal Grill**: Gain +0.4x Heat per charred ingredient in deck.
+- **Baton**: When you play 2+ ingredients with the same modifier, they gain +100 Flavour.
+- **The Charcoal Grill**: Gain +6 Heat per Charred ingredient in deck.
 
-### Tier 3 Appliances ($300)
-- **Spice Volcano**: Each played Spice gives ×0.25 Heat.
-- **The Forbidden Fruit Bowl**: All played Veggies gain Aged tag.
-- **Master Gardener**: For every 3 Veggies in your deck, each Veggie played gives ×1.1 Flavour.
-- **Philosopher's Stone**: All your cards become Wild AND keep their original types.
-- **Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
-- **Eternal Flame**: 1.0x Heat. Permanently gains +0.2x Heat every time a card is removed from your deck.
-- **Snowball Pot**: Gain +0.5× Heat each time you Play this round (resets each round).
+### Tier 3 Appliances
+
+- **Spice Volcano**: Each played Spice gives +10 Heat AND ×1.2 Heat (stacks per Spice).
+- **Master Gardener**: Every Veggie played gives ×1.15 Heat when scored.
+- **Philosopher's Stone**: All cards become Wild when played.
+- **Chrono Spatula**: +1 Play. Your last Play each round gives ×1.8 satisfaction.
+- **Eternal Flame**: Permanently gains ×0.25 Heat every time a card is removed from your deck.
+- **Snowball Pot**: Gain +10 Heat each time you Play this round (resets each round).
 - **Ghost Kitchen**: Card names are hidden (show only type and rarity). ×3.0 Heat.
-- **Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. 
-- **Reckless Stove**: 2.5x Heat, but satisfaction threshold is ±20% randomized.
+- **Engineer's Wrench**: Satisfaction becomes: (Heat/10)² × Flavour × Soup. 
+- **Reckless Stove**: ×2.0 Heat, but satisfaction threshold is ±20% randomized.
 - **The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round.
 - **Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
-- **Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. 
-- **Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
-- **Steam Engine**: If your Flavour is below 500, gain ×4.0 Heat. 
-- **Legendary Chef's Apron**: Each time you make a ×2.5+ soup bonus, permanently gain ×0.25 Heat (starts at ×1.0).
-- **Quality Over Quantity**: If your deck has ≤12 cards, all ingredients gain +120 Flavour and +12 Heat.
+- **Pressure Cooker**: ×2.5 Heat, but resets to ×1.0 at start of each restaurant.
+- **Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives +15 Heat.
+- **Steam Engine**: If your Flavour is below 500, ×2.5 Heat.
+- **Legendary Chef's Apron**: Each time you make a ×2.5+ soup bonus, permanently gain +8 Heat.
+- **Baker's Dozen**: If your deck has more than 12 modifiers, ×2.5 Heat.
 - **Good Noodle Star**: For each unique combo triggered this game, all combos give +40 Flavour.
 - **Fusion Kitchen**: Combos trigger twice, but ingredients not in combos give 0 Flavour/0 Heat.
 - **Michelin Tire**: Permanently gain ×0.25 Heat when an ingredient is purchased. Resets at end of restaurant.
-- **Burnt Offerings**: ×3.0 Heat, but you must discard 2 cards at the start of every round.
-- **Fermentation Station**: Fermented ingredients start with +0.6× Heat (instead of +0.15 at round start).
-- **Analytics Report**: For each unique tag in your deck, gain +0.3× Heat.
+- **Burnt Offerings**: ×2.0 Heat, but you must discard 2 cards at the start of every round.
+- **Fermentation Station**: Fermented ingredients give +20 Heat (instead of scaling per round).
+- **Analytics Report**: For each unique modifier in your deck, gain +10 Heat.
 
 ### Tier 4 Appliances (Rare Event Spawns)
-- **Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
-- **Spice Must Flow**: Spices give ×0.45 Heat AND +20 Flavour. 
-- **Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
+- **Schrödinger's Spoon**: Each unique soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
+- **Spice Must Flow**: Spices give +15 Heat AND +20 Flavour AND ×1.3 Heat when scored.
+- **Hell's Kitchen**: ×3.0 Heat, but customers' thresholds increase by 50%. 
 - **Gollzur's Orb**: View all upcoming tickets. All Mystery Tickets become beneficial. +1 Reroll. 
 - **Étienne's Ladle**: Common ingredients trigger twice.
-- **Timekeeper's Hourglass**: At round start, choose: Double all Flavour this round OR Double all Heat this round.
 - **God's Gambit**: Blessed cards trigger on 1 in 2 chance (50/50). When a Blessed card triggers, permanently gain ×0.25 Heat.
 
 ---
@@ -237,7 +236,9 @@ Appliances trigger **in order (left to right)** when you Play cards.
 - **Heat (H)**: Adds to multiplier (written as +2H, +5H, etc.)
 - **Type**: Veggie, Meat, Seafood, Spice, Dairy, Wild
 
-## Tag Definitions
+## Modifiers
+*Modifiers can either be randomly applied to an ingredient in the shop or be applied through events/coupons. Any ingredient can have any number of modifiers.*
+
 - **Aged**: Permanently gains +5F each time played this run.
 - **Wild**: Counts as any type for soup requirements.
 - **Blessed**: Has a 1 in 4 chance to score triple the flavour. 1 in 20 chance to earn $100.
@@ -253,54 +254,74 @@ Appliances trigger **in order (left to right)** when you Play cards.
 
 | Name | Stats | Type | 
 |------|-------|------|
-| Tomato | 55F | Veggie | 
-| Garlic | 40F, +3H | Veggie |
-| Beef | 85F | Meat |
-| Pork | 80F | Meat | 
-| Fish | 70F | Seafood | 
-| Butter | 60F | Dairy | 
-| Salt | 30F, +4H | - | 
-| Spring Greens | 60F | Veggie | 
-| Pickles | 65F | Veggie | 
-| Onion | 25F, +15H | Veggie |
+| **Tomato** | 55F | Veggie | 
+| **Garlic** | 40F, +3H | Veggie |
+| **Beef** | 85F | Meat |
+| **Pork** | 80F | Meat | 
+| **Fish** | 70F | Seafood | 
+| **Butter** | 60F | Dairy | 
+| **Salt** | 30F, +4H | - | 
+| **Spring Greens** | 60F | Veggie | 
+| **Pickles** | 65F | Veggie | 
+| **Onion** | 25F, +15H | Veggie |
+| **Carrot** | 50F | Veggie |
+| **Celery** | 45F | Veggie |
+| **Chicken** | 75F | Meat |
+| **Black Pepper** | 20F, +5H | Spice |
+| **Potato** | 70F | Veggie |
 
 ### Uncommon Ingredients ($70)
 
-| Name | Stats | Type |
-|------|-------|------|
-| Shrimp | 100F | Seafood | 
-| Cream | 80F | Dairy |
-| Chili Flakes | 25F, +8H | Spice | 
-| Mushroom | 75F | Veggie | 
-| Stock | 90F | - |
-| Cumin | 20F, +9H | Spice |
-| Cayenne | 20F, +10H | Spice | 
-| Cheddar | 95F | Dairy |
-| Artisan Bread | 90F | - | 
-| Smoked Salmon | 135F | Seafood | 
-| Blackened Fish | 70F, +18H | Seafood |
-| Kimchi | 80F, +6H | Veggie |
+| Name | Stats | Type | Ability |
+|------|-------|------|---------|
+| **Shrimp** | 100F | Seafood | If played in first 3 cards of a Play, gain +60F |
+| **Cream** | 80F | Dairy | Next card played gains +40F |
+| **Chili Flakes** | 25F, +8H | Spice | Gain +3H for each Play remaining this round |
+| **Mushroom** | 75F | Veggie | If no Meat in this Play, gain +80F |
+| **Stock** | 90F | - | If played first, gain +100F |
+| **Cumin** | 20F, +9H | Spice | Each Veggie in this Play gains +2H |
+| **Cayenne** | 20F, +10H | Spice | Gain +4H for each Spice already played this round |
+| **Cheddar** | 95F | Dairy | If your current Flavour is below 300, gain +100F |
+| **Artisan Bread** | 90F | - | Gain +15F for each card with +Heat in this Play |
+| **Smoked Salmon** | 135F | Seafood | Gain +12H but next card loses 40F |
+| **Blackened Fish** | 70F, +18H | Seafood | Other Seafood in this Play gain +6H |
+| **Kimchi** | 80F, +6H | Veggie | Gains +4F and +1H permanently each round (resets between restaurants) |
 
 ### Rare Ingredients ($120)
 
-| Name | Stats | Type |
-|------|-------|------|
-| Truffle | 140F | Veggie | 
-| Lamb | 120F | Meat | 
-| Lobster | 130F | Seafood |
-| Ghost Pepper | 15F, +18H | Spice | 
-| Truffle Oil | 100F, +12H | - |
-| Beef | 150F | Meat | 
-| Saffron | 25F, +20H | Spice | 
-| Wagyu | 170F | Meat | 
-| Pasta | 140F | - | 
-| Olive Oil | 110F, +10H | - | 
-| Pork | 95F | Meat |
-| Miso | 100F, +10H | - | 
-| Sourdough | 85F | - | 
-| Dragon Fruit | 130F | Veggie |
-| Durian | 110F, +12H | - |
-| Ambrosia | 150F, +12H | - |
+| Name | Stats | Type | Ability |
+|------|-------|------|---------|
+| **Truffle** | 140F | Veggie | All other Veggies in this Play gain +100F |
+| **Lamb** | 120F | Meat | If 2+ Spices in this Play, gain +120F |
+| **Lobster** | 130F | Seafood | If played last in a Play, gain +200F |
+| **Ghost Pepper** | 15F, +18H | Spice | ×1.3 Heat BUT lose 60F from this Play |
+| **Truffle Oil** | 100F, +12H | - | Double the Flavour of your highest-Flavour card this Play |
+| **Wagyu Beef** | 170F | Meat | Gain +5H for each $100 you own (max +25H) |
+| **Saffron** | 25F, +20H | Spice | If this is the ONLY Spice in Play, ×1.5 Heat |
+| **Aged Beef** | 150F | Meat | Gains +15F permanently each time you beat a customer |
+| **Pasta** | 140F | - | Gain +25F for each Dairy card in your deck |
+| **Olive Oil** | 110F, +10H | - | All Veggies and Seafood in this Play gain +6H |
+| **Aged Pork** | 95F | Meat | If played with a Veggie, both gain +90F |
+| **Miso** | 100F, +10H | - | Gain +8H for each unique card type in this Play (max +32H) |
+| **Sourdough** | 85F | - | Gain +50F for each unused Reroll this round |
+| **Dragon Fruit** | 130F | Veggie | 33% chance to score triple Flavour when played |
+| **Durian** | 110F, +12H | - | On play: Flip a coin. Heads: +25H. Tails: Lose 15H |
+| **Ambrosia** | 150F, +12H | - | If this Play reaches 90%+ of threshold, permanently gain +8H |
+
+## Mythic Ingredients (Event/Boss Rewards Only)
+
+| Name | Stats | Type | Ability |
+|------|-------|------|---------|
+| **Phoenix Egg** | 200F, +25H | - | **Once per round**: If a Play doesn't meet threshold, return this to hand and gain +1 Play |
+| **Kraken Tentacle** | 180F | Seafood | Gains +20F for each other Seafood in your deck (calculated on play) |
+| **Golden Apple** | 160F | Veggie | **Permanent**: Every ingredient played this run gives this +6F |
+| **Void Salt** | 50F, +35H | Spice | All other cards in this Play have their Flavour/Heat randomized (50%-150%) |
+| **Unicorn Milk** | 140F | Dairy | Gain +10H for each unique modifier type in your deck |
+| **Philosopher's Basil** | 120F, +15H | Veggie | Choose another card in this Play - it becomes Wild (keeps original type too) |
+| **Eternal Flame Pepper** | 30F, +40H | Spice | ×1.2 Heat. Heat bonuses never reset between rounds/restaurants |
+| **Tidal Leviathan** | 220F | Seafood | All Seafood in your deck score twice this Play |
+| **Blessed Honey** | 100F | - | All cards in this Play gain the Blessed modifier temporarily |
+| **Nightmare Truffle** | 180F | Veggie | +300F, ×1.8 Heat, but discard your entire hand after this Play |
 
 ---
 
@@ -312,21 +333,25 @@ Combos happen when you play specific cards together in one Play. Cards glow when
 
 ### Combos
 
-- **Aromatics** (Garlic + Onion): +50F, +6H
-- **Salt & Pepper** (Salt + Black Pepper): +60F, +6H
-- **Butter Baste** (Butter + Any Meat): +70F, +10H
-- **Surf & Turf** (Any Seafood + Beef): +140F, +15H
-- **Cream of the Crop** (Cream + Any Veggie): +80F, ×1.3 Heat
-- **Mirepoix** (Carrot + Onion + Celery): +100F, +12H
-- **Spice Rack** (3+ Different Spices): ×1.6 Heat
-- **Meat Lover's** (3+ Different Meats): +150F, ×1.4 Heat
-- **Garden Fresh** (4+ Different Veggies): +120F, +10H
-- **Pescatarian** (3+ Different Seafood): +180F, ×1.5 Heat
-- **The Inferno** (Ghost Pepper + Cayenne + Chili Flakes): +50F, ×2.5 Heat
-- **Truffle Decadence** (Truffle + Truffle Oil): +200F, ×1.8 Heat
-- **Aged Perfection** (Aged Beef + Aged Cheddar + Any Aged): ×2.0 Heat
-- **Luxury Platter** (Wagyu + Lobster + Truffle): +400F, +25H
-    
+- **Aromatics** (Garlic + Onion): +50F, +10H
+- **Salt & Pepper** (Salt + Black Pepper): +60F, +8H
+- **Butter Baste** (Butter + Any Meat): +70F, +12H
+- **Surf & Turf** (Any Seafood + Beef): +140F, +18H
+- **Cream of the Crop** (Cream + Any Veggie): +120F, +10H
+- **Mirepoix** (Carrot + Onion + Celery): +100F, +15H
+- **Spice Rack** (3+ Different Spices): +80F, +20H
+- **Meat Lover's** (3+ Different Meats): +150F, +15H
+- **Garden Fresh** (4+ Different Veggies): +180F, +12H
+- **Pescatarian** (3+ Different Seafood): +200F, +15H
+- **The Inferno** (Ghost Pepper + Cayenne + Chili Flakes): +50F, +35H, ×1.4 Heat
+- **Truffle Decadence** (Truffle + Truffle Oil): +250F, +20H
+- **Aged Perfection** (Aged Beef + Aged Cheddar + Any Aged): +300F, +25H
+- **Luxury Platter** (Wagyu + Lobster + Truffle): +500F, +30H
+- **Ocean's Bounty** (Lobster + Kraken Tentacle + Any 3rd Seafood): +400F, all Seafood trigger three times
+- **Forbidden Feast** (Golden Apple + Ambrosia): Gain ×1.5 Heat permanently (once per run)
+- **The Void Calls** (Void Salt + Ghost Pepper + Nightmare Truffle): ×4.0 Heat
+- **Philosopher's Garden** (Philosopher's Basil + Truffle + 3 different Veggies): All cards in this Play become Wild permanently
+  
 ---
 
 ## Coupons (Consumables)
@@ -341,8 +366,8 @@ Buy these in shops for one-time powerful effects.
 - **Recipe Scroll**: Look at top 8 cards of deck
 - **Culling Knife**: Remove 1 card from deck permanently
 - **Generous Tip**: Earn $100
-- **Transmutation Scroll**: Apply a random tag to a selected card
-- **Cleansing Spray**: Remove all tags from a selected card
+- **Transmutation Scroll**: Apply a random modifier to a selected card
+- **Cleansing Spray**: Remove all modifier from a selected card
 
 ### Rare Coupons ($120)
 - **Alchemist's Primer**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
@@ -360,35 +385,35 @@ Buy these in shops for one-time powerful effects.
 
 **The Brat** (Common)
 - *Modifier*: Veggies give half Flavour
-- *Threshold*: 900
+- *Threshold*: 1,200
 - *Dialogue*: "Ew, I don't want any gross vegetables!"
 
 **Lunch Rush Larry** (Common)
 - *Modifier*: Must finish in under 90 seconds or threshold +500
-- *Threshold*: 1,000
+- *Threshold*: 1,400
 - *Dialogue*: "HURRY UP! I got a meeting in 10 minutes!"
 
 **Grandpa Joe** (Common)
 - *Modifier*: Must use 3+ Dairy ingredients
 - *Buff*: Dairy scores ×2
-- *Threshold*: 1,100
+- *Threshold*: 1,500
 - *Dialogue*: "Back in my day, we used REAL butter..."
 
 **The Influencer** (Uncommon)
 - *Modifier*: First card played scores ×3
-- *Threshold*: 1,300
+- *Threshold*: 1,800
 - *Dialogue*: "Wait, let me get the lighting... *flash* Okay go!"
 
 **Timmy the Picky Kid** (Common)
 - *Modifier*: Can only play 6 cards max
-- *Threshold*: 800
+- *Threshold*: 1,100
 - *Dialogue*: "I only like chicken nuggets but okay..."
 
 ---
 
 **BOSS: Mama Rosa** (Ticket 4)
-- *Buff*: Dairy and Comfort ingredients score ×2.5
-- *Threshold*: 5,000
+- *Buff*: Common ingredients score ×2.0
+- *Threshold*: 8,000
 - *Reward*: $150 + Choose 1 of 3 Appliances
 - *Dialogue*: 
   - Start: "Let's-a see if you know what REAL comfort food is!"
@@ -401,42 +426,42 @@ Buy these in shops for one-time powerful effects.
 
 **The Venture Capitalist** (Common)
 - *Modifier*: Each card costs $5 to play (deducted from final reward)
-- *Threshold*: 6,000
+- *Threshold*: 12,000
 - *Dialogue*: "Time is money, chef. Let's see your ROI."
 
 **Count Brothula** (Common)
 - *Modifier*: Garlic scores 0F
 - *Buff*: Meats score ×2
-- *Threshold*: 7,000
+- *Threshold*: 14,000
 - *Dialogue*: "No garlic, or I vill be most... displeased."
 
 **Ms. Pescatarian** (Uncommon)
 - *Modifier*: Non-seafood Meats score 0F
 - *Buff*: Seafood scores ×2.5
-- *Threshold*: 8,500
+- *Threshold*: 16,000
 - *Dialogue*: "I only eat what swims and what grows from soil."
 
 **The Instagram Model** (Uncommon)
 - *Modifier*: Must make Bisque or fail instantly
 - *Buff*: Bisque becomes ×4.0 (up from ×2.5)
-- *Threshold*: 7,500
+- *Threshold*: 15,000
 - *Dialogue*: "It needs to be, like, aesthetic? Pink is my brand."
 
 **The Broke College Student** (Common)
 - *Modifier*: Rare ingredients score 0F
 - *Buff*: Common ingredients score ×2
-- *Threshold*: 6,500
+- *Threshold*: 13,000
 - *Dialogue*: "Dude, I'm on a ramen budget. Nothing fancy."
 
 **The Wine Snob** (Rare)
 - *Modifier*: Must make Stew or Bisque only
 - *Buff*: Those soups get +1.0 bonus (×3.0 or ×3.5)
-- *Threshold*: 9,000
-- *Dialogue*: "I only appreciate... *swirls glass* ...refinement."
+- *Threshold*: 18,000
+- *Dialogue*: "I only appreciate refinement."
 
 **The Day Trader** (Uncommon)
 - *Special*: Threshold fluctuates ±2,000 every 20 seconds
-- *Threshold*: 7,000 (base)
+- *Threshold*: 14,000 (base)
 - *Dialogue*: "BUY BUY BUY! NO WAIT, SELL!"
 
 ---
@@ -444,7 +469,7 @@ Buy these in shops for one-time powerful effects.
 **BOSS: The Yacht Captain** (Ticket 8)
 - *Modifier*: Must use 5+ Seafood ingredients total or fail
 - *Buff*: Seafood gives +12 Heat
-- *Threshold*: 22,000
+- *Threshold*: 50,000
 - *Reward*: $200 + Choose 1 of 3 Appliances
 - *Dialogue*:
   - Start: "Ahoy! Show me the bounty of the seven seas!"
@@ -457,52 +482,51 @@ Buy these in shops for one-time powerful effects.
 
 **The Divorced Billionaire** (Common)
 - *Modifier*: Each Appliance you own adds +6,000 to threshold
-- *Threshold*: 30,000 (base)
+- *Threshold*: 80,000 (base)
 - *Dialogue*: "My ex-wife took everything. Even my taste buds."
 
 **The Clanker** (Uncommon)
 - *Modifier*: Combos don't trigger normally
 - *Special*: Each combo gives ×1.5 Heat instead
-- *Threshold*: 35,000
+- *Threshold*: 95,000
 - *Dialogue*: "I'm sorry, as an AI language model, I can't understand combos."
 
 **The Crypto Bro** (Rare)
 - *Special*: Pay $50 before serving. Win: +$300. Lose: -$100
-- *Threshold*: 33,000
+- *Threshold*: 100,000
 - *Dialogue*: "BRO. This is going to the MOON. You in?"
 
 **The Perfectionist** (Rare)
-- *Modifier*: If satisfaction is within ±8% of threshold, instant fail
-- *Must hit 92-108% exactly*
-- *Threshold*: 38,000
+- *Modifier*: If satisfaction isn't within ±10% of threshold, instant fail
+- *Must hit 90-110% exactly*
+- *Threshold*: 110,000
 - *Dialogue*: "Perfectly balanced. As all things should be."
 
 **Chad Chazly** (Common)
 - *Modifier*: Heat capped at +30 max
 - *Forces*: Pure Flavour/×Heat scaling
-- *Threshold*: 32,000
+- *Threshold*: 85,000
 - *Dialogue*: "Bro, keep it mild. My tummy's sensitive, bro."
 
 **The Meditation Guru** (Uncommon)
-- *Modifier*: Can only use 2 Plays total
-- *Buff*: Each Play scores ×2.0
-- *Threshold*: 34,000
+- *Modifier*: Warm momentum gives a ×0.8 satisfaction multiplier, blazing gives a ×0.5 satisfaction multiplier
+- *Threshold*: 90,000
 - *Dialogue*: "Breathe. The soup knows when you're rushing."
 
 **Hugh Mann** (Rare)
-- *Modifier*: Random ingredient type scores ×5 (revealed at start)
-- *Threshold*: 36,000
+- *Modifier*: Random ingredient type scores ×2 every round (revealed at start)
+- *Threshold*: 125,000
 - *Dialogue*: "*BZZT* WE ANALYZE YOUR EARTH NUTRIENTS."
 
 **The Doomsday Prepper** (Uncommon)
 - *Modifier*: Only Common ingredients score
 - *Buff*: Common ingredients score ×3
-- *Threshold*: 31,000
+- *Threshold*: 88,000
 - *Dialogue*: "When society collapses, we'll need SIMPLE FOOD."
 
 **The Appliance Breaker** (Rare)
 - *Modifier*: Your leftmost Appliance is disabled this round
-- *Threshold*: 34,000
+- *Threshold*: 98,000
 - *Dialogue*: "I hate fancy kitchen gadgets. Cook it OLD SCHOOL."
 
 ---
@@ -510,7 +534,7 @@ Buy these in shops for one-time powerful effects.
 **BOSS: The Billionaire** (Ticket 12)
 - *Modifier*: Can't use any Coupons
 - *Special*: At 50%, he offers: "I'll pay you $150 to quit now"
-- *Threshold*: 90,000
+- *Threshold*: 280,000
 - *Reward*: $300 + Choose 1 of 3 Appliances
 - *Dialogue*:
   - Start: "I've eaten at every Michelin star restaurant on Earth. Show me something new."
@@ -525,53 +549,53 @@ Buy these in shops for one-time powerful effects.
 **The Angel of Purity** (Common)
 - *Modifier*: Wild ingredients score 0F
 - *Buff*: Single-type ingredients score ×2
-- *Threshold*: 60,000
+- *Threshold*: 400,000
 - *Dialogue*: "Only the pure of ingredient may enter these gates."
 
 **Saint Pepper** (Uncommon)
 - *Modifier*: If Heat <40, instant fail
 - *Buff*: All Spices give ×0.3 Heat
-- *Threshold*: 75,000
+- *Threshold*: 480,000
 - *Dialogue*: "The divine flame must BURN within your creation!"
 
 **The Cherub** (Common)
 - *Modifier*: Can only play 5 cards max
 - *Buff*: Each card gives +100 Flavour
-- *Threshold*: 65,000
+- *Threshold*: 420,000
 - *Dialogue*: "*giggles* Less is more in paradise!"
 
 **The Seraphim Judge** (Rare)
 - *Modifier*: Threshold hidden until you serve
 - *Special*: If you overshoot by 20%+, instant fail
-- *Threshold*: 80,000
+- *Threshold*: 520,000
 - *Dialogue*: "I shall judge your soul... I mean soup."
 
 **The Penitent Soul** (Uncommon)
 - *Modifier*: First Play each round scores 0
 - *Buff*: All subsequent Plays score ×3.0
-- *Threshold*: 70,000
+- *Threshold*: 460,000
 - *Dialogue*: "I must suffer before I can be redeemed..."
 
 **Brother Umami** (Rare)
 - *Modifier*: Making Slop = instant fail
 - *Buff*: Non-Slop soups get ×2.0 bonus
-- *Threshold*: 78,000
+- *Threshold*: 500,000
 - *Dialogue*: "Only the most righteous recipes shall pass."
 
 **The Cloud Shepherd** (Uncommon)
 - *Modifier*: Each Reroll used adds +10,000 to threshold
-- *Threshold*: 62,000 (base)
+- *Threshold*: 450,000 (base)
 - *Dialogue*: "Patience, child. Rushing is a sin up here."
 
 **The Heavenly Accountant** (Rare)
 - *Special*: Round down your score after every play to a multiple of 10,000
-- *Threshold*: 73,000
+- *Threshold*: 490,000
 - *Dialogue*: "The books must balance. Always."
 
 **The Reverent Minimalist** (Uncommon)
 - *Modifier*: Appliances in slots 3-5 are disabled
 - *Buff*: Appliances in slots 1-2 trigger twice
-- *Threshold*: 68,000
+- *Threshold*: 470,000
 - *Dialogue*: "Only the essential may remain."
 
 ---
@@ -580,59 +604,13 @@ Buy these in shops for one-time powerful effects.
 - *Phase 1* (First third of satisfaction threshold): Reduce Flavour from all sources by 80%
 - *Phase 2* (Next third): Disable a random appliance every play
 - *Phase 3* (Final third): Rare and uncommon ingredients score 10% of their usual Flavour/Heat
-- *Threshold*: 180,000
+- *Threshold*: 1,500,000
 - *Reward*: $400
 - *Dialogue*:
   - Start: "I have tasted creation itself. Impress me, mortal."
   - Phase 2: "You rely too much on your trinkets. Cook with your hands!"
   - Phase 3: "Show me the skill of a chef, not the wealth of a collector."
   - Win: "...You have earned your place among the divine. Well done."
-
----
-
-### Restaurant 5: The Void (Ticket 17+, Endless Mode)
-*Vibe: Reality breaks down. Incomprehensible geometry. Beings with too many eyes.*
-
-**Unlock**: Beat God
-
-**Endless Scaling**:
-- Threshold: ×1.3 per ticket
-- Rewards: Capped at $300
-- Boss every 4 tickets (Tickets 20, 24, 28, etc.)
-- After every boss, scaling increases exponentially
-- New customers: Eldritch horrors with reality-warping modifiers
-
-**Envy** (Common)
-- *Modifier*: Your highest Flavour ingredient and highest Heat ingredient each round are automatically debuffed (0F,0H).
-- *Dialogue*: "W̴̢̛͈̹̓E̷̡̪̓͐ ̶̰̈́S̴̰̏̂E̶̯̓E̴͙̒ ̷̣͘Y̶̰̔O̴̧̍U̵̞̔Ŕ̴̨̲ ̵̨̠́Š̵̡̻Ū̸̱C̸͇̓C̸̼̋E̴̮̋S̸̞̅S̸͚̅"
-
-**Lust** (Uncommon)
-- *Modifier*: All ingredients played must be of the same type or Play scores 0.
-- *Dialogue*: "Come closer, big shot... let me taste your soup."
-
-**Sloth** (Uncommon)
-- *Modifier*: All your stats randomly fluctuate ±30% each Play
-- *Buff*: Unused Plays/Rerolls are worth ×3 their normal value.
-- *Dialogue*: "Order... disorder... does it matter?"
-
-**Gluttony** (Rare)
-- *Special*: Permanently removes 1 random card from your deck after serving
-- *Dialogue*: "I hunger for more than soup..."
-
-**Pride** (Rare)
-- *Special*: If you use an Appliance that costs less than $300, instant fail
-- *Dialogue*: "I only consume that which is... elevated."
-
-**Wrath** (Uncommon)
-- *Modifier*: Appliances trigger in random order
-- *Dialogue*: "Let us see how well you adapt, chef."
-
-**Greed** (Rare)
-- *Special*: Your satisfaction is multiplied by a random number between 0.5× and 3.0× after serving
-- *Dialogue*: "Luck is just another ingredient, chef."
-
-**Void Boss Pattern**:
-- Random combination of two previous boss mechanics
 
 ---
 
@@ -863,7 +841,7 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 
 **Maestro Sylvan** (Unlock: Reach Ticket 25 in The Void)
 - Starts with: 4× Truffle, 3× Mushroom, 3× Garlic, 2× Tomato (12 cards)
-- *Passive*: All Veggies gain Aged tag
+- *Passive*: All Veggies gain Aged modifier when played
 - *Starting Appliance*: Aging Barrel
 
 **Chef Étienne** (Unlock: Beat God with Sous Chef Jimmy without removing any of his starting ingredients)
@@ -909,7 +887,7 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 - **Appliance reordering**: Drag to rearrange Appliance trigger order
 - **Undo last Play**: Once per round, undo your last Play (before round ends)
 - **Deck viewer**: See all cards in deck with current stats 
-- **Appliance hover**: Hover over Appliances to see exactly what they'll do this Play
+- **Appliance hover**: Hover over Appliances to see exactly what they do
 
 ---
 
