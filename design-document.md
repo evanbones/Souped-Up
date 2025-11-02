@@ -105,9 +105,44 @@ ROUND START
 └─ Repeat until threshold reached or resources exhausted
 ```
 
-**Leftover currency**:
-- Unused Plays: +$10 each
-- Unused Rerolls: +$5 each
+---
+
+## Momentum Bar
+*A momentum/rhythm bar that rewards fast, confident play.*
+
+### Momentum Gains
+- **Play cards**: +15% per Play
+- **Quick decisions**: If you act within 3 seconds of last action, +5% bonus
+- **Combos**: +10% per combo triggered
+- **Making a non-Slop soup**: +12%
+
+### Momentum Decay
+- **-2% per second** while idle (not selecting/playing cards)
+
+---
+
+### Momentum Tiers & Bonuses
+
+#### During Round
+
+| Tier | Range | Visual | Effect |
+|------|-------|--------|--------|
+| **COLD** | 0-25% | Gray, dim | No bonus |
+| **WARM** | 26-50% | Yellow, gentle pulse | +5% satisfaction on next Play |
+| **HOT** | 51-75% | Orange, strong pulse | +15% satisfaction on next Play |
+| **BLAZING** | 76-100% | Red/white, intense glow | +25% satisfaction on next Play |
+
+#### End of Round Bonus
+
+Your **average momentum** across the round determines a bonus:
+
+| Average | Bonus |
+|---------|-------|
+| 0-30% | +$0 |
+| 31-50% | +$20 |
+| 51-70% | +$50 |
+| 71-85% | +$80 |
+| 86-100% | +$120 |
 
 ---
 
@@ -118,81 +153,80 @@ ROUND START
 Appliances trigger **in order (left to right)** when you Play cards.
 
 ### Tier 1 Appliances ($120)
-**Sharp Knives**: +1 Play per round.
-**Tasting Spoon**: +1 Reroll per round.
-**Cutting Board**: Each Veggie played gives +15 Flavour.
-**Cast Iron Pan**: Each Meat played gives +70 Flavour.
-**Spice Grinder**: Each Spice played gives +6 Heat.
-**Mortar & Pestle**: +40 Flavour for each card played.
-**Compost Bin**: Every time you Reroll, permanently gain +3 Heat.
-**Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour
-**Golden Ladle**: Gain an extra $20 at round end.
-**Shopping Cart**: Common ingredients give +50 Flavour
-**Prayer Beads**: Blessed ingredients are twice as likely to trigger their effects.
+- **Sharp Knives**: +1 Play per round.
+- **Tasting Spoon**: +1 Reroll per round.
+- **Cutting Board**: Each Veggie played gives +15 Flavour.
+- **Cast Iron Pan**: Each Meat played gives +70 Flavour.
+- **Spice Grinder**: Each Spice played gives +6 Heat.
+- **Mortar & Pestle**: +40 Flavour for each card played.
+- **Compost Bin**: Every time you Reroll, permanently gain +3 Heat.
+- **Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour
+- **Golden Ladle**: Gain an extra $20 at round end.
+- **Shopping Cart**: Common ingredients give +50 Flavour
+- **Prayer Beads**: Blessed ingredients are twice as likely to trigger their effects.
 
 ### Tier 2 Appliances ($200)
-**Damn Fine Espresso**: First played ingredient scores an additional two times.
-**Poverty Pot**: Whenever you play with less than $100, create a random Coupon.
-**Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts your hand AND is duplicated.
-**Recycling Center**: Whenever you refresh a shop, permanently gains +15 Flavour.
-**The Perfectionist's Palette**: Each time you Reroll, your next Play gains ×0.4 Heat.
-**Lightning Rod**: Each time you gain Heat from cards, gain +2 additional Heat.
-**Aromatics Kit**: If you play Garlic + Onion, gain ×1.6 Heat.
-**Octopus' Garden**: First 3 different ingredient types played each round give ×1.15 Flavour each.
-**Aging Barrel**: Each Aged ingredient played gives ×1.1 Flavour.
-**Butcher's Block**: Meats also give +5 Heat.
-**Garden Bed**: Each Veggie played gives ×1.08 Flavour.
-**Fishmonger's Ice**: Seafood cards trigger twice when played.
-**Butter Boat**: Dairy cards give ×1.7 Heat. When you play Dairy, your next card gains +60 Flavour.
-**Family Recipe Book**: If you make the same soup type as last round, gain ×1.5 Heat.
-**Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +70 Flavour for each Wild played.
-**Mirepoix Mastery**: If you play Carrot + Onion + any Veggie, gain +30 Heat.
-**Combo Counter**: For each combo you trigger, permanently gain +0.3x Heat.
-**Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.35× Heat.
-**Instant Ramen**: If you finish a customer in 1 Play, gain +$80 bonus.
-**Pickle Jar**: Each customer you beat, permanently gain +30 Flavour to all ingredients
-**Nest Egg**: Gain +0.5x Heat per $100 owned.
-**Stamp Collection**: Gain +0.25x Heat per ingredient added to deck.
-**Spice Caravan**: When making Curry, Spices trigger twice.
-**Gambler's Wok**: Each Play, 50% chance: ×2.5 Heat OR lose half your Flavour.
-**Artisan's Pride**: Artisan ingredients give ×1.2 Flavour per Appliance you own.
-**Farmers Market**: Fresh ingredients trigger twice.
-**Tag Team**: When you play 2+ ingredients with the same tag, they gain +100 Flavour.
-**The Charcoal Grill**: Gain +0.4x Heat per charred ingredient in deck.
+- **Damn Fine Espresso**: First played ingredient scores an additional two times.
+- **Poverty Pot**: Whenever you play with less than $100, create a random Coupon.
+- **Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts your hand AND is duplicated.
+- **Recycling Center**: Whenever you refresh a shop, permanently gains +15 Flavour.
+- **The Perfectionist's Palette**: Each time you Reroll, your next Play gains ×0.4 Heat.
+- **Lightning Rod**: Each time you gain Heat from cards, gain +2 additional Heat.
+- **Aromatics Kit**: If you play Garlic + Onion, gain ×1.6 Heat.
+- **Octopus' Garden**: First 3 different ingredient types played each round give ×1.15 Flavour each.
+- **Aging Barrel**: Each Aged ingredient played gives ×1.1 Flavour.
+- **Butcher's Block**: Meats also give +5 Heat.
+- **Garden Bed**: Each Veggie played gives ×1.08 Flavour.
+- **Fishmonger's Ice**: Seafood cards trigger twice when played.
+- **Butter Boat**: Dairy cards give ×1.7 Heat. When you play Dairy, your next card gains +60 Flavour.
+- **Family Recipe Book**: If you make the same soup type as last round, gain ×1.5 Heat.
+- **Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +70 Flavour for each Wild played.
+- **Combo Counter**: For each combo you trigger, permanently gain +0.3x Heat.
+- **Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.35× Heat.
+- **Instant Ramen**: If you finish a customer in 1 Play, gain +$80 bonus.
+- **Pickle Jar**: Each customer you beat, permanently gain +30 Flavour to all ingredients
+- **Nest Egg**: Gain +0.5x Heat per $100 owned.
+- **Stamp Collection**: Gain +0.25x Heat per ingredient added to deck.
+- **Spice Caravan**: When making Curry, Spices trigger twice.
+- **Gambler's Wok**: Each Play, 50% chance: ×2.5 Heat OR lose half your Flavour.
+- **Artisan's Pride**: Artisan ingredients give ×1.2 Flavour per Appliance you own.
+- **Farmers Market**: Fresh ingredients trigger twice.
+- **Tag Team**: When you play 2+ ingredients with the same tag, they gain +100 Flavour.
+- **The Charcoal Grill**: Gain +0.4x Heat per charred ingredient in deck.
 
 ### Tier 3 Appliances ($300)
-**Spice Volcano**: Each played Spice gives ×0.25 Heat.
-**The Forbidden Fruit Bowl**: All played Veggies gain Aged tag.
-**Master Gardener**: For every 3 Veggies in your deck, each Veggie played gives ×1.1 Flavour.
-**Philosopher's Stone**: All your cards become Wild AND keep their original types.
-**Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
-**Eternal Flame**: 1.0x Heat. Permanently gains +0.2x Heat every time a card is removed from your deck.
-**Snowball Pot**: Gain +0.5× Heat each time you Play this round (resets each round).
-**Ghost Kitchen**: Card names are hidden (show only type and rarity). ×3.0 Heat.
-**Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. 
-**Reckless Stove**: 2.5x Heat, but satisfaction threshold is ±20% randomized.
-**The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round.
-**Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
-**Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. 
-**Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
-**Steam Engine**: If your Flavour is below 500, gain ×4.0 Heat. 
-**Legendary Chef's Apron**: Each time you make a ×2.5+ soup bonus, permanently gain ×0.25 Heat (starts at ×1.0).
-**Quality Over Quantity**: If your deck has ≤12 cards, all ingredients gain +120 Flavour and +12 Heat.
-**Good Noodle Star**: For each unique combo triggered this game, all combos give +40 Flavour.
-**Fusion Kitchen**: Combos trigger twice, but ingredients not in combos give 0 Flavour/0 Heat.
-**Michelin Tire**: Permanently gain ×0.25 Heat when an ingredient is purchased. Resets at end of restaurant.
-**Burnt Offerings**: ×3.0 Heat, but you must discard 2 cards at the start of every round.
-**Fermentation Station**: Fermented ingredients start with +0.6× Heat (instead of +0.15 at round start).
-**Analytics Report**: For each unique tag in your deck, gain +0.3× Heat.
+- **Spice Volcano**: Each played Spice gives ×0.25 Heat.
+- **The Forbidden Fruit Bowl**: All played Veggies gain Aged tag.
+- **Master Gardener**: For every 3 Veggies in your deck, each Veggie played gives ×1.1 Flavour.
+- **Philosopher's Stone**: All your cards become Wild AND keep their original types.
+- **Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
+- **Eternal Flame**: 1.0x Heat. Permanently gains +0.2x Heat every time a card is removed from your deck.
+- **Snowball Pot**: Gain +0.5× Heat each time you Play this round (resets each round).
+- **Ghost Kitchen**: Card names are hidden (show only type and rarity). ×3.0 Heat.
+- **Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. 
+- **Reckless Stove**: 2.5x Heat, but satisfaction threshold is ±20% randomized.
+- **The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round.
+- **Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
+- **Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. 
+- **Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
+- **Steam Engine**: If your Flavour is below 500, gain ×4.0 Heat. 
+- **Legendary Chef's Apron**: Each time you make a ×2.5+ soup bonus, permanently gain ×0.25 Heat (starts at ×1.0).
+- **Quality Over Quantity**: If your deck has ≤12 cards, all ingredients gain +120 Flavour and +12 Heat.
+- **Good Noodle Star**: For each unique combo triggered this game, all combos give +40 Flavour.
+- **Fusion Kitchen**: Combos trigger twice, but ingredients not in combos give 0 Flavour/0 Heat.
+- **Michelin Tire**: Permanently gain ×0.25 Heat when an ingredient is purchased. Resets at end of restaurant.
+- **Burnt Offerings**: ×3.0 Heat, but you must discard 2 cards at the start of every round.
+- **Fermentation Station**: Fermented ingredients start with +0.6× Heat (instead of +0.15 at round start).
+- **Analytics Report**: For each unique tag in your deck, gain +0.3× Heat.
 
 ### Tier 4 Appliances (Rare Event Spawns)
-**Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
-**Spice Must Flow**: Spices give ×0.45 Heat AND +20 Flavour. 
-**Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
-**Gollzur's Orb**: View all upcoming tickets. All Mystery Tickets become beneficial. +1 Reroll. 
-**Étienne's Ladle**: Common ingredients trigger twice.
-**Timekeeper's Hourglass**: At round start, choose: Double all Flavour this round OR Double all Heat this round.
-**God's Gambit**: Blessed cards trigger on 1 in 2 chance (50/50). When a Blessed card triggers, permanently gain ×0.25 Heat.
+- **Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
+- **Spice Must Flow**: Spices give ×0.45 Heat AND +20 Flavour. 
+- **Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
+- **Gollzur's Orb**: View all upcoming tickets. All Mystery Tickets become beneficial. +1 Reroll. 
+- **Étienne's Ladle**: Common ingredients trigger twice.
+- **Timekeeper's Hourglass**: At round start, choose: Double all Flavour this round OR Double all Heat this round.
+- **God's Gambit**: Blessed cards trigger on 1 in 2 chance (50/50). When a Blessed card triggers, permanently gain ×0.25 Heat.
 
 ---
 
@@ -204,14 +238,14 @@ Appliances trigger **in order (left to right)** when you Play cards.
 - **Type**: Veggie, Meat, Seafood, Spice, Dairy, Wild
 
 ## Tag Definitions
-**Aged**: Permanently gains +5F each time played this run.
-**Wild**: Counts as any type for soup requirements.
-**Blessed**: Has a 1 in 4 chance to score triple the flavour. 1 in 20 chance to earn $100.
-**Artisan**: Gains +15 Flavour per unique Appliance you own.
-**Fresh**: If played in your first Play of the round, gain +80 Flavour.
-**Charred**: Gives +15 Heat but -30 Flavour.
-**Fermented**: Gains +0.15× Heat per round (resets between restaurants).
-**Preserved**: Cannot be removed from your deck, but gives ×1.5 Flavour.
+- **Aged**: Permanently gains +5F each time played this run.
+- **Wild**: Counts as any type for soup requirements.
+- **Blessed**: Has a 1 in 4 chance to score triple the flavour. 1 in 20 chance to earn $100.
+- **Artisan**: Gains +15 Flavour per unique Appliance you own.
+- **Fresh**: If played in your first Play of the round, gain +80 Flavour.
+- **Charred**: Gives +15 Heat but -30 Flavour.
+- **Fermented**: Gains +0.15× Heat per round (resets between restaurants).
+- **Preserved**: Cannot be removed from your deck, but gives ×1.5 Flavour.
 
 ---
 
@@ -270,27 +304,28 @@ Appliances trigger **in order (left to right)** when you Play cards.
 
 ---
 
-## Combos (Auto-Triggered)
+## Combos 
 
 Combos happen when you play specific cards together in one Play. Cards glow when known combo pieces are in hand.
 
 **Discovery System**: Combos are discovered through play and added to your "Cookbook."
 
 ### Combos
-1. **Aromatics** (Garlic + Onion): +50F, +6H
-2. **Salt & Pepper** (Salt + Any Spice): +60F, +6H
-3. **Butter Baste** (Butter + Any Meat): +70F, +10H
-4. **Mirepoix** (Carrot + Onion + Any Veggie): +100F, +12H
-5. **Surf & Turf** (Seafood + Beef): +140F, +15H
-6. **Spice Rack** (3+ Different Spices): ×1.6 Heat
-7. **Rainbow Medley** (5+ Different Types): +250F, ×2.0 Heat
-8. **Holy Trinity** (3+ Blessed cards in one Play): +200F, +15H
-9. **Aged Perfection** (2+ Aged Ingredients): ×1.5 Heat
-10. **The Inferno** (Ghost Pepper + 2+ other Spices): +50F, ×2.5 Heat
-11. **Artisan's Table** (3+ Artisan ingredients in one Play): +150F, ×1.4 Heat
-12. **Fresh Harvest** (4+ Fresh ingredients in your first Play): +300F, gain +1 Reroll this round
-13. **Blackened Special** (3+ Charred ingredients in one Play): +40 Heat, ×2.0 Heat
-14. **Fermented Feast** (2+ Fermented ingredients): Current round's Fermented bonus doubles (e.g., Round 3 = +0.9× Heat instead of +0.45×)
+
+- **Aromatics** (Garlic + Onion): +50F, +6H
+- **Salt & Pepper** (Salt + Black Pepper): +60F, +6H
+- **Butter Baste** (Butter + Any Meat): +70F, +10H
+- **Surf & Turf** (Any Seafood + Beef): +140F, +15H
+- **Cream of the Crop** (Cream + Any Veggie): +80F, ×1.3 Heat
+- **Mirepoix** (Carrot + Onion + Celery): +100F, +12H
+- **Spice Rack** (3+ Different Spices): ×1.6 Heat
+- **Meat Lover's** (3+ Different Meats): +150F, ×1.4 Heat
+- **Garden Fresh** (4+ Different Veggies): +120F, +10H
+- **Pescatarian** (3+ Different Seafood): +180F, ×1.5 Heat
+- **The Inferno** (Ghost Pepper + Cayenne + Chili Flakes): +50F, ×2.5 Heat
+- **Truffle Decadence** (Truffle + Truffle Oil): +200F, ×1.8 Heat
+- **Aged Perfection** (Aged Beef + Aged Cheddar + Any Aged): ×2.0 Heat
+- **Luxury Platter** (Wagyu + Lobster + Truffle): +400F, +25H
     
 ---
 
