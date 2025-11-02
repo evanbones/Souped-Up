@@ -793,13 +793,14 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 - **Satisfaction bar**: Smooth gradient red → yellow → green
 - **Scoring animations**: Numbers burst and scale dramatically
 
-**Soup Types**: Each soup has unique bubbling sounds, particle effects, pot color
-- Broth: Green, gentle bubbles, veggie sounds
-- Stew: Brown, thick bubbles, sizzling meat
-- Bisque: Pink/orange, creamy texture, seafood splash
-- Curry: Golden yellow, vigorous bubbling, spice crackle
-- Chowder: Cream white, chunky texture, ocean ambiance
-- Slop: Grey-brown, sad bubbles, flatulent sounds
+### Soup Types
+ 
+- **Broth**: Green, gentle bubbles, veggie sounds
+- **Stew**: Brown, thick bubbles, sizzling meat
+- **Bisque**: Pink/orange, creamy texture, seafood splash
+- **Curry**: Golden yellow, vigorous bubbling, spice crackle
+- **Chowder**: Cream white, chunky texture, ocean ambiance
+- **Slop**: Grey-brown, sad bubbles, flatulent sounds
 
 ### Audio Design
 
