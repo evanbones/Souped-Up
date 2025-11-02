@@ -39,7 +39,7 @@ The pot changes color in real-time as you play cards.
 | **Chowder** | 2+ Seafood, 2+ Veggies | ×2.5 |
 | **Slop** | None of the above | ×1.0 |
 
-**Leveling Up Soups**: Buy "Soup Coupons" in shops to upgrade soup bonuses (e.g., Curry ×3.0 → ×3.5, costs $80).
+**Leveling Up Soups**: Buy "Soup Coupons" in shops to upgrade soup bonuses (e.g., Curry ×3.0 → ×3.5).
 
 ---
 
@@ -60,27 +60,24 @@ You climb through 5 restaurants, each serving weirder customers. Each restaurant
 
 After each round, **choose 1 of 3 tickets**:
 
-* **Customer Ticket (Gold)** - Face a customer, earn $60-120
+* **Customer Ticket (Gold)** - Face a customer
 * **Shop Ticket (Blue)** - Buy ingredients, Appliances, Coupons
 * **Black Market Shop (Black)**:
   - Replaces normal Shop ticket
-  - Shows **3 Tier 3 Appliances** at ×1.5 price ($450 each)
-  - All other items cost ×1.25 normal price
+  - Has **at least one guaranteed Tier 3 Appliance** at ×1.5x price
+  - All normal shop items are ×1.2 price
 * **Mystery Ticket (Purple)** - Random event (risky but rewarding)
 
 ### Carousel Distribution
 
 **Restaurants 1-2** (Tickets 1-8):
 - 60% Customer, 30% Shop, 10% Mystery
-  - 10% to replace Shop with Black Market Shop
 
 **Restaurants 3-4** (Tickets 9-16):
-- 55% Customer, 25% Shop, 20% Mystery, 5% Black Market Shop
-  - 10% to replace Shop with Black Market Shop
+- 55% Customer, 25% Shop, 15% Mystery, 5% Black Market Shop
 
 **Restaurant 5** (Endless):
-- 50% Customer, 20% Shop, 30% Mystery, 5% Black Market Shop
-  - 10% to replace Shop with Black Market Shop
+- 50% Customer, 20% Shop, 25% Mystery, 5% Black Market Shop
 
 **Boss Tickets**: Mandatory at Tickets 4, 8, 12, 16, 20, etc. The carousel shows only **BOSS** - no choice.
 
@@ -119,45 +116,58 @@ ROUND START
 Appliances trigger **in order (left to right)** when you Play cards.
 
 ### Tier 1 Appliances ($120)
-**Poverty Pot**: Whenever you have less than $100, all ingredients give +30 Flavour
-**Cutting Board**: Each Veggie played gives +10 Flavour
-**Cast Iron Pan**: Each Meat played gives +60 Flavour
-**Spice Grinder**: Each Spice played gives +5 Heat
-**Mortar & Pestle**: +25 Flavour for each card played
-**Sharp Knives**: +1 Play per round 
-**Tasting Spoon**: +1 Reroll per round
-**Compost Bin**: Every time you Reroll, permanently gain +3 Heat
-**Golden Ladle**: Gain $5 per leftover Play/Reroll at round end
-**Mise en Place**: If your first Play contains 4+ cards, they all gain +30 Flavour
+**Sharp Knives**: +1 Play per round.
+**Tasting Spoon**: +1 Reroll per round.
+**Cutting Board**: Each Veggie played gives +15 Flavour.
+**Cast Iron Pan**: Each Meat played gives +70 Flavour.
+**Spice Grinder**: Each Spice played gives +6 Heat.
+**Mortar & Pestle**: +40 Flavour for each card played.
+**Compost Bin**: Every time you Reroll, permanently gain +3 Heat.
+**Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour
+**Golden Ladle**: Gain an extra $20 at round end.
+**Shopping Cart**: Common ingredients give +50 Flavour
+**Prayer Beads**: Blessed ingredients have a 1 in 3 chance to trigger (up from 1 in 4).
 
 ### Tier 2 Appliances ($200)
-**Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts in your hand AND is duplicated
-**Lightning Rod**: Each time you gain Heat from ingredients, gain +1 additional Heat
-**Aromatics Kit**: If you play Garlic + Onion, gain ×1.5 Heat
-**Octopus' Garden**: Each round, the first 3 different types of ingredients you play gain +50 Flavour
-**Aging Barrel**: Each time you play an Aged ingredient, it permanently gains +20 Flavour
-**Butcher's Block**: Meats also give +4 Heat
-**Garden Bed**: Veggies also give +20 Flavour
-**Fishmonger's Ice**: Seafood cards trigger twice (score double)
-**Butter Boat**: Dairy cards give ×1.6 Heat. When you play Dairy, your next card gains +40 Flavour
-**Family Recipe Book**: If you make the same soup type as last round, gain ×1.4 Heat
-**Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +50 Flavour for each Wild played
-**Mirepoix**: If you play Carrot + Onion + any Veggie, gain +25 Heat
-**Combo Counter**: For each combo you trigger, permanently gain +0.25x Heat 
-**Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.3× Heat
-**Instant Ramen**: If you finish a customer in 1 Play, gain +$50 bonus
+**Damn Fine Espresso**: First played ingredient scores an additional two times.
+**Poverty Pot**: Whenever you play with less than $100, create a random Coupon.
+**Doggy Bag**: At end of round, choose 1 card from your hand. Next round, it starts your hand AND is duplicated.
+**Recycling Center**: Whenever you refresh a shop, permanently gains +15 Flavour.
+**The Perfectionist's Palette**: Each time you Reroll, your next Play gains ×0.4 Heat.
+**Lightning Rod**: Each time you gain Heat from cards, gain +2 additional Heat.
+**Aromatics Kit**: If you play Garlic + Onion, gain ×1.6 Heat.
+**Octopus' Garden**: First 3 different ingredient types played each round give ×1.15 Flavour each.
+**Aging Barrel**: Each Aged ingredient played gives ×1.1 Flavour.
+**Butcher's Block**: Meats also give +5 Heat.
+**Garden Bed**: Each Veggie played gives ×1.08 Flavour.
+**Fishmonger's Ice**: Seafood cards trigger twice when played.
+**Butter Boat**: Dairy cards give ×1.7 Heat. When you play Dairy, your next card gains +60 Flavour.
+**Family Recipe Book**: If you make the same soup type as last round, gain ×1.5 Heat.
+**Jimbo's Kitchen**: Wild ingredients count as ALL types simultaneously. Gain +70 Flavour for each Wild played.
+**Mirepoix Mastery**: If you play Carrot + Onion + any Veggie, gain +30 Heat.
+**Combo Counter**: For each combo you trigger, permanently gain +0.3x Heat.
+**Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.35× Heat.
+**Instant Ramen**: If you finish a customer in 1 Play, gain +$80 bonus.
+**Ancient Hourglass**: Each customer you beat, permanently gain +30 Flavour to all ingredients
+**Nest Egg**: Gain +0.5x Heat per $100 owned.
+**Stamp Collection**: Gain +0.25x Heat per ingredient added to deck.
+**Divine Intervention**: When a Blessed card triggers, gain +200 Flavour and +8 Heat.
+**Miracle Worker**: Once per round, you can force one Blessed card to trigger.
+**Spice Caravan**: When making Curry, Spices trigger twice.
+**Gambler's Wok**: Each Play, 50% chance: ×2.5 Heat OR lose half your Flavour.
+**Artisan's Pride**: Artisan ingredients give ×1.2 Flavour per Appliance you own.
+**Farmers Market**: Fresh ingredients trigger twice.
+**Tag Team**: When you play 2+ ingredients with the same tag, they gain +100 Flavour.
 
 ### Tier 3 Appliances ($300)
-**The Blender**: At round start, all 8 cards in your hand pool their stats (total Flavour/Heat), then split evenly. Every card in hand becomes identical this round.
-**Spice Volcano**: Each Spice gives ×0.25 Heat (multiplicative!)
-**Master Gardener**: For every 3 Veggies in your deck, gain +15 Flavour per Veggie played.
-**Philosopher's Stone**: All your cards become Wild AND keep their original types. Gain +15 Flavour per card played.
+**Spice Volcano**: Each Spice gives ×0.25 Heat.
+**Master Gardener**: For every 3 Veggies in your deck, each Veggie played gives ×1.1 Flavour.
+**Philosopher's Stone**: All your cards become Wild AND keep their original types.
 **Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
-**Eternal Flame**: 1.0x Heat. Permanently gains 0.2x Heat every time a card is removed from your deck.
-**Snowball Pot**: Gain +0.2× Heat each time you Play this round (resets each round).
-**Ghost Kitchen**: Card names are hidden (show only type and rarity). All cards gain +80 Flavour and +8 Heat.
-**Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. Makes Heat exponential! Dream build: stack +Heat for 10,000× multipliers.
-**Wheel of RNGesus**: At round start, spin the wheel: 60% = ×2.5 Heat, 30% = ×3.5 Heat, 10% = ×1.0 Heat
+**Eternal Flame**: 1.0x Heat. Permanently gains +0.2x Heat every time a card is removed from your deck.
+**Snowball Pot**: Gain +0.5× Heat each time you Play this round (resets each round).
+**Ghost Kitchen**: Card names are hidden (show only type and rarity). ×3.0 Heat.
+**Engineer's Wrench**: Satisfaction becomes: Heat² × Flavour × Soup. 
 **Reckless Stove**: 2.5x Heat, but satisfaction threshold is ±20% randomized.
 **The Crucible**: Appliances trigger twice, but you can only use 2 Plays per round.
 **Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
@@ -165,11 +175,11 @@ Appliances trigger **in order (left to right)** when you Play cards.
 **Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
 
 ### Tier 4 Appliances (Rare Event Spawns)
-**Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.3 (starts at ×1.0).
-**Spice Must Flow**: Spices give ×0.4 Heat AND +15 Flavour. Requires Spice Volcano.
-**The Forbidden Fruit Bowl**: All Veggies gain Aged tag. Requires Master Gardener. 
-**Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
-**Gollzur's Orb**: See all customers before choosing tickets. All Mystery Tickets become beneficial. +1 Reroll. 
+**Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
+**Spice Must Flow**: Spices give ×0.45 Heat AND +20 Flavour. 
+**Hell's Kitchen**: ×6.0 Heat, but customers' thresholds increase by 50%. 
+**Gollzur's Orb**: View all upcoming tickets. All Mystery Tickets become beneficial. +1 Reroll. 
+**Étienne's Ladle**: Common ingredients trigger twice.
 
 ---
 
@@ -179,13 +189,6 @@ Appliances trigger **in order (left to right)** when you Play cards.
 - **Flavour (F)**: Adds to satisfaction
 - **Heat (H)**: Adds to multiplier (written as +2H, +5H, etc.)
 - **Type**: Veggie, Meat, Seafood, Spice, Dairy, Wild
-
-### Starting Deck (15 cards)
-- 4× Potato (50F, Veggie)
-- 3× Carrot (45F, Veggie)
-- 3× Onion (45F, Veggie)
-- 3× Chicken (70F, Meat)
-- 2× Black Pepper (20F, +3H, Spice)
 
 ### Common Ingredients ($40)
 | Name | Stats | Type |
@@ -229,10 +232,8 @@ Appliances trigger **in order (left to right)** when you Play cards.
 | Rotten Egg | -80F, +30H | Protein |
 | Burnt Garlic | 0F, +15H | Veggie |
 
-**Aged Tag**: Permanently gains +20F each time played this run.
+**Aged Tag**: Permanently gains +5F each time played this run.
 **Wild Tag**: Counts as any type for soup requirements.
-
-**Upgrade Ingredient** (Shop, $50): +40F or +6H
 
 ---
 
@@ -261,18 +262,18 @@ Combos happen when you play specific cards together in one Play. Cards glow when
 Buy these in shops for one-time powerful effects.
 
 ### Common Coupons ($50)
-- **Flavour Bomb**: +250 Flavour to your next Play
-- **Heat Wave**: +15 Heat to your next Play
-- **Extra Serving**: +1 Play this round
-- **Fresh Start**: +2 Rerolls this round
-- **Deck Peek**: Look at top 8 cards of deck
-- **Ingredient Removal**: Remove 1 card from deck permanently
-- **Payroll**: Earn $100
+- **Umami Crystal**: +250 Flavour to your next Play
+- **Dragon's Breath Pepper**: +15 Heat to your next Play
+- **Second Wind**: +1 Play this round
+- **Deep Clean**: +2 Rerolls this round
+- **Recipe Scroll**: Look at top 8 cards of deck
+- **Culling Knife**: Remove 1 card from deck permanently
+- **Generous Tip**: Earn $100
 
-### Rare Coupons ($100)
-- **Soup Level Up**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
-- **Appliance Boost**: Choose an Appliance. It triggers twice this round
-- **Card Duplicator**: Duplicate 1 card in your hand
+### Rare Coupons ($120)
+- **Alchemist's Primer**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
+- **Overdrive Gear**: Choose an Appliance. It triggers twice this round
+- **Mimic's Tears**: Duplicate 1 card in your hand
 
 ---
 
@@ -500,14 +501,15 @@ Buy these in shops for one-time powerful effects.
 ---
 
 **FINAL BOSS: God** (Ticket 16)
-- *Phase 1* (First 2 Plays): All Meats score 0F
-- *Phase 2* (Next 2 Plays): All Veggies score 0F  
-- *You must adapt between phases!*
+- *Phase 1* (First third of satisfaction threshold): Reduce Flavour from all sources by 80%
+- *Phase 2* (Next third): Disable a random appliance every play
+- *Phase 3* (Final third): Rare and uncommon ingredients score 10% of their usual Flavour/Heat
 - *Threshold*: 180,000
-- *Reward*: $400 + Title: "Ascended Chef"
+- *Reward*: $400
 - *Dialogue*:
   - Start: "I have tasted creation itself. Impress me, mortal."
-  - Phase 2: "You think you understand my tastes? Let us see..."
+  - Phase 2: "You rely too much on your trinkets. Cook with your hands!"
+  - Phase 3: "Show me the skill of a chef, not the wealth of a collector."
   - Win: "...You have earned your place among the divine. Well done."
 
 ---
@@ -519,42 +521,125 @@ Buy these in shops for one-time powerful effects.
 
 **Endless Scaling**:
 - Threshold: ×1.3 per ticket
-- Rewards: ×1.25 per ticket
+- Rewards: Capped at $300
 - Boss every 4 tickets (Tickets 20, 24, 28, etc.)
+- After every boss, scaling increases exponentially
 - New customers: Eldritch horrors with reality-warping modifiers
 
-**The Thing That Watches** (Common)
-- *Modifier*: Random card each Play becomes "Unknown" (0F, 0H)
-- *Threshold*: Scales ×1.3 per ticket
-- *Dialogue*: "W̴̢̛͈̹̓E̷̡̪̓͐ ̶̰̈́S̴̰̏̂E̶̯̓E̴͙̒ ̷̣͘Y̶̰̔O̴̧̍U̵̞̔"
+**Envy** (Common)
+- *Modifier*: Your highest Flavour ingredient and highest Heat ingredient each round are automatically debuffed (0F,0H).
+- *Dialogue*: "W̴̢̛͈̹̓E̷̡̪̓͐ ̶̰̈́S̴̰̏̂E̶̯̓E̴͙̒ ̷̣͘Y̶̰̔O̴̧̍U̵̞̔Ŕ̴̨̲ ̵̨̠́Š̵̡̻Ū̸̱C̸͇̓C̸̼̋E̴̮̋S̸̞̅S̸͚̅"
 
-**Entropy Incarnate** (Uncommon)
+**Lust** (Uncommon)
+- *Modifier*: All ingredients played must be of the same type or Play scores 0.
+- *Dialogue*: "Come closer, big shot... let me taste your soup."
+
+**Sloth** (Uncommon)
 - *Modifier*: All your stats randomly fluctuate ±30% each Play
-- *Threshold*: Scales ×1.3 per ticket
+- *Buff*: Unused Plays/Rerolls are worth ×3 their normal value.
 - *Dialogue*: "Order... disorder... does it matter?"
 
-**The Consumer** (Rare)
+**Gluttony** (Rare)
 - *Special*: Permanently removes 1 random card from your deck after serving
-- *Buff*: Threshold ×0.7
-- *Threshold*: Scales ×1.3 per ticket
 - *Dialogue*: "I hunger for more than soup..."
 
-**The Reverser** (Uncommon)
-- *Modifier*: Appliances trigger in reverse order (right to left)
-- *Threshold*: Scales ×1.3 per ticket
+**Pride** (Rare)
+- *Special*: If you use an Appliance that costs less than $300, instant fail
+- *Dialogue*: "I only consume that which is... elevated."
+
+**Wrath** (Uncommon)
+- *Modifier*: Appliances trigger in random order
 - *Dialogue*: "Let us see how well you adapt, chef."
 
-**The Gambler's Ruin** (Rare)
+**Greed** (Rare)
 - *Special*: Your satisfaction is multiplied by a random number between 0.5× and 3.0× after serving
-- *Threshold*: Scales ×1.3 per ticket
 - *Dialogue*: "Luck is just another ingredient, chef."
 
 **Void Boss Pattern**:
-- Random combination of previous boss mechanics
-- New reality-breaking phases
-- Scaling gets exponential
+- Random combination of two previous boss mechanics
 
-**Leaderboard**: How far can you ascend into madness?
+---
+
+# Étienne the Soup
+
+**Étienne** is a cursed chef trapped in soup form, forced to guide aspiring cooks through their ascension. He speaks from your pot throughout the run, offering commentary, encouragement, and cryptic warnings.
+
+---
+
+## Étienne's Story
+
+**The Curse**:
+Long ago, Étienne was a renowned chef who ascended to Heaven and served God himself. But in his pride, he forgot his humble origins: the simple ingredients that first taught him to cook. As punishment, God transformed him into sentient soup, binding him to guide new chefs until he learned some humility.
+
+**Personality**:
+- Wry and sardonic, but ultimately caring
+- Makes cooking puns 
+- Comments on your previous runs
+- Drops hints about the true ending
+- Reacts to your decisions in real-time
+
+---
+
+## Commentary Triggers
+
+### General Gameplay
+**First Play of a Run**:
+- "Ah, another aspiring chef. Let me guess, you think you're special?"
+- "Let's see if you can even make it past Mama Rosa."
+
+**On Reroll**:
+- "Second thoughts? Smart."
+- "Even I had to taste-test once, mon ami."
+- "Hesitation is the mark of wisdom... or cowardice."
+
+**On Removing a Starting Card**:
+- "Ah, so you're too good for the basics now?"
+- "Potatoes not fancy enough for you?"
+
+**On Buying Expensive Ingredients**:
+- "Ooh la la, très cher! Hope it's worth it."
+- "Money talks, but can you cook?"
+
+**On Getting a Tier 3 Appliance**:
+- "Now THAT'S a tool! I had one just like it..."
+- "Careful. The fancier the kitchen, the easier to forget why you started."
+
+---
+
+## The True Ending
+
+### Requirements
+1. **Beat God as Chef Jimmy**
+2. **Have EVERY starting card still in your deck**:
+
+---
+
+## Post-True-Ending Changes
+
+**Étienne No Longer Speaks**:
+After freeing him, the soup is silent. No more commentary. The pot is just... a pot.
+
+---
+
+## Étienne's Hint System
+
+Throughout the run, Étienne drops hints about the true ending:
+
+**Restaurant 1**:
+- "You know, I used to think fancy ingredients made me a better chef..."
+
+**Restaurant 2**:
+- "The more I ascended, the more I forgot why I started cooking."
+
+**Restaurant 3** (If you've removed cards):
+- "Streamlining your deck, I see. Efficient. ...I did the same thing."
+
+**Restaurant 3** (If you haven't removed cards):
+- "Still holding onto those potatoes? Sentimental... or strategic?"
+
+**Restaurant 4** (No removals):
+- "You haven't abandoned a single ingredient. That's... rare."
+- "Do you know what got me cursed? I threw away everything that reminded me of home."
 
 ---
 
@@ -564,7 +649,7 @@ Buy these in shops for one-time powerful effects.
 - Customer win: $80-150 (scales per restaurant)
 - Unused Plays: +$15 each
 - Unused Rerolls: +$8 each
-- Interest: +$5 per $50 saved (max +$30)
+- Interest: +$8 per $50 saved (max +$50)
 
 **Shop Prices**:
 - Common ingredient: $40
@@ -574,10 +659,9 @@ Buy these in shops for one-time powerful effects.
 - Tier 2 Appliance: $200
 - Tier 3 Appliance: $300
 - Remove card: $50 (increases by $40 per removal this run)
-- Upgrade card: $50
 - Common Coupons: $50
 - Rare Coupons: $100
-- Reroll shop: $25 (increases by $15 per reroll)
+- Refresh shop: $25 (increases by $15 per refresh)
 
 ---
 
@@ -608,7 +692,7 @@ Buy these in shops for one-time powerful effects.
 - Gain random Tier 3 Appliance
 - But: All ingredients permanently -20 Flavour
 
-**The Compactor** (8%)
+**The Hitman** (8%)
 - Remove 3 random cards from deck for free
 - Risk: Might remove good cards
 
@@ -632,7 +716,7 @@ Shops present a **curated selection** of items rather than a full catalog, creat
   - Restaurant 4: 20% Tier 1, 50% Tier 2, 30% Tier 3
   - Restaurant 5: 10% Tier 1, 40% Tier 2, 50% Tier 3
 - **2 Coupons**: 1 Common, 1 Rare or Common (30% rare)
-- **Services** (always available): Remove card, Upgrade card, Reroll shop
+- **Services** (always available): Remove card, Refresh shop
 
 **Featured Item**:
 - One random item has a **gold star** and costs **50% off**
@@ -643,6 +727,8 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 ## Meta-Progression
 
 ### Starting Chefs
+**Sous Chef Jimmy**
+- Starts with: 4× Potato, 3× Carrot, 3× Onion, 3× Chicken, 2× Black Pepper (15 cards)
 
 **Chef Rodrigo** (Unlock: Beat The Yacht Captain)
 - Starts with: 4× Beef, 3× Garlic, 2× Black Pepper, 2× Chili Flakes, 1× Cumin (12 cards)
@@ -654,15 +740,20 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 - *Passive*: Seafood gives +30 Flavour
 - *Starting Appliance*: Fishmonger's Ice
 
-**Chef Inferno** (Unlock: Beat God)
+**Grillardin Fieri** (Unlock: Beat God)
 - Starts with: 3× Ghost Pepper, 2× Chili Flakes, 2× Cayenne, 3× Beef, 2× Garlic (12 cards)
-- *Passive*: Spices give ×0.15 Heat (multiplicative!)
+- *Passive*: Spices give ×0.15 Heat
 - *Starting Appliance*: Spice Grinder
 
-**The Gardener** (Unlock: Reach Ticket 25 in The Void)
+**Maestro Sylvan** (Unlock: Reach Ticket 25 in The Void)
 - Starts with: 4× Truffle, 3× Mushroom, 3× Garlic, 2× Tomato (12 cards)
 - *Passive*: All Veggies gain Aged tag
 - *Starting Appliance*: Aging Barrel
+
+**Chef Étienne** (Unlock: Beat God with Sous Chef Jimmy without removing any of his starting ingredients)
+- Starts with: 6× Potato, 4× Carrot, 4× Onion, 4× Chicken, 3× Black Pepper (21 cards)
+- *Passive*: Starting ingredients give +50 Flavour and cannot be removed
+- *Starting Appliance*: Nostalgic Ladle
 
 ---
 
@@ -702,8 +793,7 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 - **Satisfaction calculator**: Shows estimated score before you Play
 - **Appliance reordering**: Drag to rearrange Appliance trigger order
 - **Undo last Play**: Once per round, undo your last Play (before round ends)
-- **Deck stats**: Shows ingredient distribution, soup type history, Aged ingredient values
-- **Deck viewer**: See all cards in deck with current stats (including Aged bonuses)
+- **Deck viewer**: See all cards in deck with current stats 
 - **Appliance hover**: Hover over Appliances to see exactly what they'll do this Play
 - **Customer intel**: After seeing a customer once, their modifier appears in ticket preview
 
