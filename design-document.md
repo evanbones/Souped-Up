@@ -126,7 +126,7 @@ Appliances trigger **in order (left to right)** when you Play cards.
 **Mise en Place**: If your first Play contains 4+ cards, gain +400 Flavour
 **Golden Ladle**: Gain an extra $20 at round end.
 **Shopping Cart**: Common ingredients give +50 Flavour
-**Prayer Beads**: Blessed ingredients have a 1 in 3 chance to trigger (up from 1 in 4).
+**Prayer Beads**: Blessed ingredients are twice as likely to trigger their effects.
 
 ### Tier 2 Appliances ($200)
 **Damn Fine Espresso**: First played ingredient scores an additional two times.
@@ -148,19 +148,19 @@ Appliances trigger **in order (left to right)** when you Play cards.
 **Combo Counter**: For each combo you trigger, permanently gain +0.3x Heat.
 **Theme Park**: For every 2 cards that match your soup type in a Play, gain +0.35× Heat.
 **Instant Ramen**: If you finish a customer in 1 Play, gain +$80 bonus.
-**Ancient Hourglass**: Each customer you beat, permanently gain +30 Flavour to all ingredients
+**Pickle Jar**: Each customer you beat, permanently gain +30 Flavour to all ingredients
 **Nest Egg**: Gain +0.5x Heat per $100 owned.
 **Stamp Collection**: Gain +0.25x Heat per ingredient added to deck.
-**Divine Intervention**: When a Blessed card triggers, gain +200 Flavour and +8 Heat.
-**Miracle Worker**: Once per round, you can force one Blessed card to trigger.
 **Spice Caravan**: When making Curry, Spices trigger twice.
 **Gambler's Wok**: Each Play, 50% chance: ×2.5 Heat OR lose half your Flavour.
 **Artisan's Pride**: Artisan ingredients give ×1.2 Flavour per Appliance you own.
 **Farmers Market**: Fresh ingredients trigger twice.
 **Tag Team**: When you play 2+ ingredients with the same tag, they gain +100 Flavour.
+**The Charcoal Grill**: Gain +0.4x Heat per charred ingredient in deck.
 
 ### Tier 3 Appliances ($300)
-**Spice Volcano**: Each Spice gives ×0.25 Heat.
+**Spice Volcano**: Each played Spice gives ×0.25 Heat.
+**The Forbidden Fruit Bowl**: All played Veggies gain Aged tag.
 **Master Gardener**: For every 3 Veggies in your deck, each Veggie played gives ×1.1 Flavour.
 **Philosopher's Stone**: All your cards become Wild AND keep their original types.
 **Chrono Spatula**: +1 Play. Your last Play each round scores ×2.0 satisfaction.
@@ -173,13 +173,24 @@ Appliances trigger **in order (left to right)** when you Play cards.
 **Pot of Greed**: -3 hand size. Every round, permanently increase hand size by 1.
 **Pressure Cooker**: ×3.5 Heat, but resets to ×1.0 at start of each restaurant. 
 **Molecular Gastronomy Kit**: Cards give zero Flavour/Heat. You gain +500 base Flavour. Each card played gives ×0.5 Heat.
+**Steam Engine**: If your Flavour is below 500, gain ×4.0 Heat. 
+**Legendary Chef's Apron**: Each time you make a ×2.5+ soup bonus, permanently gain ×0.25 Heat (starts at ×1.0).
+**Quality Over Quantity**: If your deck has ≤12 cards, all ingredients gain +120 Flavour and +12 Heat.
+**Good Noodle Star**: For each unique combo triggered this game, all combos give +40 Flavour.
+**Fusion Kitchen**: Combos trigger twice, but ingredients not in combos give 0 Flavour/0 Heat.
+**Michelin Tire**: Permanently gain ×0.25 Heat when an ingredient is purchased. Resets at end of restaurant.
+**Burnt Offerings**: ×3.0 Heat, but you must discard 2 cards at the start of every round.
+**Fermentation Station**: Fermented ingredients start with +0.6× Heat (instead of +0.15 at round start).
+**Analytics Report**: For each unique tag in your deck, gain +0.3× Heat.
 
 ### Tier 4 Appliances (Rare Event Spawns)
 **Schrödinger's Spoon**: Each soup type you've made this run permanently increases this Appliance's ×Heat by 0.5 (starts at ×1.0).
 **Spice Must Flow**: Spices give ×0.45 Heat AND +20 Flavour. 
-**Hell's Kitchen**: ×6.0 Heat, but customers' thresholds increase by 50%. 
+**Hell's Kitchen**: ×5.0 Heat, but customers' thresholds increase by 50%. 
 **Gollzur's Orb**: View all upcoming tickets. All Mystery Tickets become beneficial. +1 Reroll. 
 **Étienne's Ladle**: Common ingredients trigger twice.
+**Timekeeper's Hourglass**: At round start, choose: Double all Flavour this round OR Double all Heat this round.
+**God's Gambit**: Blessed cards trigger on 1 in 2 chance (50/50). When a Blessed card triggers, permanently gain ×0.25 Heat.
 
 ---
 
@@ -190,50 +201,70 @@ Appliances trigger **in order (left to right)** when you Play cards.
 - **Heat (H)**: Adds to multiplier (written as +2H, +5H, etc.)
 - **Type**: Veggie, Meat, Seafood, Spice, Dairy, Wild
 
+## Tag Definitions
+**Aged**: Permanently gains +5F each time played this run.
+**Wild**: Counts as any type for soup requirements.
+**Blessed**: Has a 1 in 4 chance to score triple the flavour. 1 in 20 chance to earn $100.
+**Artisan**: Gains +15 Flavour per unique Appliance you own.
+**Fresh**: If played in your first Play of the round, gain +80 Flavour.
+**Charred**: Gives +15 Heat but -30 Flavour.
+**Fermented**: Gains +0.15× Heat per round (resets between restaurants).
+**Preserved**: Cannot be removed from your deck, but gives ×1.5 Flavour.
+
+---
+
 ### Common Ingredients ($40)
-| Name | Stats | Type |
+
+| Name | Stats | Type | 
 |------|-------|------|
-| Tomato | 55F | Veggie |
+| Tomato | 55F | Veggie | 
 | Garlic | 40F, +3H | Veggie |
 | Beef | 85F | Meat |
-| Pork | 80F | Meat |
-| Fish | 70F | Seafood |
-| Butter | 60F | Dairy |
-| Salt | 30F, +4H | Wild |
+| Pork | 80F | Meat | 
+| Fish | 70F | Seafood | 
+| Butter | 60F | Dairy | 
+| Salt | 30F, +4H | - | 
+| Spring Greens | 60F | Veggie | 
+| Pickles | 65F | Veggie | 
+| Onion | 25F, +15H | Veggie |
 
 ### Uncommon Ingredients ($70)
+
 | Name | Stats | Type |
 |------|-------|------|
-| Shrimp | 100F | Seafood |
+| Shrimp | 100F | Seafood | 
 | Cream | 80F | Dairy |
-| Chili Flakes | 25F, +8H | Spice |
-| Mushroom | 75F | Veggie |
-| Stock | 90F (Aged: +20F per play) | Wild |
+| Chili Flakes | 25F, +8H | Spice | 
+| Mushroom | 75F | Veggie | 
+| Stock | 90F | - |
 | Cumin | 20F, +9H | Spice |
-| Cayenne | 20F, +10H | Spice |
-| Aged Cheddar | 95F (Aged) | Dairy |
+| Cayenne | 20F, +10H | Spice | 
+| Cheddar | 95F | Dairy |
+| Artisan Bread | 90F | - | 
+| Smoked Salmon | 135F | Seafood | 
+| Blackened Fish | 70F, +18H | Seafood |
+| Kimchi | 80F, +6H | Veggie |
 
 ### Rare Ingredients ($120)
+
 | Name | Stats | Type |
 |------|-------|------|
-| Truffle | 140F | Veggie |
-| Lamb | 120F | Meat |
+| Truffle | 140F | Veggie | 
+| Lamb | 120F | Meat | 
 | Lobster | 130F | Seafood |
-| Ghost Pepper | 15F, +18H | Spice |
-| Truffle Oil | 100F, +12H | Wild |
-| Aged Beef | 150F (Aged) | Meat |
-| Saffron | 25F, +20H | Spice |
-| Wagyu | 170F | Meat |
-
-### Cursed Ingredients (Mystery Ticket Rewards)
-| Name | Stats | Type |
-|------|-------|------|
-| Spoiled Milk | -50F, +25H | Dairy |
-| Rotten Egg | -80F, +30H | Protein |
-| Burnt Garlic | 0F, +15H | Veggie |
-
-**Aged Tag**: Permanently gains +5F each time played this run.
-**Wild Tag**: Counts as any type for soup requirements.
+| Ghost Pepper | 15F, +18H | Spice | 
+| Truffle Oil | 100F, +12H | - |
+| Beef | 150F | Meat | 
+| Saffron | 25F, +20H | Spice | 
+| Wagyu | 170F | Meat | 
+| Pasta | 140F | - | 
+| Olive Oil | 110F, +10H | - | 
+| Pork | 95F | Meat |
+| Miso | 100F, +10H | - | 
+| Sourdough | 85F | - | 
+| Dragon Fruit | 130F | Veggie |
+| Durian | 110F, +12H | - |
+| Ambrosia | 150F, +12H | - |
 
 ---
 
@@ -251,10 +282,14 @@ Combos happen when you play specific cards together in one Play. Cards glow when
 5. **Surf & Turf** (Seafood + Beef): +140F, +15H
 6. **Spice Rack** (3+ Different Spices): ×1.6 Heat
 7. **Rainbow Medley** (5+ Different Types): +250F, ×2.0 Heat
-8. **Holy Trinity** (Onion + Celery + Bell Pepper): +90F, ×1.4 Heat
+8. **Holy Trinity** (3+ Blessed cards in one Play): +200F, +15H
 9. **Aged Perfection** (2+ Aged Ingredients): ×1.5 Heat
 10. **The Inferno** (Ghost Pepper + 2+ other Spices): +50F, ×2.5 Heat
-
+11. **Artisan's Table** (3+ Artisan ingredients in one Play): +150F, ×1.4 Heat
+12. **Fresh Harvest** (4+ Fresh ingredients in your first Play): +300F, gain +1 Reroll this round
+13. **Blackened Special** (3+ Charred ingredients in one Play): +40 Heat, ×2.0 Heat
+14. **Fermented Feast** (2+ Fermented ingredients): Current round's Fermented bonus doubles (e.g., Round 3 = +0.9× Heat instead of +0.45×)
+    
 ---
 
 ## Coupons (Consumables)
@@ -269,11 +304,15 @@ Buy these in shops for one-time powerful effects.
 - **Recipe Scroll**: Look at top 8 cards of deck
 - **Culling Knife**: Remove 1 card from deck permanently
 - **Generous Tip**: Earn $100
+- **Transmutation Scroll**: Apply a random tag to a selected card
+- **Cleansing Spray**: Remove all tags from a selected card
 
 ### Rare Coupons ($120)
 - **Alchemist's Primer**: Upgrade a soup type (e.g., Curry ×3.0 → ×3.5)
 - **Overdrive Gear**: Choose an Appliance. It triggers twice this round
-- **Mimic's Tears**: Duplicate 1 card in your hand
+- **Mimic's Tears**: Create a permanent copy of a selected card
+- **Summoning Circle**: Create a random Appliance
+- **Blessing**: Apply Blessed to all cards in hand
 
 ---
 
@@ -668,37 +707,77 @@ Throughout the run, Étienne drops hints about the true ending:
 ## Mystery Ticket Events
 *Any mystery ticket events can be skipped*
 
-**The Fortune Teller** (20%)
+**The Fortune Teller**
 - Pay $60 to see next 3 carousel options
 - OR pay $120 to guarantee Shop next carousel, but it costs 20% more
 
-**The Gambler** (18%)
-- Bet $50-150 on coin flip
+**The Gambler** 
+- Bet $50-200 on coin flip
 - Win: Double bet | Lose: Lose it all
 
-**Ingredient Jackpot** (15%)
-- Get 1 free random ingredient, but it's Cursed (negative Flavour, high Heat)
-- OR pay $40 for a non-cursed random ingredient
+**The Wheel of Fortune**
+- Spin costs $100
+- 40%: Gain random Tier 2 Appliance
+- 30%: Gain $150
+- 20%: Gain 3 random modifiers applied to your deck
+- 10%: Lose a random Appliance
 
-**The Duplicator** (15%)
+**The Purification Ritual**
+- Remove all modifiers from your deck
+- Gain $30 per modifier removed
+
+**Shrine of Blessing**
+- All ingredients in deck become Blessed
+- But: Blessed trigger rates becomes 1 in 5 and 1 in 25
+
+**The Farmers Market**
+- Add 3 random Common ingredients to deck
+
+**The Forager**
+- Remove all non-Veggie cards from your deck
+- Gain an extra copy of each Veggie you have
+
+**The Duplicator**
 - Choose 1 ingredient in deck, gain 2 copies
 - But: Lose $50
 
-**Energy Infusion** (10%)
-- +1 permanent Play for rest of run
-- But: First card each round gets -30 Flavour
+**The Amazon Warehouse**
+- See 5 random Appliances you passed on earlier this run
+- Buy any one for 80% of its normal price
 
-**Cursed Treasure** (8%)
+**The Soup Sage**
+- Permanently upgrade one soup type's multiplier by +0.5× (e.g., Curry ×3.0 → ×3.5)
+
+**The Overclocking Station**
+- Choose 1 Appliance - it triggers twice for the next 3 customers
+- But: After 3 customers, it breaks 
+
+**Energy Infusion**
+- +1 permanent Play for rest of run or +1 hand size permanently
+
+**Cursed Treasure**
 - Gain random Tier 3 Appliance
 - But: All ingredients permanently -20 Flavour
 
-**The Hitman** (8%)
+**The Hitman**
 - Remove 3 random cards from deck for free
 - Risk: Might remove good cards
 
-**The Devil's Deal** (6%)
+**The Devil's Deal** 
 - Gain $200 immediately
 - But: Next 2 customers have +30% threshold
+
+**The Food Critic**
+- A critic rates your current deck
+- High score (good ingredients/modifiers): Gain $200 and +1 Reroll permanently
+- Medium score: Gain $80
+- Low score: They trash you publicly - next customer +20% threshold
+
+**Étienne's Memory**
+- Étienne shares a memory from his past
+- Choice A: "I remember when I was humble..." - All Common ingredients gain +60F
+- Choice B: "I remember when I was ambitious..." - Gain random Tier 3 Appliance, lose $150
+- Choice C: "I remember my biggest mistake..." - Select an ingredient to remove
 
 ---
 
