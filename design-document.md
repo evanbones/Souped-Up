@@ -45,14 +45,13 @@ The pot changes color in real-time as you play cards.
 
 ## Game Structure: The Ascension
 
-### The Five Restaurants
-You climb through 5 restaurants, each serving weirder customers. Each restaurant = **3 tickets** + **1 boss**.
+### The Four Restaurants
+You climb through four restaurants, each serving weirder customers. Each restaurant = **3 customer tickets** + **1 boss**.
 
 1. **Mama's Kitchen** (Street Level) - Tickets 1-3, Boss at 4
 2. **The Yacht Club** (Waterfront Elite) - Tickets 5-7, Boss at 8
 3. **The Penthouse** (Billionaire's Private Chef) - Tickets 9-11, Boss at 12
 4. **Heaven** (Ascend to Face God) - Tickets 13-15, Boss at 16
-5. **The Void** (???) - Endless Mode, Ticket 17+. Boss every 4 tickets
 
 ---
 
@@ -76,10 +75,7 @@ After each round, **choose 1 of 3 tickets**:
 **Restaurants 3-4** (Tickets 9-16):
 - 55% Customer, 25% Shop, 15% Mystery, 5% Black Market Shop
 
-**Restaurant 5** (Endless):
-- 50% Customer, 20% Shop, 25% Mystery, 5% Black Market Shop
-
-**Boss Tickets**: Mandatory at Tickets 4, 8, 12, 16, 20, etc. The carousel shows only **BOSS** - no choice.
+**Boss Tickets**: Mandatory at Tickets 4, 8, 12, 16. The carousel shows only **BOSS** - no choice.
 
 ---
 
@@ -592,8 +588,9 @@ Long ago, Étienne was a renowned chef who ascended to Heaven and served God him
 ## The True Ending
 
 ### Requirements
-1. **Beat God as Chef Jimmy**
-2. **Have EVERY starting card still in your deck**:
+1. **Beat God with Sous Chef Jimmy**
+2. **No card has been permanently removed from your deck (15+ cards from start still present)**
+3. **Your deck contains no Mythic or Rare ingredients (only Common/Uncommon allowed)**
 
 ---
 
@@ -741,7 +738,6 @@ Shops present a **curated selection** of items rather than a full catalog, creat
   - Restaurants 1-2: 70% Tier 1, 25% Tier 2, 5% Tier 3
   - Restaurant 3: 40% Tier 1, 40% Tier 2, 20% Tier 3
   - Restaurant 4: 20% Tier 1, 50% Tier 2, 30% Tier 3
-  - Restaurant 5: 10% Tier 1, 40% Tier 2, 50% Tier 3
 - **2 Coupons**: 1 Common, 1 Rare or Common (30% rare)
 - **Services** (always available): Remove card, Refresh shop
 
@@ -757,27 +753,27 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 **Sous Chef Jimmy**
 - Starts with: 4× Potato, 3× Carrot, 3× Onion, 3× Chicken, 2× Black Pepper (15 cards)
 
-**Chef Rodrigo** (Unlock: Beat The Yacht Captain)
+**Chef Rodrigo** (Unlock: Beat Mama Rosa)
 - Starts with: 4× Beef, 3× Garlic, 2× Black Pepper, 2× Chili Flakes, 1× Cumin (12 cards)
 - *Passive*: Meats give +4 Heat
 - *Starting Appliance*: Butcher's Block
 
-**Sushi Master Yuki** (Unlock: Beat The Billionaire)
+**Sushi Master Yuki** (Unlock: Beat The Yacht Captain)
 - Starts with: 3× Shrimp, 3× Fish, 2× Cream, 2× Garlic, 2× Salt (12 cards)
 - *Passive*: Seafood gives +30 Flavour
 - *Starting Appliance*: Fishmonger's Ice
+
+**Maestro Sylvan** (Unlock: Beat The Billionaire)
+- Starts with: 4× Truffle, 3× Mushroom, 3× Garlic, 2× Tomato (12 cards)
+- *Passive*: All Veggies gain Aged modifier when played
+- *Starting Appliance*: Aging Barrel
 
 **Grillardin Fieri** (Unlock: Beat God)
 - Starts with: 3× Ghost Pepper, 2× Chili Flakes, 2× Cayenne, 3× Beef, 2× Garlic (12 cards)
 - *Passive*: Spices give ×0.15 Heat
 - *Starting Appliance*: Spice Grinder
 
-**Maestro Sylvan** (Unlock: Reach Ticket 25 in The Void)
-- Starts with: 4× Truffle, 3× Mushroom, 3× Garlic, 2× Tomato (12 cards)
-- *Passive*: All Veggies gain Aged modifier when played
-- *Starting Appliance*: Aging Barrel
-
-**Chef Étienne** (Unlock: Beat God with Sous Chef Jimmy without removing any of his starting ingredients)
+**Chef Étienne** (Unlock: Achieve True Ending)
 - Starts with: 6× Potato, 4× Carrot, 4× Onion, 4× Chicken, 3× Black Pepper (21 cards)
 - *Passive*: Starting ingredients give +50 Flavour and cannot be removed
 - *Starting Appliance*: Nostalgic Ladle
