@@ -87,6 +87,7 @@ After each round, **choose 1 of 3 tickets**:
 
 You have **Plays** and **Rerolls** every round.
 
+```
 ROUND START
 ├─ Draw 8 cards
 ├─ 3 Plays, 2 Rerolls available
@@ -102,6 +103,7 @@ ROUND START
 │  └─ Draw back to 8 cards (-1 Reroll)
 │
 └─ Repeat until threshold reached or resources exhausted
+```
 
 **Leftover currency**:
 - Unused Plays: +$10 each
