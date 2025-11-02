@@ -870,13 +870,11 @@ Shops present a **curated selection** of items rather than a full catalog, creat
 
 - **Real-time soup preview**: Pot shows current soup type as you select cards
 - **Combo glow**: Cards glow when combo pieces are in hand
-- **Combo Cookbook**: UI element showing discovered combos and missing combos (silhouettes)
-- **Satisfaction calculator**: Shows estimated score before you Play
+- **Cookbook**: UI element showing discovered combos/ingredients and missing combos/ingredients (silhouettes)
 - **Appliance reordering**: Drag to rearrange Appliance trigger order
 - **Undo last Play**: Once per round, undo your last Play (before round ends)
 - **Deck viewer**: See all cards in deck with current stats 
 - **Appliance hover**: Hover over Appliances to see exactly what they'll do this Play
-- **Customer intel**: After seeing a customer once, their modifier appears in ticket preview
 
 ---
 
