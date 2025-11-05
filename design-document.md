@@ -263,13 +263,13 @@ Appliances trigger **in order (left to right)** when you Play cards. You can hav
 | **Durian** | 110F, +12H | - | On play: Flip a coin. Heads: +25H. Tails: Lose 15H |
 | **Ambrosia** | 150F, +12H | - | If this Play reaches 90%+ of threshold, permanently gain +8H |
 
-## Mythic Ingredients (Event/Boss Rewards Only)
+### Mythic Ingredients (Event/Boss Rewards Only)
 
 | Name | Stats | Type | Ability |
 |------|-------|------|---------|
 | **Phoenix Egg** | 200F, +25H | - | **Once per round**: If a Play doesn't meet threshold, return this to hand and gain +1 Play |
 | **Kraken Tentacle** | 180F | Seafood | Gains +20F for each other Seafood in your deck (calculated on play) |
-| **Golden Apple** | 160F | Veggie | **Permanent**: Every ingredient played this run gives this +6F |
+| **Golden Apple** | 80F | Veggie | **Permanent**: Every ingredient played this run gives this +6F |
 | **Void Salt** | 50F, +35H | Spice | All other cards in this Play have their Flavour/Heat randomized (50%-150%) |
 | **Unicorn Milk** | 140F | Dairy | Gain +10H for each unique modifier type in your deck |
 | **Philosopher's Basil** | 120F, +15H | Veggie | Choose another card in this Play - it becomes Wild (keeps original type too) |
